@@ -4,6 +4,26 @@ body {
     padding-bottom: 20px;
 }
 
+.form-centered {
+    display: inline-block;
+    text-align: center;
+    }
+
+.custom-well {
+    width: 80%;
+    margin: auto;
+    border: 3px;
+    padding: 10px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.custom-text {
+    width: 80%;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

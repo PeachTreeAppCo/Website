@@ -34,11 +34,11 @@ namespace PeachTreeWebsite
             //}
 
             // Bullshit code
-            if (usernames.Contains(Login1.UserName) && passwords.Contains(Login1.Password))
-            {
-                Session["user"] = new User();
-                Response.Redirect("~/Home.aspx");
-            }
+            //if (usernames.Contains(Login1.UserName) && passwords.Contains(Login1.Password))
+            //{
+            //    Session["user"] = new User();
+            //    Response.Redirect("~/Home.aspx");
+            //}
             // End bullshit code
         }
     }
