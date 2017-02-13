@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-<div class="container">
+<div class="container" id="myContainer">
     <br/>
     <div class="row">
       <div class="span12">
@@ -18,24 +18,24 @@
                 <div class="tab-pane active in form-centered" id="login">
                     <br/>
                     <fieldset>
-                      <div class="control-group">
-                        <!-- Member Email -->
+                      <!-- Member Email -->
+                      <div class="control-group">                        
                         <div class="controls">
-                          <input type="text" id="email" name="email" placeholder="Enter your email" class="input-xlarge custom-text">
+                            <asp:TextBox ID="txtEmail" placeholder="Enter your email" class="input-xlarge custom-text" runat="server"></asp:TextBox>
                         </div>
                       </div>
+                      <!-- Member Password-->
                       <div class="control-group">
-                          <br/>
-                        <!-- Member Password-->
-                        <div class="controls">
-                          <input type="password" id="password" name="password" placeholder="Password" class="input-xlarge custom-text">
+                          <br/>                        
+                        <div class="controls">                        
+                            <asp:TextBox ID="txtPwd" type="password" name="password" placeholder="Password" class="input-xlarge custom-text" runat="server"></asp:TextBox>
                         </div>
-                      </div>                        
-                      <div class="control-group">
-                          <br/>
-                        <!-- Member Login Button -->
+                      </div>     
+                      <!-- Member Login Button -->                   
+                      <div class="control-group">                          
+                          <br/>                        
                         <div class="controls">
-                          <button class="btn btn-success">Login</button>
+                          <button class="btn btn-success" id="btnLogin" style="width: 72px" runat="server" onServerClick="btnLogin_Click">Login</button>
                         </div>
                       </div>
                     </fieldset>
@@ -47,26 +47,21 @@
                     <div class="control-group">
                       <!-- Faculty Name -->                      
                         <div class="controls">
-                        <input type="text" list=faculties name="faculties" placeholder="Select your faculty" class="input-xlarge custom-text">
-                        <datalist id=faculties>
-                               <option> Faculty of Architecture, Computing & Humanities
-                               <option> Faculty of Education & Health
-                               <option> Faculty of Engineering & Science
-                               <option> Business School 
-                         </datalist>
+                        <asp:DropDownList ID="ddlFaculty" placeholder="Select your faculty" CssClass="input-xlarge custom-text" runat="server">
+                        </asp:DropDownList>
                       </div>
                     </div>
                         <br/>
                     <div class="control-group">
                       <!-- Faculty Password-->
                       <div class="controls">
-                        <input type="password" id="facultyPwd" name="password" placeholder="Password" class="input-xlarge custom-text">
+                        <asp:TextBox ID="txtFacultyPwd" type="password" placeholder="Password" class="input-xlarge custom-text" runat="server"></asp:TextBox>
                       </div>
                     </div>
                     <br/>
                     <!-- Faculty Login Button-->
                     <div>
-                      <button class="btn btn-success">Sign in</button>
+                      <button class="btn btn-success" id="btnFacultySignIn">Sign in</button>
                     </div>
                     </fieldset>
                     <br/>
@@ -75,7 +70,7 @@
                     <br/>
                     <!-- Guest Login Button-->
                     <div>
-                      <button class="btn btn-success">Guest Login</button>
+                      <button class="btn btn-success" id="btnGuestSignIn">Continue as a Guest</button>
                     </div>
                     <br/>
                 </div>
