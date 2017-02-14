@@ -48,7 +48,7 @@
                     <div class="control-group">
                       <!-- Faculty Name -->                      
                         <div class="controls">
-                        <asp:DropDownList ID="ddlFaculty" placeholder="Select your faculty" class="input-xlarge custom-text" style="min-height: 26px;" runat="server">
+                        <asp:DropDownList ID="ddlFaculty" class="input-xlarge custom-text" runat="server" Height="26px">
                         </asp:DropDownList>
                       </div>
                     </div>
