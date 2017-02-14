@@ -193,6 +193,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="LoggedIn.Master" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -247,6 +248,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Administrator.cs" />
+    <Compile Include="Classes\FacultyUser.cs" />
+    <Compile Include="Classes\Guest.cs" />
+    <Compile Include="Classes\MarketingCoordinator.cs" />
+    <Compile Include="Classes\MarketingManager.cs" />
+    <Compile Include="Classes\Student.cs" />
+    <Compile Include="LoggedIn.Master.cs">
+      <DependentUpon>LoggedIn.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LoggedIn.Master.designer.cs">
+      <DependentUpon>LoggedIn.Master</DependentUpon>
+    </Compile>
     <Compile Include="UI\AccountSettings.aspx.cs">
       <DependentUpon>AccountSettings.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

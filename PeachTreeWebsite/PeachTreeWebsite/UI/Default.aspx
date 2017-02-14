@@ -9,7 +9,7 @@
         <div class="" id="loginModal">
           <div class="modal-body">
             <div class="well custom-well">
-              <ul class="nav nav-tabs full-width">
+              <ul class="nav nav-tabs nav-justified full-width">
                 <li class="active"><a href="#login" data-toggle="tab">Login</a></li>
                 <li><a href="#facultyguestsignin" data-toggle="tab">Faculty Guest Login</a></li>
                 <li><a href="#guestsignin" data-toggle="tab">Guest Login</a></li>
@@ -33,9 +33,10 @@
                       </div>     
                       <!-- Member Login Button -->                   
                       <div class="control-group">                          
+                          <asp:Label ID="lblLoginError" runat="server"></asp:Label>
                           <br/>                        
                         <div class="controls">
-                          <button class="btn btn-success" id="btnLogin" style="width: 72px" runat="server" onServerClick="btnLogin_Click">Login</button>
+                          <button class="btn btn-success" id="btnLogin" runat="server" onServerClick="btnLogin_Click">Login</button>
                         </div>
                       </div>
                     </fieldset>
@@ -47,7 +48,7 @@
                     <div class="control-group">
                       <!-- Faculty Name -->                      
                         <div class="controls">
-                        <asp:DropDownList ID="ddlFaculty" placeholder="Select your faculty" CssClass="input-xlarge custom-text" runat="server">
+                        <asp:DropDownList ID="ddlFaculty" placeholder="Select your faculty" class="input-xlarge custom-text" style="min-height: 26px;" runat="server">
                         </asp:DropDownList>
                       </div>
                     </div>
@@ -58,10 +59,11 @@
                         <asp:TextBox ID="txtFacultyPwd" type="password" placeholder="Password" class="input-xlarge custom-text" runat="server"></asp:TextBox>
                       </div>
                     </div>
+                        <asp:Label ID="lblFacultyLoginErr" runat="server"></asp:Label>
                     <br/>
                     <!-- Faculty Login Button-->
                     <div>
-                      <button class="btn btn-success" id="btnFacultySignIn">Sign in</button>
+                      <button class="btn btn-success" id="btnFacultySignIn" runat="server" onServerClick="btnFacultySignIn_Click">Login</button>
                     </div>
                     </fieldset>
                     <br/>
@@ -70,7 +72,7 @@
                     <br/>
                     <!-- Guest Login Button-->
                     <div>
-                      <button class="btn btn-success" id="btnGuestSignIn">Continue as a Guest</button>
+                      <button class="btn btn-success" id="btnGuestSignIn" runat="server" onServerClick="btnGuestSignIn_Click">Continue as a Guest</button>
                     </div>
                     <br/>
                 </div>

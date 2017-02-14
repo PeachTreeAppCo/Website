@@ -10,7 +10,7 @@ namespace PeachTreeWebsite
         private int UserID;
         private string GivenName;
         private string Surname;
-        private string UserType;
+        private int UserType;
         private string Email;
         private string Password;
         private string MobileNumber;
@@ -18,16 +18,16 @@ namespace PeachTreeWebsite
 
         public SiteUser() { }
 
-        public SiteUser(int id, string fname, string sname, string type, string email, string pwd, string mobnum, int year)
+        public SiteUser(int id, string fname, string sname, int type, string email, string pwd, string mobnum, int year)
         {
-            this.UserID = id;
-            this.GivenName = fname;
-            this.Surname = sname;
-            this.UserType = type;
-            this.Email = email;
-            this.Password = pwd;
-            this.MobileNumber = mobnum;
-            this.StudyYear = year;
+            this.UserID1 = id;
+            this.GivenName1 = fname;
+            this.Surname1 = sname;
+            this.UserType1 = type;
+            this.Email1 = email;
+            this.Password1 = pwd;
+            this.MobileNumber1 = mobnum;
+            this.StudyYear1 = year;
         }
 
         public int UserID1
@@ -35,6 +35,11 @@ namespace PeachTreeWebsite
             get
             {
                 return UserID;
+            }
+
+            set
+            {
+                UserID = value;
             }
         }
 
@@ -44,6 +49,11 @@ namespace PeachTreeWebsite
             {
                 return GivenName;
             }
+
+            set
+            {
+                GivenName = value;
+            }
         }
 
         public string Surname1
@@ -52,13 +62,23 @@ namespace PeachTreeWebsite
             {
                 return Surname;
             }
+
+            set
+            {
+                Surname = value;
+            }
         }
 
-        public string UserType1
+        public int UserType1
         {
             get
             {
                 return UserType;
+            }
+
+            set
+            {
+                UserType = value;
             }
         }
 
@@ -68,6 +88,11 @@ namespace PeachTreeWebsite
             {
                 return Email;
             }
+
+            set
+            {
+                Email = value;
+            }
         }
 
         public string Password1
@@ -75,6 +100,11 @@ namespace PeachTreeWebsite
             get
             {
                 return Password;
+            }
+
+            set
+            {
+                Password = value;
             }
         }
 
@@ -84,6 +114,11 @@ namespace PeachTreeWebsite
             {
                 return MobileNumber;
             }
+
+            set
+            {
+                MobileNumber = value;
+            }
         }
 
         public int StudyYear1
@@ -91,6 +126,11 @@ namespace PeachTreeWebsite
             get
             {
                 return StudyYear;
+            }
+
+            set
+            {
+                StudyYear = value;
             }
         }
     }
