@@ -32,17 +32,16 @@ namespace PeachTreeWebsite
                     string Password = myReader["Pword"].ToString();
                     string MobileNumber = myReader["MobileNumber"].ToString();
                     int StudyYear = int.Parse(myReader["StudyYear"].ToString());
-                    u = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, StudyYear);
-                    myConnection.Close();
-                    return u;
-                }                
+                    u = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, StudyYear);                    
+                }
+                myConnection.Close();
+                return u;
             }
             catch (Exception e)
             {                
                 Console.WriteLine(e.ToString());
                 return null;
             }
-            return null;
         }
 
         public static FacultyUser facultyLogin (string facultyName, string facultyPwd)
@@ -61,17 +60,49 @@ namespace PeachTreeWebsite
                 while (myReader.Read())
                 {
                     int facultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
-                    f = new FacultyUser(facultyID, facultyName);
-                    myConnection.Close();
-                    return f;
+                    f = new FacultyUser(facultyID, facultyName);                    
                 }
+                myConnection.Close();
+                return f;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
                 return null;
             }
-            return null;
+        }
+
+        public static List<string> getFaculties()
+        {
+            List<string> faculties = new List<string>();
+            //SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            //SqlDataReader myReader = null;
+            //string queryStr = "SELECT FacultyName FROM PTA_Faculty";
+            //SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            //try
+            //{
+            //    myConnection.Open();
+            //    myReader = cmd.ExecuteReader();
+            //    while (myReader.Read())
+            //    {
+            //        string faculty = myReader["PTA_ID_Faculty"].ToString();
+            //        faculties.Add(faculty);
+            //    }
+            //    myConnection.Close();
+            //    return faculties;
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine(e.ToString());
+            //    return null;
+            //}
+
+            faculties = new List<string>(new string[] {
+            "Architecture, Computing & Humanities",
+            "Business School",
+            "Education & Health",
+            "Engineering & Science"});
+            return faculties;
         }
     }
 }

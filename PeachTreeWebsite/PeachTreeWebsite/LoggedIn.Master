@@ -51,7 +51,9 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/UI/AccountSettings">Account Settings</a></li>
-                        <li><a runat="server" href="~/UI/Default">Sign Out</a></li>
+                        <li>
+                            <button class="btn btn-link" id="btnSignOut" runat="server" onServerClick="btnSignOut_Click">Sign Out</button>
+                        </li>
                     </ul>
                 </div>
             </div>

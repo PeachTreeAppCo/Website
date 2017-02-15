@@ -11,7 +11,11 @@ namespace PeachTreeWebsite
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["SiteUser"] == null && Session["FacultySession"] == null && Session["GuestSession"] == null)
+            {
+                Session.Clear();
+                Response.Redirect("~/UI/Default.aspx");
+            }
         }
     }
 }

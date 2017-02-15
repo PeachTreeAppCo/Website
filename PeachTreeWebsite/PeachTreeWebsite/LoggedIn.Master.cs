@@ -13,5 +13,11 @@ namespace PeachTreeWebsite
         {
 
         }
+
+        public void btnSignOut_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Response.Redirect("~/UI/Default.aspx");
+        }
     }
 }

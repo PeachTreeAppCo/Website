@@ -11,17 +11,14 @@ namespace PeachTreeWebsite
 {
     public partial class _Default : Page
     {
-        List<string> faculties = new List<string>(new string[] {
-            "Architecture, Computing & Humanities",
-            "Business School",
-            "Education & Health",
-            "Engineering & Science"});
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["SiteUser"] != null || Session["FacultySession"] != null || Session["GuestSession"] != null)
             {
                 Response.Redirect("~/UI/Home.aspx");
             }
+            List<string> faculties = DBConnection.getFaculties();
             foreach (string s in faculties)
             {
                 ddlFaculty.Items.Add(s);
