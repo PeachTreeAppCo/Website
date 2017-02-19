@@ -46,14 +46,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Student Magazine Contribution Hub</a>
+                    <a class="navbar-brand" runat="server" href="~/UI/Default">Student Magazine Contribution Hub</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a runat="server" href="~/UI/AccountSettings">Account Settings</a></li>
-                        <li>
-                            <button class="btn btn-link" id="btnSignOut" runat="server" onServerClick="btnSignOut_Click">Sign Out</button>
-                        </li>
+                        <li><button class="btn btn-link btn-navbar-link v-align-centre" id="btnSignOut" runat="server" onServerClick="btnSignOut_Click">Sign Out</button></li>
                     </ul>
                 </div>
             </div>

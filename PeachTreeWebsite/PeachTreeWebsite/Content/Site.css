@@ -24,6 +24,20 @@ body {
     width: 80%;
 }
 
+.v-align-centre {
+    transform: translateY(23%);
+}
+
+.btn-navbar-link {
+  color: #777777;
+}
+
+.btn-navbar-link :hover,
+.btn-navbar-link :focus {
+  color: #5e5e5e;
+  background-color: transparent;
+}
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {

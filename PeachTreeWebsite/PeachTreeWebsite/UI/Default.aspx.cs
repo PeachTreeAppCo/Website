@@ -34,28 +34,7 @@ namespace PeachTreeWebsite
                 string pwd = txtPwd.Text;
                 SiteUser s = DBConnection.login(email, pwd);
                 if (s != null)
-                {
-                    switch (s.UserType1)
-                    {
-                        // Student
-                        case 1:
-                            s = new Student(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
-                            break;
-                        // Marketing Coordinator
-                        case 2:
-                            s = new MarketingCoordinator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
-                            break;
-                        // Marketing Manager
-                        case 3:
-                            s = new MarketingManager(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
-                            break;
-                        // Administrator
-                        case 4:
-                            s = new Administrator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
-                            break;
-                        default:
-                            break;
-                    }
+                {                    
                     Session["UserSession"] = s;
                     Response.Redirect("~/UI/Home.aspx");
                 }

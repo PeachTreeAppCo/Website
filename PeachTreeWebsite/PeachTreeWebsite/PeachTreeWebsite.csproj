@@ -200,6 +200,7 @@
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="favicon.ico" />
+    <Content Include="UI\AddContribution.aspx" />
     <Content Include="UI\Home.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -233,6 +234,10 @@
     <Content Include="UI\Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
+    <Content Include="UI\ManageUsers.aspx" />
+    <Content Include="UI\ViewContributions.aspx" />
+    <Content Include="UI\ViewPublications.aspx" />
+    <Content Include="UI\ViewReports.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -273,6 +278,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\DBConnection.cs" />
+    <Compile Include="UI\AddContribution.aspx.cs">
+      <DependentUpon>AddContribution.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\AddContribution.aspx.designer.cs">
+      <DependentUpon>AddContribution.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -313,6 +325,34 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="Classes\SiteUser.cs" />
+    <Compile Include="UI\ManageUsers.aspx.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ManageUsers.aspx.designer.cs">
+      <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewContributions.aspx.cs">
+      <DependentUpon>ViewContributions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewContributions.aspx.designer.cs">
+      <DependentUpon>ViewContributions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewPublications.aspx.cs">
+      <DependentUpon>ViewPublications.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewPublications.aspx.designer.cs">
+      <DependentUpon>ViewPublications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewReports.aspx.cs">
+      <DependentUpon>ViewReports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewReports.aspx.designer.cs">
+      <DependentUpon>ViewReports.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

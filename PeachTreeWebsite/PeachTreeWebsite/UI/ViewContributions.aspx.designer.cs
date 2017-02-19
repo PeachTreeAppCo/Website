@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PeachTreeWebsite {
+namespace PeachTreeWebsite.UI {
     
     
-    public partial class AccountSettings {
+    public partial class ViewContributions {
         
         /// <summary>
-        /// lblAccountSettings control.
+        /// lblViewContributions control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAccountSettings;
+        protected global::System.Web.UI.WebControls.Label lblViewContributions;
     }
 }
