@@ -104,5 +104,52 @@ namespace PeachTreeWebsite
             "Engineering & Science"});
             return faculties;
         }
+
+        public static List<UserType> getUserTypes()
+        {
+            List<UserType> userTypes = new List<UserType>();
+            UserType a = new UserType(1, "Student");
+            UserType b = new UserType(1, "Marketing Coordinator");
+            UserType c = new UserType(1, "Marketing Manager");
+            userTypes.Add(a);
+            userTypes.Add(b);
+            userTypes.Add(c);
+            return userTypes;
+        }
+
+        public static List<SiteUser> getUsersByType(int UserType)
+        {
+            List<SiteUser> users = new List<SiteUser>();
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "SELECT * FROM Users WHERE UserType = @paramUserType";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramUserType", UserType);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    int UserID = int.Parse(myReader["PTA_ID_User"].ToString());
+                    string GivenName = myReader["GivenName "].ToString();
+                    string Surname = myReader["Surname"].ToString();
+                    string Email = myReader["Email"].ToString();
+                    string Password = myReader["Pword"].ToString();
+                    string MobileNumber = myReader["MobileNumber"].ToString();
+                    int StudyYear = int.Parse(myReader["StudyYear"].ToString());
+                    SiteUser s = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, StudyYear);
+                    users.Add(s);
+                }
+                myConnection.Close();
+                return users;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+        }
     }
 }

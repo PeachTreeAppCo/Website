@@ -54,7 +54,7 @@ namespace PeachTreeWebsite
             else if (Session["GuestSession"] != null)
             {
                 lblWelcome.Text = "Welcome, Guest!";
-                setupPageForGuest();
+                //setupPageForGuest();
             }
             else
             {

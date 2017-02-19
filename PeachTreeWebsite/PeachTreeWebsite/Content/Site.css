@@ -28,15 +28,37 @@ body {
     transform: translateY(23%);
 }
 
-.btn-navbar-link {
-  color: #777777;
+.wrapper {
+    margin:auto;
+    width:90%;
+    height:auto;
+    overflow:auto;
+    text-align:left;
+}
+ 
+.formsidebyside {
+    float:left;
 }
 
-.btn-navbar-link :hover,
-.btn-navbar-link :focus {
-  color: #5e5e5e;
-  background-color: transparent;
+.label-form {
+    float: right;
+    width: 30%;
 }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+}
+
+form ul li {
+    clear: both;
+}
+
+.inputuserdetail{
+    width: 60%;
+    float: right;
+}
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */

@@ -259,6 +259,7 @@
     <Compile Include="Classes\MarketingCoordinator.cs" />
     <Compile Include="Classes\MarketingManager.cs" />
     <Compile Include="Classes\Student.cs" />
+    <Compile Include="Classes\UserType.cs" />
     <Compile Include="LoggedIn.Master.cs">
       <DependentUpon>LoggedIn.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
