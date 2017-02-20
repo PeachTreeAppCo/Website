@@ -44,6 +44,14 @@ namespace PeachTreeWebsite.UI
             SiteUser s = (SiteUser)from user in users
                                    where user.Email1 == lbUsers.SelectedItem.ToString()
                                    select user;
+
+            // Populate form with user data
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            // Update User in DB
+
         }
     }
 }

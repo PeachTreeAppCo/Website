@@ -26,7 +26,6 @@ namespace PeachTreeWebsite.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("<this is where the connection string should go>")]
         public string PeachTreeConnectionString {
             get {
                 return ((string)(this["PeachTreeConnectionString"]));

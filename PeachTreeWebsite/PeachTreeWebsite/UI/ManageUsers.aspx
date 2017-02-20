@@ -55,7 +55,7 @@
     </fieldset>
         <br />
         <p class="full-width">           
-            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" style="float: right"/>       
+            <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" style="float: right" OnClick="btnUpdate_Click"/>       
             <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger" style="float: right"/>                              
         </p>
     </div>
