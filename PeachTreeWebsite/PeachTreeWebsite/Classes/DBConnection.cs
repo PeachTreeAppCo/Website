@@ -14,9 +14,9 @@ namespace PeachTreeWebsite
             SiteUser u = new SiteUser();
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             SqlDataReader myReader = null;
-            string queryStr = "SELECT * FROM Users WHERE Email = @paramEmail AND Pword = @paramPassword";
+            string queryStr = "SELECT * FROM PTA_User WHERE Email = @paramEmail AND Pword = @paramPassword";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
-            cmd.Parameters.AddWithValue("@paramUsername", email);
+            cmd.Parameters.AddWithValue("@paramEmail", email);
             cmd.Parameters.AddWithValue("@paramPassword", pwd);
             try
             {
@@ -25,22 +25,26 @@ namespace PeachTreeWebsite
                 while (myReader.Read())
                 {
                     int UserID = int.Parse(myReader["PTA_ID_User"].ToString());
-                    string GivenName = myReader["GivenName "].ToString();
+                    string GivenName = myReader["GivenName"].ToString();
                     string Surname = myReader["Surname"].ToString();
-                    int UserType = int.Parse(myReader["UserType"].ToString());
+                    string UserType = myReader["UserType"].ToString();
                     string Email = myReader["Email"].ToString();
                     string Password = myReader["Pword"].ToString();
                     string MobileNumber = myReader["MobileNumber"].ToString();
-                    int StudyYear = int.Parse(myReader["StudyYear"].ToString());
-                    u = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, StudyYear);                    
-                }
-                myConnection.Close();
+                    int GenderID = int.Parse(myReader["PTA_ID_GenderLookup"].ToString());
+                    int FacultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
+                    u = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, GenderID, FacultyID);                    
+                }                
                 return u;
             }
             catch (Exception e)
             {                
                 Console.WriteLine(e.ToString());
                 return null;
+            }
+            finally
+            {
+                myConnection.Close();
             }
         }
 
@@ -62,7 +66,6 @@ namespace PeachTreeWebsite
                     int facultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
                     f = new FacultyUser(facultyID, facultyName);                    
                 }
-                myConnection.Close();
                 return f;
             }
             catch (Exception e)
@@ -70,39 +73,39 @@ namespace PeachTreeWebsite
                 Console.WriteLine(e.ToString());
                 return null;
             }
+            finally
+            {
+                myConnection.Close();
+            }
         }
 
         public static List<string> getFaculties()
         {
             List<string> faculties = new List<string>();
-            //SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            //SqlDataReader myReader = null;
-            //string queryStr = "SELECT FacultyName FROM PTA_Faculty";
-            //SqlCommand cmd = new SqlCommand(queryStr, myConnection);
-            //try
-            //{
-            //    myConnection.Open();
-            //    myReader = cmd.ExecuteReader();
-            //    while (myReader.Read())
-            //    {
-            //        string faculty = myReader["PTA_ID_Faculty"].ToString();
-            //        faculties.Add(faculty);
-            //    }
-            //    myConnection.Close();
-            //    return faculties;
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e.ToString());
-            //    return null;
-            //}
-
-            faculties = new List<string>(new string[] {
-            "Architecture, Computing & Humanities",
-            "Business School",
-            "Education & Health",
-            "Engineering & Science"});
-            return faculties;
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "SELECT FacultyName FROM PTA_Faculty";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    string faculty = myReader["FacultyName"].ToString();
+                    faculties.Add(faculty);
+                }
+                return faculties;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
         }
 
         public static List<UserType> getUserTypes()
@@ -117,7 +120,7 @@ namespace PeachTreeWebsite
             return userTypes;
         }
 
-        public static List<SiteUser> getUsersByType(int UserType)
+        public static List<SiteUser> getUsersByType(string UserType)
         {
             List<SiteUser> users = new List<SiteUser>();
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
@@ -138,17 +141,21 @@ namespace PeachTreeWebsite
                     string Email = myReader["Email"].ToString();
                     string Password = myReader["Pword"].ToString();
                     string MobileNumber = myReader["MobileNumber"].ToString();
-                    int StudyYear = int.Parse(myReader["StudyYear"].ToString());
-                    SiteUser s = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, StudyYear);
+                    int GenderID = int.Parse(myReader["PTA_ID_GenderLookup"].ToString());
+                    int FacultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
+                    SiteUser s = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, GenderID, FacultyID);
                     users.Add(s);
                 }
-                myConnection.Close();
                 return users;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
                 return null;
+            }
+            finally
+            {
+                myConnection.Close();
             }
         }
     }

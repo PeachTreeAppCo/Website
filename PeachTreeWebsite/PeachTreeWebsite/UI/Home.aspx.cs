@@ -22,20 +22,20 @@ namespace PeachTreeWebsite
                 switch (s.UserType1)
                 {
                     // Student
-                    case 1:
-                        s = new Student(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
+                    case "Student":
+                        s = new Student(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
                         break;
                     // Marketing Coordinator
-                    case 2:
-                        s = new MarketingCoordinator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
+                    case "Marketing Coordinator":
+                        s = new MarketingCoordinator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
                         break;
                     // Marketing Manager
-                    case 3:
-                        s = new MarketingManager(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
+                    case "Marketing Manager":
+                        s = new MarketingManager(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
                         break;
                     // Administrator
-                    case 4:
-                        s = new Administrator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.StudyYear1);
+                    case "Administrator":
+                        s = new Administrator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
                         break;
                     default:
                         Session.Clear();
@@ -98,7 +98,7 @@ namespace PeachTreeWebsite
             switch (s.UserType1)
             {
                 // Student
-                case 1:
+                case "Student":
                     btnAddContribution.Visible = true;
                     btnViewContributions.Visible = true;
                     btnViewReports.Visible = true;
@@ -107,7 +107,7 @@ namespace PeachTreeWebsite
                     btnManageUsers.Visible = false;
                     break;
                 // Marketing Coordinator
-                case 2:
+                case "Marketing Coordinator":
                     btnAddContribution.Visible = false;
                     btnViewContributions.Visible = true;
                     btnViewReports.Visible = true;
@@ -116,7 +116,7 @@ namespace PeachTreeWebsite
                     btnManageUsers.Visible = false;
                     break;
                 // Marketing Manager
-                case 3:
+                case "Marketing Manager":
                     btnAddContribution.Visible = false;
                     btnViewContributions.Visible = true;
                     btnViewReports.Visible = true;
@@ -125,7 +125,7 @@ namespace PeachTreeWebsite
                     btnManageUsers.Visible = false;
                     break;
                 // Administrator
-                case 4:
+                case "Administrator":
                     btnAddContribution.Visible = false;
                     btnViewContributions.Visible = false;
                     btnViewReports.Visible = false;

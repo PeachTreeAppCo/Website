@@ -10,15 +10,16 @@ namespace PeachTreeWebsite
         private int UserID;
         private string GivenName;
         private string Surname;
-        private int UserType;
+        private string UserType;
         private string Email;
         private string Password;
         private string MobileNumber;
-        private int StudyYear;
+        private int genderID;
+        private int facultyID;
 
         public SiteUser() { }
 
-        public SiteUser(int id, string fname, string sname, int type, string email, string pwd, string mobnum, int year)
+        public SiteUser(int id, string fname, string sname, string type, string email, string pwd, string mobnum, int genderID, int facultyID)
         {
             this.UserID1 = id;
             this.GivenName1 = fname;
@@ -27,7 +28,8 @@ namespace PeachTreeWebsite
             this.Email1 = email;
             this.Password1 = pwd;
             this.MobileNumber1 = mobnum;
-            this.StudyYear1 = year;
+            this.GenderID = genderID;
+            this.FacultyID = facultyID;
         }
 
         public int UserID1
@@ -69,7 +71,7 @@ namespace PeachTreeWebsite
             }
         }
 
-        public int UserType1
+        public string UserType1
         {
             get
             {
@@ -121,16 +123,29 @@ namespace PeachTreeWebsite
             }
         }
 
-        public int StudyYear1
+        public int GenderID
         {
             get
             {
-                return StudyYear;
+                return genderID;
             }
 
             set
             {
-                StudyYear = value;
+                genderID = value;
+            }
+        }
+
+        public int FacultyID
+        {
+            get
+            {
+                return facultyID;
+            }
+
+            set
+            {
+                facultyID = value;
             }
         }
     }

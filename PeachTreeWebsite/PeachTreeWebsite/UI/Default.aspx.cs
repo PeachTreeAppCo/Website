@@ -19,10 +19,13 @@ namespace PeachTreeWebsite
                 Response.Redirect("~/UI/Home.aspx");
             }
             List<string> faculties = DBConnection.getFaculties();
-            foreach (string s in faculties)
+            if (faculties != null)
             {
-                ddlFaculty.Items.Add(s);
-            }
+                foreach (string s in faculties)
+                {
+                    ddlFaculty.Items.Add(s);
+                }
+            }            
             ddlFaculty.Attributes["style"] = "width=30%; max-width: 280px";
         }
 
@@ -43,8 +46,9 @@ namespace PeachTreeWebsite
                     lblLoginError.Text = "Error logging in.";
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("ERROR in btnLogin_Click: " + ex); 
                 lblLoginError.Text = "Error logging in.";
             }
         }
