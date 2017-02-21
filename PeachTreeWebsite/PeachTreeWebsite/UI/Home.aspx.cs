@@ -134,7 +134,7 @@ namespace PeachTreeWebsite
                     break;
                 // Administrator
                 case "Administrator":
-                    btnAddContribution.Visible = false;
+                    btnAddContribution.Visible = true;
                     btnViewContributions.Visible = false;
                     btnViewReports.Visible = false;
                     btnAccountSettings.Visible = false;

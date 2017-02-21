@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -180,6 +181,33 @@ namespace PeachTreeWebsite
             {
                 myConnection.Close();
             }
-        }        
+        }
+
+        public static bool UploadFile(string title, byte[] bytes, int userID)
+        {   
+            //insert the file into database
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Status, PTA_ID_User) "
+                + "values (@paramTitle, @paramBytes, 'Submitted', @paramUserID)";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramTitle", title);
+            cmd.Parameters.AddWithValue("@paramBytes", bytes);
+            cmd.Parameters.AddWithValue("@paramUserID", userID);
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }          
     }
 }
