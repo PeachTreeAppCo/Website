@@ -14,7 +14,7 @@ namespace PeachTreeWebsite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["SiteUser"] != null || Session["FacultySession"] != null || Session["GuestSession"] != null)
+            if (Session["UserSession"] != null || Session["FacultySession"] != null || Session["GuestSession"] != null)
             {
                 Response.Redirect("~/UI/Home.aspx");
             }
@@ -33,23 +33,33 @@ namespace PeachTreeWebsite
         {
             try
             {
-                string email = txtEmail.Text;
-                string pwd = txtPwd.Text;
-                SiteUser s = DBConnection.login(email, pwd);
+                SiteUser s = null;
+                try
+                {
+                    string email = txtEmail.Text;
+                    string pwd = txtPwd.Text;
+                    s = DBConnection.login(email, pwd);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex);
+                    lblLoginError.Text = "Error logging in.";
+                }
                 if (s != null)
-                {                    
+                {
                     Session["UserSession"] = s;
-                    Response.Redirect("~/UI/Home.aspx");
+                    Response.Redirect("~/UI/Home.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
                 }
                 else
                 {
-                    lblLoginError.Text = "Error logging in.";
+                    lblLoginError.Text = "User not found. Please check your details and try again.";
                 }
             }
-            catch (Exception ex)
+            catch (System.Threading.ThreadAbortException tax)
             {
-                Console.WriteLine("ERROR in btnLogin_Click: " + ex); 
-                lblLoginError.Text = "Error logging in.";
+                //Do nothing.  The exception will get rethrown by the framework when this block terminates.
+                Console.WriteLine("ERROR: " + tax);
             }
         }
 

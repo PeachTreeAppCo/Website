@@ -11,7 +11,7 @@ namespace PeachTreeWebsite
     {
         public static SiteUser login(string email, string pwd)
         {
-            SiteUser u = new SiteUser();
+            SiteUser u = null;
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             SqlDataReader myReader = null;
             string queryStr = "SELECT * FROM PTA_User WHERE Email = @paramEmail AND Pword = @paramPassword";

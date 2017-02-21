@@ -16,9 +16,9 @@ namespace PeachTreeWebsite
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["SiteUser"] != null)
+            if (Session["UserSession"] != null)
             {
-                s = (SiteUser)Session["SiteUser"];
+                s = (SiteUser)Session["UserSession"];
                 switch (s.UserType1)
                 {
                     // Student
