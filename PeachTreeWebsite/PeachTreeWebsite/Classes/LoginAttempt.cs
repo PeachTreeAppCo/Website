@@ -7,7 +7,13 @@ namespace PeachTreeWebsite.Classes
 {
     public class LoginAttempt
     {
-        private int attemptNo;
-        // create attributes & constructors, then add table to failed login page and add button to home page for admin to use
+        private string emailEntered;
+        private string pwdEntered;
+
+        public LoginAttempt(string email, string pwd)
+        {
+            this.emailEntered = email;
+            this.pwdEntered = pwd;
+        }
     }
 }

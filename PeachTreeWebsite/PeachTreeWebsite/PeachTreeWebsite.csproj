@@ -236,6 +236,7 @@
     <Content Include="Site.Master" />
     <Content Include="UI\ManageUsers.aspx" />
     <Content Include="UI\ViewContributions.aspx" />
+    <Content Include="UI\ViewFailedLoginAttempts.aspx" />
     <Content Include="UI\ViewPublications.aspx" />
     <Content Include="UI\ViewReports.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -340,6 +341,13 @@
     </Compile>
     <Compile Include="UI\ViewContributions.aspx.designer.cs">
       <DependentUpon>ViewContributions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewFailedLoginAttempts.aspx.cs">
+      <DependentUpon>ViewFailedLoginAttempts.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewFailedLoginAttempts.aspx.designer.cs">
+      <DependentUpon>ViewFailedLoginAttempts.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\ViewPublications.aspx.cs">
       <DependentUpon>ViewPublications.aspx</DependentUpon>

@@ -158,5 +158,28 @@ namespace PeachTreeWebsite
                 myConnection.Close();
             }
         }
+
+        public static void AddFailedLogin(string email, string pwd)
+        {
+            LoginAttempt u = new LoginAttempt(email, pwd);
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string queryStr = "INSERT INTO PTA_LoginAttempt (EmailEntered, PwordEntered) VALUES (@paramEmail, @paramPassword)";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramEmail", email);
+            cmd.Parameters.AddWithValue("@paramPassword", pwd);
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();                
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }        
     }
 }

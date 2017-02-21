@@ -54,7 +54,7 @@ namespace PeachTreeWebsite
             else if (Session["GuestSession"] != null)
             {
                 lblWelcome.Text = "Welcome, Guest!";
-                //setupPageForGuest();
+                setupPageForGuest();
             }
             else
             {
@@ -86,6 +86,11 @@ namespace PeachTreeWebsite
         public void btnViewPublications_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/ViewPublications.aspx");
+        }
+
+        public void btnViewFailedLogins_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UI/ViewFailedLoginAttempts.aspx");
         }        
 
         public void btnManageUsers_Click(object sender, EventArgs e)
@@ -104,6 +109,7 @@ namespace PeachTreeWebsite
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
+                    btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
                     break;
                 // Marketing Coordinator
@@ -113,6 +119,7 @@ namespace PeachTreeWebsite
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
+                    btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
                     break;
                 // Marketing Manager
@@ -122,6 +129,7 @@ namespace PeachTreeWebsite
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
+                    btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
                     break;
                 // Administrator
@@ -131,6 +139,7 @@ namespace PeachTreeWebsite
                     btnViewReports.Visible = false;
                     btnAccountSettings.Visible = false;
                     btnViewPublications.Visible = true;
+                    btnViewFailedLogins.Visible = true;
                     btnManageUsers.Visible = true;
                     break;
                 default:
@@ -139,6 +148,7 @@ namespace PeachTreeWebsite
                     btnViewReports.Visible = false;
                     btnAccountSettings.Visible = false;
                     btnViewPublications.Visible = false;
+                    btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
                     break;
             }
@@ -151,6 +161,7 @@ namespace PeachTreeWebsite
             btnViewReports.Visible = true;
             btnAccountSettings.Visible = false;
             btnViewPublications.Visible = true;
+            btnViewFailedLogins.Visible = false;
             btnManageUsers.Visible = false;
         }
     }

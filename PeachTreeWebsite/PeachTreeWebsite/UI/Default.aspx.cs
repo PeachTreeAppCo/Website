@@ -34,9 +34,7 @@ namespace PeachTreeWebsite
             SiteUser s = null;
             try
             {
-                string email = txtEmail.Text;
-                string pwd = txtPwd.Text;
-                s = DBConnection.login(email, pwd);
+                s = DBConnection.login(txtEmail.Text, txtPwd.Text);
             }
             catch (Exception ex)
             {
@@ -52,6 +50,7 @@ namespace PeachTreeWebsite
             else
             {
                 lblLoginError.Text = "User not found. Please check your details and try again.";
+                DBConnection.AddFailedLogin(txtEmail.Text, txtPwd.Text);
             }
         }
 
