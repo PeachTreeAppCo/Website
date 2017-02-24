@@ -67,13 +67,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblImage;
         
         /// <summary>
-        /// fileContrib0 control.
+        /// fileImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileContrib0;
+        protected global::System.Web.UI.WebControls.FileUpload fileImage;
         
         /// <summary>
         /// cbTerms control.

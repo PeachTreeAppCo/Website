@@ -184,8 +184,8 @@ namespace PeachTreeWebsite
         }
 
         public static bool UploadFile(string title, byte[] bytes, int userID)
-        {   
-            //insert the file into database
+        {
+            // insert the contribution into database with file
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Status, PTA_ID_User) "
                 + "values (@paramTitle, @paramBytes, 'Submitted', @paramUserID)";
@@ -208,6 +208,34 @@ namespace PeachTreeWebsite
             {
                 myConnection.Close();
             }
-        }          
+        }
+
+        public static bool UploadFileWithImg(string title, byte[] fileBytes, byte[] imgBytes, int userID)
+        {
+            // insert the contribution into database with file & image
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Image, Cont_Status, PTA_ID_User) "
+                + "values (@paramTitle, @paramFileBytes, @paramImgBytes, 'Submitted', @paramUserID)";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramTitle", title);
+            cmd.Parameters.AddWithValue("@paramFileBytes", fileBytes);
+            cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes);
+            cmd.Parameters.AddWithValue("@paramUserID", userID);
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
     }
 }

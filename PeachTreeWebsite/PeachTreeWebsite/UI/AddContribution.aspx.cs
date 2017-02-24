@@ -11,6 +11,7 @@ namespace PeachTreeWebsite.UI
     public partial class AddContribution : System.Web.UI.Page
     {
         SiteUser s = null;
+        bool badImg = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -27,12 +28,87 @@ namespace PeachTreeWebsite.UI
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Read the file and convert it to Byte Array
+            // Clear previous errors
+            lblSubmit.Text = "";
+
+            if (cbTerms.Checked)
+            {
+                if (txtTitle.Text != "")
+                {
+                    string title = txtTitle.Text;
+                    byte[] docBytes = null;
+                    byte[] imgBytes = null;                    
+
+                    // check for files and convert to byte array
+                    if (fileContrib.HasFile)
+                    {
+                        docBytes = convertDocToByte();
+                        if (fileImage.HasFile)
+                        {
+                            imgBytes = convertImageToByte();
+                        }
+                    }                    
+
+                    // Check if docs exist and upload appropriately
+                    if (docBytes != null && imgBytes != null)
+                    {
+                        if(DBConnection.UploadFileWithImg(title, docBytes, imgBytes, s.UserID1))
+                        {
+                            cbTerms.Checked = false;
+                            txtTitle.Text = "";
+                            lblSubmit.Text = "Contribution and image uploaded successfully!";
+                        }
+                        else
+                        {
+                            lblSubmit.Text = "Error uploading files. Please try again later.";
+                        }
+                    }
+                    else if (docBytes != null && !badImg)
+                    {
+                        if(DBConnection.UploadFile(title, docBytes, s.UserID1))
+                        {
+                            cbTerms.Checked = false;
+                            txtTitle.Text = "";
+                            lblSubmit.Text = "Contribution uploaded successfully!";
+                        }
+                        else
+                        {
+                            lblSubmit.Text = "Error uploading files. Please try again later.";
+                        }
+                    }
+                    else if (docBytes != null && badImg)
+                    {
+                        lblSubmit.Text = "Please ensure image is a .png file.";
+                    }
+                    else
+                    {
+                        lblSubmit.Text = "Please select a valid file (.doc / .docx) to upload for your contribution.";
+                    }
+                }
+                else
+                {
+                    lblSubmit.Text = "Please select a title";
+                }
+            }
+            else
+            {
+                lblSubmit.Text = "You must accept the terms & conditions";
+            }
+        }
+
+        protected void btnTnC_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts",
+                "<script>alert('This is the terms and conditions. Accept them or else!')</script>"
+                );
+        }
+
+        private byte[] convertDocToByte()
+        {
             string filePath = fileContrib.PostedFile.FileName;
             string filename = Path.GetFileName(filePath);
             string ext = Path.GetExtension(filename);
             string contenttype = "";
-            string title = txtTitle.Text;
 
             //Set the contenttype based on File Extension
             switch (ext)
@@ -49,19 +125,41 @@ namespace PeachTreeWebsite.UI
                 Stream fs = fileContrib.PostedFile.InputStream;
                 BinaryReader br = new BinaryReader(fs);
                 Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                DBConnection.UploadFile(title, bytes, s.UserID1);               
+                return bytes;
             }
             else
             {
-                lblSubmit.Text = "File type must be .doc or .docx";
+                return null;
             }
         }
 
-        protected void btnTnC_Click(object sender, EventArgs e)
+        private byte[] convertImageToByte()
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", 
-                "<script>alert('This is the terms and conditions. Accept them or else!')</script>"
-                );
+            string filePath = fileImage.PostedFile.FileName;
+            string filename = Path.GetFileName(filePath);
+            string ext = Path.GetExtension(filename);
+            string contenttype = "";
+
+            //Set the contenttype based on File Extension
+            switch (ext)
+            {
+                case ".png":
+                    contenttype = "image/png";
+                    break;
+            }
+
+            if (contenttype != "")
+            {
+                Stream fs = fileImage.PostedFile.InputStream;
+                BinaryReader br = new BinaryReader(fs);
+                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                return bytes;
+            }
+            else
+            {
+                badImg = true;
+                return null;
+            }
         }
     }
 }
