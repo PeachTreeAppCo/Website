@@ -26,15 +26,18 @@ namespace PeachTreeWebsite.UI
                 Session.Clear();
                 Response.Redirect("~/UI/Default.aspx");
             }
-            competitions = DBConnection.getCompetitons();
-            foreach(Competition c in competitions)
+            if(!IsPostBack)
             {
-                if(DateTime.Now < c.InitialClosure1)
+                competitions = DBConnection.getCompetitons();
+                foreach (Competition c in competitions)
                 {
-                    ddlComps.Items.Add(c.Name);
-                }                
-            }
-            ddlComps.SelectedIndex = 0;
+                    if (DateTime.Now < c.InitialClosure1)
+                    {
+                        ddlComps.Items.Add(c.Name);
+                    }
+                }
+                ddlComps.SelectedIndex = 0;
+            }            
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -174,6 +177,11 @@ namespace PeachTreeWebsite.UI
                 badImg = true;
                 return null;
             }
+        }
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UI/ViewContributions.aspx");
         }
     }
 }

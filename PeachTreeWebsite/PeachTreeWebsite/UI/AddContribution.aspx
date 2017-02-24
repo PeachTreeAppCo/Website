@@ -1,10 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddContribution.aspx.cs" Inherits="PeachTreeWebsite.UI.AddContribution" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblAccountSettings" runat="server">Add Contribution</asp:Label>
+        <asp:Label ID="lblAccountSettings" runat="server">Add Contribution</asp:Label>   <br />      
     </div>
     <div>
-                <asp:Label ID="lblTitle" runat="server" Text="Title *"></asp:Label><br />
+                <asp:Label ID="lblTitle" runat="server" Text="Title *"></asp:Label>
+                <br />
                 <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
                 <br />
                 <br />
@@ -16,7 +17,7 @@
                 <br />
                 <asp:Label ID="lblDoc" runat="server" Text="Document *"></asp:Label>
                 <asp:FileUpload ID="fileContrib" runat="server" />
-                <br />        
+                <br />
                 <asp:Label ID="lblImage" runat="server" Text="Image"></asp:Label>
                 <asp:FileUpload ID="fileImage" runat="server" />
                 <br />
@@ -26,6 +27,9 @@
                 <br />
                 <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
                 <asp:Label ID="lblSubmit" runat="server"></asp:Label>
+                <br />
+                <br />
+                <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
     </div>
 </asp:Content>
 
