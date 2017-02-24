@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PeachTreeWebsite.Classes;
 
 namespace PeachTreeWebsite.UI
 {
@@ -12,6 +13,7 @@ namespace PeachTreeWebsite.UI
     {
         SiteUser s = null;
         bool badImg = false;
+        List<Competition> competitions = new List<Competition>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,6 +26,15 @@ namespace PeachTreeWebsite.UI
                 Session.Clear();
                 Response.Redirect("~/UI/Default.aspx");
             }
+            competitions = DBConnection.getCompetitons();
+            foreach(Competition c in competitions)
+            {
+                if(DateTime.Now < c.InitialClosure1)
+                {
+                    ddlComps.Items.Add(c.Name);
+                }                
+            }
+            ddlComps.SelectedIndex = 0;
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -37,7 +48,10 @@ namespace PeachTreeWebsite.UI
                 {
                     string title = txtTitle.Text;
                     byte[] docBytes = null;
-                    byte[] imgBytes = null;                    
+                    byte[] imgBytes = null;
+                    int compID = (from c in competitions
+                                  where c.Name == ddlComps.SelectedItem.Text
+                                  select c.ID1).First();                                                
 
                     // check for files and convert to byte array
                     if (fileContrib.HasFile)
@@ -52,7 +66,7 @@ namespace PeachTreeWebsite.UI
                     // Check if docs exist and upload appropriately
                     if (docBytes != null && imgBytes != null)
                     {
-                        if(DBConnection.UploadFileWithImg(title, docBytes, imgBytes, s.UserID1))
+                        if(DBConnection.UploadFileWithImg(title, docBytes, imgBytes, s.UserID1, compID))
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
@@ -65,7 +79,7 @@ namespace PeachTreeWebsite.UI
                     }
                     else if (docBytes != null && !badImg)
                     {
-                        if(DBConnection.UploadFile(title, docBytes, s.UserID1))
+                        if(DBConnection.UploadFile(title, docBytes, s.UserID1, compID))
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";

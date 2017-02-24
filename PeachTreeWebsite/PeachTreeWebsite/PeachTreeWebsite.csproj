@@ -255,6 +255,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Administrator.cs" />
+    <Compile Include="Classes\Competition.cs" />
     <Compile Include="Classes\FacultyUser.cs" />
     <Compile Include="Classes\Guest.cs" />
     <Compile Include="Classes\LoginAttempt.cs" />

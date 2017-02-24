@@ -8,6 +8,12 @@
                 <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
                 <br />
                 <br />
+                <asp:Label ID="lblComp" runat="server" Text="Competition *"></asp:Label>
+                <br />
+                <asp:DropDownList ID="ddlComps" runat="server">
+                </asp:DropDownList>
+                <br />
+                <br />
                 <asp:Label ID="lblDoc" runat="server" Text="Document *"></asp:Label>
                 <asp:FileUpload ID="fileContrib" runat="server" />
                 <br />        

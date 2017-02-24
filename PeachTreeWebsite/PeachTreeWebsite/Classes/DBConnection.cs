@@ -183,16 +183,18 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UploadFile(string title, byte[] bytes, int userID)
+        public static bool UploadFile(string title, byte[] bytes, int userID, int compID)
         {
             // insert the contribution into database with file
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Status, PTA_ID_User) "
-                + "values (@paramTitle, @paramBytes, 'Submitted', @paramUserID)";
+            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
+                + "values (@paramTitle, @paramBytes, 'Submitted', @paramUserID, @paramCompID)";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
             cmd.Parameters.AddWithValue("@paramBytes", bytes);
             cmd.Parameters.AddWithValue("@paramUserID", userID);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+
             try
             {
                 myConnection.Open();
@@ -210,17 +212,19 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UploadFileWithImg(string title, byte[] fileBytes, byte[] imgBytes, int userID)
+        public static bool UploadFileWithImg(string title, byte[] fileBytes, byte[] imgBytes, int userID, int compID)
         {
             // insert the contribution into database with file & image
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Image, Cont_Status, PTA_ID_User) "
-                + "values (@paramTitle, @paramFileBytes, @paramImgBytes, 'Submitted', @paramUserID)";
+            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Image, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
+                + "values (@paramTitle, @paramFileBytes, @paramImgBytes, 'Submitted', @paramUserID, @paramCompID)";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
             cmd.Parameters.AddWithValue("@paramFileBytes", fileBytes);
             cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes);
             cmd.Parameters.AddWithValue("@paramUserID", userID);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+
             try
             {
                 myConnection.Open();
@@ -237,5 +241,41 @@ namespace PeachTreeWebsite
                 myConnection.Close();
             }
         }
+
+        public static List<Competition> getCompetitons()
+        {
+            List<Competition> comps = new List<Competition>();
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "SELECT * FROM PTA_Competition";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    Competition c = new Competition();
+                    int ID = int.Parse(myReader["PTA_ID_Competition"].ToString());
+                    DateTime initClose;
+                    DateTime.TryParse(myReader["InitialClosureDate"].ToString(), out initClose);
+                    DateTime finalClose;
+                    DateTime.TryParse(myReader["FinalClosureDate"].ToString(), out finalClose);
+                    string name = myReader["CompetitionName"].ToString();
+                    c = new Competition(ID, initClose, finalClose, name);
+                    comps.Add(c);
+                }
+                return comps;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }        
     }
 }
