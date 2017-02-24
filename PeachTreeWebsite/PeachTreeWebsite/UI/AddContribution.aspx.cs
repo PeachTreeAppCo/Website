@@ -56,5 +56,12 @@ namespace PeachTreeWebsite.UI
                 lblSubmit.Text = "File type must be .doc or .docx";
             }
         }
+
+        protected void btnTnC_Click(object sender, EventArgs e)
+        {
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts", 
+                "<script>alert('This is the terms and conditions. Accept them or else!')</script>"
+                );
+        }
     }
 }
