@@ -13,6 +13,20 @@
 						<asp:Button ID="btnDownload" CssClass="btn btn-link" Text="Download" runat="server" 
 							CommandName="Download" 
 							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+					</ItemTemplate>					
+				</asp:TemplateField>
+				<asp:TemplateField>
+					<ItemTemplate>
+						<asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server" 
+							CommandName="Edit" 
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+					</ItemTemplate>					
+				</asp:TemplateField>
+				<asp:TemplateField>
+					<ItemTemplate>
+						<asp:Button ID="btnDelete" CssClass="btn btn-link" Text="Delete" runat="server" 
+							CommandName="Delete" 
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
 					</ItemTemplate>
 				</asp:TemplateField>
 			</Columns>

@@ -45,8 +45,6 @@ namespace PeachTreeWebsite.UI
 			dt.Columns.Add("Final Closure Date");
 			dt.Columns.Add("File");
 			dt.Columns.Add("Image");
-			dt.Columns.Add("Edit");
-			dt.Columns.Add("Delete");
 
 			if (contributions != null)
 			{
@@ -63,8 +61,6 @@ namespace PeachTreeWebsite.UI
 					dr["Final Closure Date"] = comp.FinalClosure1;
 					dr["File"] = c.DocTitle;
 					dr["Image"] = c.ImgTitle;
-					dr["Edit"] = "Edit";
-					dr["Delete"] = "Delete";
 					dt.Rows.Add(dr);
 				}
 				gridviewContrib.DataSource = dt;
