@@ -146,7 +146,7 @@ namespace PeachTreeWebsite
 
         public void setupPageForGuest()
         {
-            btnViewContributions.Visible = true;
+            btnViewContributions.Visible = false;
             btnViewReports.Visible = true;
             btnAccountSettings.Visible = false;
             btnViewPublications.Visible = true;
