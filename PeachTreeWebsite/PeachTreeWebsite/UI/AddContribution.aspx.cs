@@ -52,16 +52,16 @@ namespace PeachTreeWebsite.UI
                     byte[] imgBytes = null;
                     int compID = (from c in competitions
                                   where c.Name == ddlComps.SelectedItem.Text
-                                  select c.ID1).First();                                                
+                                  select c.ID1).First();
+					string filecontenttype = "";
 
-                    // check for files and convert to byte array
-                    if (fileContrib.HasFile)
+					// check for files and convert to byte array
+					if (fileContrib.HasFile)
                     {
 						// Get file details
 						string filePath = fileContrib.PostedFile.FileName;
 						string filename = Path.GetFileName(filePath);
-						string fileext = Path.GetExtension(filename);
-						string filecontenttype = "";
+						string fileext = Path.GetExtension(filename);						
 
 						//Set the contenttype based on File Extension
 						switch (fileext)
@@ -108,7 +108,7 @@ namespace PeachTreeWebsite.UI
                     // Check if docs exist and upload appropriately
                     if (docBytes != null && imgBytes != null)
                     {
-                        if(DBConnection.UploadFileWithImg(title, fileContrib.FileName,  docBytes, imgBytes, s.UserID1, compID))
+                        if(DBConnection.UploadFileWithImg(title, fileContrib.FileName, filecontenttype, docBytes, fileImage.FileName, imgBytes, s.UserID1, compID))
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
@@ -121,7 +121,7 @@ namespace PeachTreeWebsite.UI
                     }
                     else if (docBytes != null && !badImg)
                     {
-                        if(DBConnection.UploadFile(title, docBytes, s.UserID1, compID))
+                        if(DBConnection.UploadFile(title, fileContrib.FileName, filecontenttype, docBytes, s.UserID1, compID))
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
@@ -189,34 +189,34 @@ namespace PeachTreeWebsite.UI
         //    }
         //}
 
-        private byte[] convertImageToByte()
-        {
-            string filePath = fileImage.PostedFile.FileName;
-            string filename = Path.GetFileName(filePath);
-            string ext = Path.GetExtension(filename);
-            string contenttype = "";
+        //private byte[] convertImageToByte()
+        //{
+        //    string filePath = fileImage.PostedFile.FileName;
+        //    string filename = Path.GetFileName(filePath);
+        //    string ext = Path.GetExtension(filename);
+        //    string contenttype = "";
 
-            //Set the contenttype based on File Extension
-            switch (ext)
-            {
-                case ".png":
-                    contenttype = "image/png";
-                    break;
-            }
+        //    //Set the contenttype based on File Extension
+        //    switch (ext)
+        //    {
+        //        case ".png":
+        //            contenttype = "image/png";
+        //            break;
+        //    }
 
-            if (contenttype != "")
-            {
-                Stream fs = fileImage.PostedFile.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                return bytes;
-            }
-            else
-            {
-                badImg = true;
-                return null;
-            }
-        }
+        //    if (contenttype != "")
+        //    {
+        //        Stream fs = fileImage.PostedFile.InputStream;
+        //        BinaryReader br = new BinaryReader(fs);
+        //        Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+        //        return bytes;
+        //    }
+        //    else
+        //    {
+        //        badImg = true;
+        //        return null;
+        //    }
+        //}
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
