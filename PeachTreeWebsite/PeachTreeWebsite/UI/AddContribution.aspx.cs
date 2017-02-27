@@ -57,17 +57,58 @@ namespace PeachTreeWebsite.UI
                     // check for files and convert to byte array
                     if (fileContrib.HasFile)
                     {
-                        docBytes = convertDocToByte();
-                        if (fileImage.HasFile)
+						// Get file details
+						string filePath = fileContrib.PostedFile.FileName;
+						string filename = Path.GetFileName(filePath);
+						string fileext = Path.GetExtension(filename);
+						string filecontenttype = "";
+
+						//Set the contenttype based on File Extension
+						switch (fileext)
+						{
+							case ".doc":
+								filecontenttype = "application/vnd.ms-word";
+								break;
+							case ".docx":
+								filecontenttype = "application/vnd.ms-word";
+								break;
+						}
+						if (filecontenttype != "")
+						{
+							Stream fs = fileContrib.PostedFile.InputStream;
+							BinaryReader br = new BinaryReader(fs);
+							docBytes = br.ReadBytes((Int32)fs.Length);
+						}
+
+						if (fileImage.HasFile)
                         {
-                            imgBytes = convertImageToByte();
-                        }
+							// get image details
+							string imgPath = fileImage.PostedFile.FileName;
+							string imgname = Path.GetFileName(imgPath);
+							string imgext = Path.GetExtension(imgname);
+							string imgcontenttype = "";
+
+							//Set the contenttype based on File Extension
+							switch (imgext)
+							{
+								case ".png":
+									imgcontenttype = "image/png";
+									break;
+							}
+
+							if (imgcontenttype != "")
+							{
+								Stream fs = fileImage.PostedFile.InputStream;
+								BinaryReader br = new BinaryReader(fs);
+								imgBytes = br.ReadBytes((Int32)fs.Length);
+							}
+						}
                     }                    
 
                     // Check if docs exist and upload appropriately
                     if (docBytes != null && imgBytes != null)
                     {
-                        if(DBConnection.UploadFileWithImg(title, docBytes, imgBytes, s.UserID1, compID))
+                        if(DBConnection.UploadFileWithImg(title, fileContrib.FileName,  docBytes, imgBytes, s.UserID1, compID))
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
@@ -118,35 +159,35 @@ namespace PeachTreeWebsite.UI
                 );
         }
 
-        private byte[] convertDocToByte()
-        {
-            string filePath = fileContrib.PostedFile.FileName;
-            string filename = Path.GetFileName(filePath);
-            string ext = Path.GetExtension(filename);
-            string contenttype = "";
+        //private byte[] convertDocToByte()
+        //{
+        //    string filePath = fileContrib.PostedFile.FileName;
+        //    string filename = Path.GetFileName(filePath);
+        //    string ext = Path.GetExtension(filename);
+        //    string contenttype = "";
 
-            //Set the contenttype based on File Extension
-            switch (ext)
-            {
-                case ".doc":
-                    contenttype = "application/vnd.ms-word";
-                    break;
-                case ".docx":
-                    contenttype = "application/vnd.ms-word";
-                    break;
-            }
-            if (contenttype != "")
-            {
-                Stream fs = fileContrib.PostedFile.InputStream;
-                BinaryReader br = new BinaryReader(fs);
-                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                return bytes;
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //    //Set the contenttype based on File Extension
+        //    switch (ext)
+        //    {
+        //        case ".doc":
+        //            contenttype = "application/vnd.ms-word";
+        //            break;
+        //        case ".docx":
+        //            contenttype = "application/vnd.ms-word";
+        //            break;
+        //    }
+        //    if (contenttype != "")
+        //    {
+        //        Stream fs = fileContrib.PostedFile.InputStream;
+        //        BinaryReader br = new BinaryReader(fs);
+        //        Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+        //        return bytes;
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
         private byte[] convertImageToByte()
         {

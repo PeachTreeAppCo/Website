@@ -183,15 +183,17 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UploadFile(string title, byte[] bytes, int userID, int compID)
+        public static bool UploadFile(string title, string filename, string contenttype, byte[] bytes, int userID, int compID)
         {
             // insert the contribution into database with file
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            string strQuery = "INSERT INTO PTA_Contribution(Title, Cont_File, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
-                + "values (@paramTitle, @paramBytes, 'Submitted', @paramUserID, @paramCompID)";
+            string strQuery = "INSERT INTO PTA_Contribution(Title, FileTitle, FileContentType, Cont_File, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
+                + "values (@paramTitle, @paramFileName, @paramContentType, @paramBytes, 'Submitted', @paramUserID, @paramCompID)";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
-            cmd.Parameters.AddWithValue("@paramBytes", bytes);
+			cmd.Parameters.AddWithValue("@paramFileName", filename);
+			cmd.Parameters.AddWithValue("@paramContentType", contenttype);
+			cmd.Parameters.AddWithValue("@paramBytes", bytes);
             cmd.Parameters.AddWithValue("@paramUserID", userID);
             cmd.Parameters.AddWithValue("@paramCompID", compID);
 
@@ -212,16 +214,19 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UploadFileWithImg(string title, byte[] fileBytes, byte[] imgBytes, int userID, int compID)
+        public static bool UploadFileWithImg(string title, string filename, string contenttype, byte[] fileBytes, string imgName, byte[] imgBytes, int userID, int compID)
         {
             // insert the contribution into database with file & image
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            string strQuery = "INSERT INTO PTA_Contribution(Title, Cont_File, Cont_Image, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
-                + "values (@paramTitle, @paramFileBytes, @paramImgBytes, 'Submitted', @paramUserID, @paramCompID)";
+            string strQuery = "INSERT INTO PTA_Contribution(Title, FileTitle, FileContentType, Cont_File, ImageTitle, Cont_Image, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
+				+ "values (@paramTitle, @paramFileName, @paramContentType, @paramFileBytes, @paramImgName, @paramImgBytes, 'Submitted', @paramUserID, @paramCompID)";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
-            cmd.Parameters.AddWithValue("@paramFileBytes", fileBytes);
-            cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes);
+			cmd.Parameters.AddWithValue("@paramFileName", filename);
+			cmd.Parameters.AddWithValue("@paramContentType", contenttype);
+			cmd.Parameters.AddWithValue("@paramFileBytes", fileBytes);
+			cmd.Parameters.AddWithValue("@paramImgName", imgName);
+			cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes);
             cmd.Parameters.AddWithValue("@paramUserID", userID);
             cmd.Parameters.AddWithValue("@paramCompID", compID);
 
