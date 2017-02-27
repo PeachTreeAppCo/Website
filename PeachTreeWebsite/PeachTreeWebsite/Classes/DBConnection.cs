@@ -216,7 +216,7 @@ namespace PeachTreeWebsite
         {
             // insert the contribution into database with file & image
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            string strQuery = "INSERT INTO PTA_ID_Contribution(Title, Cont_File, Cont_Image, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
+            string strQuery = "INSERT INTO PTA_Contribution(Title, Cont_File, Cont_Image, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
                 + "values (@paramTitle, @paramFileBytes, @paramImgBytes, 'Submitted', @paramUserID, @paramCompID)";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
