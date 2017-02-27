@@ -63,11 +63,6 @@ namespace PeachTreeWebsite
             }
         }
 
-        public void btnAddContribution_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/UI/AddContribution.aspx");
-        }
-
         public void btnViewContributions_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/ViewContributions.aspx");
@@ -104,7 +99,6 @@ namespace PeachTreeWebsite
             {
                 // Student
                 case "Student":
-                    btnAddContribution.Visible = true;
                     btnViewContributions.Visible = true;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
@@ -114,7 +108,6 @@ namespace PeachTreeWebsite
                     break;
                 // Marketing Coordinator
                 case "Marketing Coordinator":
-                    btnAddContribution.Visible = false;
                     btnViewContributions.Visible = true;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
@@ -124,7 +117,6 @@ namespace PeachTreeWebsite
                     break;
                 // Marketing Manager
                 case "Marketing Manager":
-                    btnAddContribution.Visible = false;
                     btnViewContributions.Visible = true;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
@@ -134,16 +126,14 @@ namespace PeachTreeWebsite
                     break;
                 // Administrator
                 case "Administrator":
-                    btnAddContribution.Visible = true;
-                    btnViewContributions.Visible = false;
-                    btnViewReports.Visible = false;
-                    btnAccountSettings.Visible = false;
+                    btnViewContributions.Visible = true;
+                    btnViewReports.Visible = true;
+                    btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = true;
                     btnManageUsers.Visible = true;
                     break;
                 default:
-                    btnAddContribution.Visible = false;
                     btnViewContributions.Visible = false;
                     btnViewReports.Visible = false;
                     btnAccountSettings.Visible = false;
@@ -156,7 +146,6 @@ namespace PeachTreeWebsite
 
         public void setupPageForGuest()
         {
-            btnAddContribution.Visible = false;
             btnViewContributions.Visible = true;
             btnViewReports.Visible = true;
             btnAccountSettings.Visible = false;

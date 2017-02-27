@@ -25,11 +25,11 @@
                 <asp:Button ID="btnTnC" CssClass="btn-link" runat="server" OnClick="btnTnC_Click" Text="View Terms and Conditions" Width="194px" />
                 <br />
                 <br />
-                <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
+                <asp:Button ID="btnSubmit" CssClass="btn btn-success" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
                 <asp:Label ID="lblSubmit" runat="server"></asp:Label>
                 <br />
                 <br />
-                <asp:Button ID="btnBack" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
+                <asp:Button ID="btnBack" CssClass="btn btn-success" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
     </div>
 </asp:Content>
 
