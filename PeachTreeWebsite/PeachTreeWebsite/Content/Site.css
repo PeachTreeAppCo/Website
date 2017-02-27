@@ -4,6 +4,10 @@ body {
     padding-bottom: 20px;
 }
 
+.gv {
+    text-align: center;
+}
+
 .form-centered {
     display: inline-block;
     text-align: center;

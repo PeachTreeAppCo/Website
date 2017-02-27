@@ -20,10 +20,10 @@ namespace PeachTreeWebsite.UI
 			if (Session["UserSession"] != null)
 			{
 				s = (SiteUser)Session["UserSession"];
-				if (!IsPostBack)
-				{
+				//if (!IsPostBack)
+				//{
 					populateGrid();
-				}			
+				//}			
 			}
 			else
 			{
@@ -60,7 +60,14 @@ namespace PeachTreeWebsite.UI
 					dr["Initial Closure Date"] = comp.InitialClosure1;
 					dr["Final Closure Date"] = comp.FinalClosure1;
 					dr["File"] = c.DocTitle;
-					dr["Image"] = c.ImgTitle;
+                    if(c.ImgTitle != null)
+                    {
+                        dr["Image"] = c.ImgTitle;
+                    }
+                    else
+                    {
+                        dr["Image"] = "No image";
+                    }
 					dt.Rows.Add(dr);
 				}
 				gridviewContrib.DataSource = dt;
@@ -98,7 +105,7 @@ namespace PeachTreeWebsite.UI
 								  select cont).First();
 				downloadFile(c);
 			}
-
+            // add functionality for edit and delete
 		}
 	}
 }

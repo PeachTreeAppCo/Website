@@ -6,28 +6,20 @@
 		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add Contribution" />
     </div>
     <div>    	
-		<asp:GridView ID="gridviewContrib" runat="server" AllowPaging="True" PageSize="4">
+		<asp:GridView ID="gridviewContrib" runat="server" CssClass="gv" cellpadding="10">
 			<Columns>
 				<asp:TemplateField>
 					<ItemTemplate>
 						<asp:Button ID="btnDownload" CssClass="btn btn-link" Text="Download" runat="server" 
 							CommandName="Download" 
-							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-					</ItemTemplate>					
-				</asp:TemplateField>
-				<asp:TemplateField>
-					<ItemTemplate>
-						<asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server" 
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />
+                        <asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server" 
 							CommandName="Edit" 
-							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-					</ItemTemplate>					
-				</asp:TemplateField>
-				<asp:TemplateField>
-					<ItemTemplate>
-						<asp:Button ID="btnDelete" CssClass="btn btn-link" Text="Delete" runat="server" 
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />
+                        <asp:Button ID="btnDelete" CssClass="btn btn-link" Text="Delete" runat="server" 
 							CommandName="Delete" 
 							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
-					</ItemTemplate>
+					</ItemTemplate>					
 				</asp:TemplateField>
 			</Columns>
 		</asp:GridView>
