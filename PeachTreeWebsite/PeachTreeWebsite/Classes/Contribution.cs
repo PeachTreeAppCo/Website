@@ -9,7 +9,10 @@ namespace PeachTreeWebsite.Classes
 	{
 		int contributionID;
 		string title;
+		string imgTitle;
 		byte[] imgBytes;
+		string docTitle;
+		string docContentType;
 		byte[] docBytes;
 		string status;
 		string feedback;
@@ -18,10 +21,13 @@ namespace PeachTreeWebsite.Classes
 
 		public Contribution() { }
 
-		public Contribution(string myTitle, byte[] img, byte[] doc, string state, string fdbk, int uID, int compID)
+		public Contribution(string myTitle, string imgtitle, byte[] img, string doctitle, string doccontent, byte[] doc, string state, string fdbk, int uID, int compID)
 		{
 			this.title = myTitle;
+			this.imgTitle = imgtitle;
 			this.imgBytes = img;
+			this.docTitle = doctitle;
+			this.DocContentType = doccontent;
 			this.docBytes = doc;
 			this.status = state;
 			this.feedback = fdbk;
@@ -29,11 +35,14 @@ namespace PeachTreeWebsite.Classes
 			this.competitionID = compID;
 		}
 
-		public Contribution(int ID, string myTitle, byte[] img, byte[] doc, string state, string fdbk, int uID, int compID)
+		public Contribution(int ID, string myTitle, string imgtitle, byte[] img, string doctitle, string doccontent, byte[] doc, string state, string fdbk, int uID, int compID)
 		{
 			this.contributionID = ID;
 			this.title = myTitle;
+			this.imgTitle = imgtitle;
 			this.imgBytes = img;
+			this.docTitle = doctitle;
+			this.DocContentType = doccontent;
 			this.docBytes = doc;
 			this.status = state;
 			this.feedback = fdbk;
@@ -142,6 +151,45 @@ namespace PeachTreeWebsite.Classes
 			set
 			{
 				competitionID = value;
+			}
+		}
+
+		public string ImgTitle
+		{
+			get
+			{
+				return imgTitle;
+			}
+
+			set
+			{
+				imgTitle = value;
+			}
+		}
+
+		public string DocTitle
+		{
+			get
+			{
+				return docTitle;
+			}
+
+			set
+			{
+				docTitle = value;
+			}
+		}
+
+		public string DocContentType
+		{
+			get
+			{
+				return docContentType;
+			}
+
+			set
+			{
+				docContentType = value;
 			}
 		}
 	}

@@ -4,9 +4,11 @@
         <asp:Label ID="lblViewContributions" runat="server">Contributions</asp:Label>
     </div>
     <div>
-
-    	<asp:Table ID="tblContributions" runat="server">
-		</asp:Table>
-
-    </div>
+    	
+		<asp:GridView ID="gridviewContrib" runat="server">
+		</asp:GridView>
+		<br />
+		<asp:Label ID="lblError" runat="server"></asp:Label>
+    	
+	</div>
 </asp:Content>

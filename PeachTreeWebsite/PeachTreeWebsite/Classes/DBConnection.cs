@@ -300,12 +300,20 @@ namespace PeachTreeWebsite
 				{
 					int contID = int.Parse(myReader["PTA_ID_Contribution"].ToString());
 					string title = myReader["Title"].ToString();
-					byte[] imgBytes = (byte[])myReader["Cont_Image"];
+					string imgTitle = null;
+					byte[] imgBytes = null;
+					if (myReader["ImageTitle"] != DBNull.Value && myReader["Cont_Image"] != DBNull.Value)
+					{
+						imgTitle = myReader["ImageTitle"].ToString();
+						imgBytes = (byte[])myReader["Cont_Image"];
+					}
+					string docTitle = myReader["FileTitle"].ToString();
+					string docContentType = myReader["FileContentType"].ToString();
 					byte[] docBytes = (byte[])myReader["Cont_File"];
 					string status = myReader["Cont_Status"].ToString();
 					string feedback = myReader["Feedback"].ToString();
 					int compID = int.Parse(myReader["PTA_ID_Competition"].ToString());
-					Contribution c = new Contribution(contID,title,imgBytes,docBytes,status,feedback,userID,compID);
+					Contribution c = new Contribution(contID,title,imgTitle,imgBytes,docTitle,docContentType,docBytes,status,feedback,userID,compID);
 					contributions.Add(c);
 				}
 				return contributions;
