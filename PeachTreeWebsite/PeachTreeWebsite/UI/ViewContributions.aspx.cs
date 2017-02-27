@@ -4,14 +4,28 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using PeachTreeWebsite.Classes;
 
 namespace PeachTreeWebsite.UI
 {
     public partial class ViewContributions : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
+		List<Contribution> contributions = new List<Contribution>();
+		SiteUser s = new SiteUser();
 
+		protected void Page_Load(object sender, EventArgs e)
+        {
+			if (Session["UserSession"] != null)
+			{
+				s = (SiteUser)Session["UserSession"];
+				contributions = DBConnection.getContributionsForUser(s.UserID1);
+				// Populate table with contributions, displaying title, file, image, closure dates, comp name and edit/delete buttons
+			}
+			else
+			{
+				Session.Clear();
+				Response.Redirect("~/UI/Default.aspx");
+			}
         }
     }
 }

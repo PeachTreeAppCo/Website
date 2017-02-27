@@ -276,6 +276,44 @@ namespace PeachTreeWebsite
             {
                 myConnection.Close();
             }
-        }        
-    }
+        }
+
+		public static List<Contribution> getContributionsForUser(int userID)
+		{
+			List<Contribution> contributions = new List<Contribution>();
+			SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+			SqlDataReader myReader = null;
+			string queryStr = "SELECT * FROM PTA_Contribution WHERE PTA_ID_User = @paramUserID";
+			SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+			cmd.Parameters.AddWithValue("@paramUserID", userID);
+
+			try
+			{
+				myConnection.Open();
+				myReader = cmd.ExecuteReader();
+				while (myReader.Read())
+				{
+					int contID = int.Parse(myReader["PTA_ID_Contribution"].ToString());
+					string title = myReader["Title"].ToString();
+					byte[] imgBytes = (byte[])myReader["Cont_Image"];
+					byte[] docBytes = (byte[])myReader["Cont_File"];
+					string status = myReader["Cont_Status"].ToString();
+					string feedback = myReader["Feedback"].ToString();
+					int compID = int.Parse(myReader["PTA_ID_Competition"].ToString());
+					Contribution c = new Contribution(contID,title,imgBytes,docBytes,status,feedback,userID,compID);
+					contributions.Add(c);
+				}
+				return contributions;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e.ToString());
+				return null;
+			}
+			finally
+			{
+				myConnection.Close();
+			}
+		}
+	}
 }
