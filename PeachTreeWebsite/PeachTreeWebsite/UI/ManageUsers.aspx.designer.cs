@@ -58,15 +58,6 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.ListBox lbUsers;
         
         /// <summary>
-        /// txtUID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUID;
-        
-        /// <summary>
         /// lblUID control.
         /// </summary>
         /// <remarks>
@@ -76,13 +67,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblUID;
         
         /// <summary>
-        /// txtFName control.
+        /// txtUID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFName;
+        protected global::System.Web.UI.WebControls.TextBox txtUID;
         
         /// <summary>
         /// lblFName control.
@@ -94,13 +85,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblFName;
         
         /// <summary>
-        /// txtSName control.
+        /// txtFName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSName;
+        protected global::System.Web.UI.WebControls.TextBox txtFName;
         
         /// <summary>
         /// lblSName control.
@@ -112,13 +103,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblSName;
         
         /// <summary>
-        /// txtEmail control.
+        /// txtSName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtSName;
         
         /// <summary>
         /// lblEmail control.
@@ -130,13 +121,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblEmail;
         
         /// <summary>
-        /// txtUType control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUType;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
         /// lblUserType control.
@@ -148,13 +139,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblUserType;
         
         /// <summary>
-        /// txtPwd control.
+        /// txtUType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPwd;
+        protected global::System.Web.UI.WebControls.TextBox txtUType;
         
         /// <summary>
         /// lblPwd control.
@@ -166,13 +157,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblPwd;
         
         /// <summary>
-        /// txtMobNum control.
+        /// txtPwd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobNum;
+        protected global::System.Web.UI.WebControls.TextBox txtPwd;
         
         /// <summary>
         /// lblMobNum control.
@@ -184,13 +175,13 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Label lblMobNum;
         
         /// <summary>
-        /// txtStudyYr control.
+        /// txtMobNum control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStudyYr;
+        protected global::System.Web.UI.WebControls.TextBox txtMobNum;
         
         /// <summary>
         /// lblStudyYr control.
@@ -200,6 +191,15 @@ namespace PeachTreeWebsite.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblStudyYr;
+        
+        /// <summary>
+        /// txtStudyYr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtStudyYr;
         
         /// <summary>
         /// btnUpdate control.
