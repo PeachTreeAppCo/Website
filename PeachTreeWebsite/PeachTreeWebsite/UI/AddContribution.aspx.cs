@@ -26,6 +26,7 @@ namespace PeachTreeWebsite.UI
                 Session.Clear();
                 Response.Redirect("~/UI/Default.aspx");
             }
+            Session["ContSession"] = null;
             ddlComps.Items.Clear();
             competitions = DBConnection.getCompetitons();
             foreach (Competition c in competitions)

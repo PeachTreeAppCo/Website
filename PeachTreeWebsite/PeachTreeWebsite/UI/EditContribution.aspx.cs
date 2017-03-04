@@ -11,11 +11,21 @@ namespace PeachTreeWebsite.UI
 {
     public partial class EditContribution : System.Web.UI.Page
     {
+        SiteUser s = null;
         Contribution c;
         bool badImg = false;
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["UserSession"] != null)
+            {
+                s = (SiteUser)Session["UserSession"];
+            }
+            else
+            {
+                Session.Clear();
+                Response.Redirect("~/UI/Default.aspx");
+            }
             if (Session["ContSession"] != null)
             {
                 c = (Contribution)Session["ContSession"];
@@ -23,8 +33,7 @@ namespace PeachTreeWebsite.UI
                 txtTitle.Text = c.Title;
             }
             else
-            {
-                Session["ContSession"] = null;
+            {                
                 Response.Redirect("~/ViewContributions.aspx");
             }
         }
@@ -143,17 +152,11 @@ namespace PeachTreeWebsite.UI
             {
                 lblSubmit.Text = "You must accept the terms & conditions";
             }
-
-
-
-
-
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Session["ContSession"] = null;
-            Response.Redirect("~/ViewContributions.aspx");
+            Response.Redirect("~/UI/ViewContributions.aspx");
         }
     }
 }

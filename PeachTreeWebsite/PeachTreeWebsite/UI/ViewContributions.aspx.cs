@@ -107,7 +107,7 @@ namespace PeachTreeWebsite.UI
             if (e.CommandName == "Edit")
             {
                 Session["contSession"] = c;
-                Response.Redirect("~/UI/AddContribution.aspx");
+                Response.Redirect("~/UI/EditContribution.aspx");
             }
             if (e.CommandName == "Delete")
             {

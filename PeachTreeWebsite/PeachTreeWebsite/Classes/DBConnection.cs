@@ -364,7 +364,9 @@ namespace PeachTreeWebsite
                 + "FileTitle = @paramFileName, "
                 + "FileContentType = @paramContentType, "
                 + "Cont_File = @paramBytes, "
-                + "Cont_Status = 'Submitted', "
+                + "ImageTitle = '', "
+                + "Cont_Image = NULL, "
+                + "Cont_Status = 'Submitted' "
                 + "WHERE PTA_ID_Contribution = @paramContID ";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
@@ -390,7 +392,7 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UpdateContributionWithImg(string title, string filename, string contenttype, byte[] fileBytes, string imgName, byte[] imgBytes, int userID, int compID)
+        public static bool UpdateContributionWithImg(Contribution c, string title, string filename, string contenttype, byte[] fileBytes, string imgName, byte[] imgBytes)
         {
             // insert the contribution into database with file & image
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
@@ -401,19 +403,17 @@ namespace PeachTreeWebsite
                 + "FileContentType = @paramContentType, "
                 + "Cont_File = @paramBytes, "
                 + "Cont_Status = 'Submitted', "
-                + "Cont_Status = 'Submitted', "
-                + "Cont_Status = 'Submitted', "
+                + "ImageTitle = @paramImgName, "
+                + "Cont_Image = @paramImgBytes "
                 + "WHERE PTA_ID_Contribution = @paramContID ";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
             cmd.Parameters.AddWithValue("@paramFileName", filename);
             cmd.Parameters.AddWithValue("@paramContentType", contenttype);
-            cmd.Parameters.AddWithValue("@paramBytes", bytes);
-            cmd.Parameters.AddWithValue("@paramContID", c.ContributionID);
+            cmd.Parameters.AddWithValue("@paramBytes", fileBytes);            
             cmd.Parameters.AddWithValue("@paramImgName", imgName);
-            cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes);
-            cmd.Parameters.AddWithValue("@paramUserID", userID);
-            cmd.Parameters.AddWithValue("@paramCompID", compID);
+            cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes) ;
+            cmd.Parameters.AddWithValue("@paramContID", c.ContributionID);
 
             try
             {
