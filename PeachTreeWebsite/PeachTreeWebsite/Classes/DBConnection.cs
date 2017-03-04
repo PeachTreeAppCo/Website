@@ -432,5 +432,26 @@ namespace PeachTreeWebsite
             }
         }
 
+        public static void deleteContribution(Contribution c)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string queryStr = "DELETE FROM PTA_Contribution WHERE PTA_ID_Contribution = @paramContID";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramContID", c.ContributionID);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
     }
 }

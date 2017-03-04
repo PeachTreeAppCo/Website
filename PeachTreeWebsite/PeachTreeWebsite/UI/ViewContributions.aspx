@@ -14,10 +14,10 @@
 							CommandName="Download" 
 							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"/><br />
                         <asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server" 
-							CommandName="Edit" 
+							CommandName="EditCont" 
 							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />
                         <asp:Button ID="btnDelete" CssClass="btn btn-link" Text="Delete" runat="server" 
-							CommandName="Delete" 
+							CommandName="DeleteCont" 
 							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
 					</ItemTemplate>					
 				</asp:TemplateField>
