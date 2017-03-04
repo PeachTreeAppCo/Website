@@ -6,13 +6,13 @@
 		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add Contribution" />
     </div>
     <div>    	
-		<asp:GridView ID="gridviewContrib" runat="server" CssClass="gv" cellpadding="10">
+		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="gv" cellpadding="10">
 			<Columns>
 				<asp:TemplateField>
 					<ItemTemplate>
 						<asp:Button ID="btnDownload" CssClass="btn btn-link" Text="Download" runat="server" 
 							CommandName="Download" 
-							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>"/><br />
                         <asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server" 
 							CommandName="Edit" 
 							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />

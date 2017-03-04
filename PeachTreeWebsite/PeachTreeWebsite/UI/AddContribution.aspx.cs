@@ -154,69 +154,8 @@ namespace PeachTreeWebsite.UI
 
         protected void btnTnC_Click(object sender, EventArgs e)
         {
-            Page.ClientScript.RegisterStartupScript(this.GetType(), "Scripts",
-                "<script>alert('This is the terms and conditions. Accept them or else!')</script>"
-                );
+            Response.Redirect("~/UI/TermsAndConditions.aspx");
         }
-
-        //private byte[] convertDocToByte()
-        //{
-        //    string filePath = fileContrib.PostedFile.FileName;
-        //    string filename = Path.GetFileName(filePath);
-        //    string ext = Path.GetExtension(filename);
-        //    string contenttype = "";
-
-        //    //Set the contenttype based on File Extension
-        //    switch (ext)
-        //    {
-        //        case ".doc":
-        //            contenttype = "application/vnd.ms-word";
-        //            break;
-        //        case ".docx":
-        //            contenttype = "application/vnd.ms-word";
-        //            break;
-        //    }
-        //    if (contenttype != "")
-        //    {
-        //        Stream fs = fileContrib.PostedFile.InputStream;
-        //        BinaryReader br = new BinaryReader(fs);
-        //        Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-        //        return bytes;
-        //    }
-        //    else
-        //    {
-        //        return null;
-        //    }
-        //}
-
-        //private byte[] convertImageToByte()
-        //{
-        //    string filePath = fileImage.PostedFile.FileName;
-        //    string filename = Path.GetFileName(filePath);
-        //    string ext = Path.GetExtension(filename);
-        //    string contenttype = "";
-
-        //    //Set the contenttype based on File Extension
-        //    switch (ext)
-        //    {
-        //        case ".png":
-        //            contenttype = "image/png";
-        //            break;
-        //    }
-
-        //    if (contenttype != "")
-        //    {
-        //        Stream fs = fileImage.PostedFile.InputStream;
-        //        BinaryReader br = new BinaryReader(fs);
-        //        Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-        //        return bytes;
-        //    }
-        //    else
-        //    {
-        //        badImg = true;
-        //        return null;
-        //    }
-        //}
 
         protected void btnBack_Click(object sender, EventArgs e)
         {

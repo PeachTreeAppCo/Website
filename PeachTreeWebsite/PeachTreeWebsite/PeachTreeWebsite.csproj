@@ -201,6 +201,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="favicon.ico" />
     <Content Include="UI\AddContribution.aspx" />
+    <Content Include="UI\EditContribution.aspx" />
     <Content Include="UI\Home.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -235,6 +236,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="UI\ManageUsers.aspx" />
+    <Content Include="UI\TermsAndConditions.aspx" />
     <Content Include="UI\ViewContributions.aspx" />
     <Content Include="UI\ViewFailedLoginAttempts.aspx" />
     <Content Include="UI\ViewPublications.aspx" />
@@ -300,6 +302,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="UI\EditContribution.aspx.cs">
+      <DependentUpon>EditContribution.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\EditContribution.aspx.designer.cs">
+      <DependentUpon>EditContribution.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -336,6 +345,13 @@
     </Compile>
     <Compile Include="UI\ManageUsers.aspx.designer.cs">
       <DependentUpon>ManageUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\TermsAndConditions.aspx.cs">
+      <DependentUpon>TermsAndConditions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\TermsAndConditions.aspx.designer.cs">
+      <DependentUpon>TermsAndConditions.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\ViewContributions.aspx.cs">
       <DependentUpon>ViewContributions.aspx</DependentUpon>

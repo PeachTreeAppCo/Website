@@ -354,5 +354,83 @@ namespace PeachTreeWebsite
                 myConnection.Close();
             }
         }
+
+        public static bool UpdateContribution(Contribution c, string title, string filename, string contenttype, byte[] bytes)
+        {
+            // insert the contribution into database with file
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string strQuery = "UPDATE PTA_Contribution SET "
+                + "Title = @paramTitle,"
+                + "FileTitle = @paramFileName, "
+                + "FileContentType = @paramContentType, "
+                + "Cont_File = @paramBytes, "
+                + "Cont_Status = 'Submitted', "
+                + "WHERE PTA_ID_Contribution = @paramContID ";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramTitle", title);
+            cmd.Parameters.AddWithValue("@paramFileName", filename);
+            cmd.Parameters.AddWithValue("@paramContentType", contenttype);
+            cmd.Parameters.AddWithValue("@paramBytes", bytes);
+            cmd.Parameters.AddWithValue("@paramContID", c.ContributionID);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static bool UpdateContributionWithImg(string title, string filename, string contenttype, byte[] fileBytes, string imgName, byte[] imgBytes, int userID, int compID)
+        {
+            // insert the contribution into database with file & image
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+
+            string strQuery = "UPDATE PTA_Contribution SET "
+                + "Title = @paramTitle,"
+                + "FileTitle = @paramFileName, "
+                + "FileContentType = @paramContentType, "
+                + "Cont_File = @paramBytes, "
+                + "Cont_Status = 'Submitted', "
+                + "Cont_Status = 'Submitted', "
+                + "Cont_Status = 'Submitted', "
+                + "WHERE PTA_ID_Contribution = @paramContID ";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramTitle", title);
+            cmd.Parameters.AddWithValue("@paramFileName", filename);
+            cmd.Parameters.AddWithValue("@paramContentType", contenttype);
+            cmd.Parameters.AddWithValue("@paramBytes", bytes);
+            cmd.Parameters.AddWithValue("@paramContID", c.ContributionID);
+            cmd.Parameters.AddWithValue("@paramImgName", imgName);
+            cmd.Parameters.AddWithValue("@paramImgBytes", imgBytes);
+            cmd.Parameters.AddWithValue("@paramUserID", userID);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
     }
 }

@@ -22,7 +22,7 @@
                 <asp:FileUpload ID="fileImage" runat="server" />
                 <br />
                 <asp:CheckBox ID="cbTerms" runat="server" Text="I agree to the terms and conditions and confirm that this is my work." />
-                <asp:Button ID="btnTnC" CssClass="btn-link" runat="server" OnClick="btnTnC_Click" Text="View Terms and Conditions" Width="194px" />
+                <asp:Button ID="btnTnC" CssClass="btn-link" runat="server" OnClientClick="aspnetForm.target ='_blank';" OnClick="btnTnC_Click" Text="View Terms and Conditions" Width="194px" />
                 <br />
                 <br />
                 <asp:Button ID="btnSubmit" CssClass="btn btn-success" runat="server" OnClick="btnSubmit_Click" Text="Submit" />

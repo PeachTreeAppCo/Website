@@ -20,11 +20,13 @@ namespace PeachTreeWebsite.UI
 			if (Session["UserSession"] != null)
 			{
 				s = (SiteUser)Session["UserSession"];
-				//if (!IsPostBack)
-				//{
-					populateGrid();
-				//}			
-			}
+                contributions = DBConnection.getContributionsForUser(s.UserID1);
+                competitions = DBConnection.getCompetitons();
+                if (!IsPostBack)
+                {
+                    populateGrid();
+                }
+            }
 			else
 			{
 				Session.Clear();
@@ -34,9 +36,6 @@ namespace PeachTreeWebsite.UI
 
 		public void populateGrid()
 		{
-			contributions = DBConnection.getContributionsForUser(s.UserID1);
-			competitions = DBConnection.getCompetitons();
-
 			// Populate table with contributions
 			DataTable dt = new DataTable();
 			dt.Columns.Add("Title");
@@ -95,17 +94,27 @@ namespace PeachTreeWebsite.UI
 
 		protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
 		{
-			if (e.CommandName == "Download")
-			{
-				int index = Convert.ToInt32(e.CommandArgument);
-				GridViewRow row = gridviewContrib.Rows[index];
-				string title = row.Cells[5].ToString();
-				Contribution c = (from cont in contributions
-								  where title == cont.DocTitle
-								  select cont).First();
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = gridviewContrib.Rows[index];
+            string title = row.Cells[5].Text;
+            Contribution c = (from cont in contributions
+                              where title == cont.DocTitle
+                              select cont).First();
+            if (e.CommandName == "Download")
+			{				
 				downloadFile(c);
 			}
+            if (e.CommandName == "Edit")
+            {
+                Session["contSession"] = c;
+                Response.Redirect("~/UI/AddContribution.aspx");
+            }
+            if (e.CommandName == "Delete")
+            {
+                // Code to delete contribution
+                
+            }
             // add functionality for edit and delete
-		}
-	}
+        }
+    }
 }
