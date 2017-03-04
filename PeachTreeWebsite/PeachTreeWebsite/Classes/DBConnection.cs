@@ -34,7 +34,9 @@ namespace PeachTreeWebsite
                     string MobileNumber = myReader["MobileNumber"].ToString();
                     int GenderID = int.Parse(myReader["PTA_ID_GenderLookup"].ToString());
                     int FacultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
-                    u = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, GenderID, FacultyID);                    
+                    DateTime lastLogin;
+                    DateTime.TryParse(myReader["LastLogin"].ToString(), out lastLogin);
+                    u = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, GenderID, FacultyID, lastLogin);                    
                 }                
                 return u;
             }
@@ -144,7 +146,9 @@ namespace PeachTreeWebsite
                     string MobileNumber = myReader["MobileNumber"].ToString();
                     int GenderID = int.Parse(myReader["PTA_ID_GenderLookup"].ToString());
                     int FacultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
-                    SiteUser s = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, GenderID, FacultyID);
+                    DateTime lastLogin;
+                    DateTime.TryParse(myReader["LastLogin"].ToString(), out lastLogin);
+                    SiteUser s = new SiteUser(UserID, GivenName, Surname, UserType, Email, Password, MobileNumber, GenderID, FacultyID, lastLogin);
                     users.Add(s);
                 }
                 return users;
@@ -328,5 +332,27 @@ namespace PeachTreeWebsite
 				myConnection.Close();
 			}
 		}
-	}
+
+        public static void UpdateLoginTime(int userID)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string queryStr = "UPDATE PTA_User SET LastLogin = GETDATE() WHERE PTA_ID_USER = @paramUserID";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramUserID", userID);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+    }
 }

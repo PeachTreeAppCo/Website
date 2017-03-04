@@ -35,6 +35,7 @@ namespace PeachTreeWebsite
             try
             {
                 s = DBConnection.login(txtEmail.Text, txtPwd.Text);
+                DBConnection.UpdateLoginTime(s.UserID1);
             }
             catch (Exception ex)
             {

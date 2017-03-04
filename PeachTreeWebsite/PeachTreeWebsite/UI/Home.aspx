@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
         <asp:Label ID="lblWelcome" runat="server">Welcome</asp:Label>
+        <h6><asp:Label ID="lblLastLogin" runat="server"></asp:Label></h6>
     </div>
     <div class ="form-centered full-width">
         <p><button class="btn btn-success" id="btnViewContributions" runat="server" style="width: 300px;" onServerClick="btnViewContributions_Click">View your Contributions</button></p>

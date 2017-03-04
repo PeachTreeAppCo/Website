@@ -23,19 +23,19 @@ namespace PeachTreeWebsite
                 {
                     // Student
                     case "Student":
-                        s = new Student(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
+                        s = new Student(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID, s.LastLogin);
                         break;
                     // Marketing Coordinator
                     case "Marketing Coordinator":
-                        s = new MarketingCoordinator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
+                        s = new MarketingCoordinator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID, s.LastLogin);
                         break;
                     // Marketing Manager
                     case "Marketing Manager":
-                        s = new MarketingManager(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
+                        s = new MarketingManager(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID, s.LastLogin);
                         break;
                     // Administrator
                     case "Administrator":
-                        s = new Administrator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID);
+                        s = new Administrator(s.UserID1, s.GivenName1, s.Surname1, s.UserType1, s.Email1, s.Password1, s.MobileNumber1, s.GenderID, s.FacultyID, s.LastLogin);
                         break;
                     default:
                         Session.Clear();
@@ -44,6 +44,10 @@ namespace PeachTreeWebsite
                 }
                 setupPageForUser(s);
                 lblWelcome.Text = "Welcome, " + s.GivenName1 + "!";
+                if (s.LastLogin != DateTime.MinValue)
+                {
+                    lblLastLogin.Text = "Last logged in: " + s.LastLogin;
+                }
             }
             else if (Session["FacultySession"] != null)
             {
