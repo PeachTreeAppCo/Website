@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -161,6 +162,24 @@ namespace PeachTreeWebsite.UI
         protected void btnBack_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/ViewContributions.aspx");
+        }
+
+        public void emailMarketingCoordinator ()
+        {
+            SmtpClient smtpClient = new SmtpClient("mail.MyWebsiteDomainName.com", 25);
+
+            smtpClient.Credentials = new System.Net.NetworkCredential("info@MyWebsiteDomainName.com", "myIDPassword");
+            smtpClient.UseDefaultCredentials = true;
+            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtpClient.EnableSsl = true;
+            MailMessage mail = new MailMessage();
+
+            //Setting From , To and CC
+            mail.From = new MailAddress("submissions@PeachTree.com", "PeachTree Submissions");
+            mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
+            mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
+
+            smtpClient.Send(mail);
         }
     }
 }
