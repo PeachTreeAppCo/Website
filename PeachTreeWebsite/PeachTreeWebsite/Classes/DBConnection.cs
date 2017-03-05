@@ -187,12 +187,13 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UploadFile(string title, string filename, string contenttype, byte[] bytes, int userID, int compID)
+        public static int UploadFile(string title, string filename, string contenttype, byte[] bytes, int userID, int compID)
         {
             // insert the contribution into database with file
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             string strQuery = "INSERT INTO PTA_Contribution(Title, FileTitle, FileContentType, Cont_File, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
-                + "values (@paramTitle, @paramFileName, @paramContentType, @paramBytes, 'Submitted', @paramUserID, @paramCompID)";
+                + "values (@paramTitle, @paramFileName, @paramContentType, @paramBytes, 'Submitted', @paramUserID, @paramCompID)"
+                + "SELECT CAST(scope_identity() AS int)";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
 			cmd.Parameters.AddWithValue("@paramFileName", filename);
@@ -204,13 +205,13 @@ namespace PeachTreeWebsite
             try
             {
                 myConnection.Open();
-                cmd.ExecuteNonQuery();
-                return true;
+                int id = (int)cmd.ExecuteScalar();
+                return id;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return false;
+                return -1;
             }
             finally
             {
@@ -218,12 +219,13 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UploadFileWithImg(string title, string filename, string contenttype, byte[] fileBytes, string imgName, byte[] imgBytes, int userID, int compID)
+        public static int UploadFileWithImg(string title, string filename, string contenttype, byte[] fileBytes, string imgName, byte[] imgBytes, int userID, int compID)
         {
             // insert the contribution into database with file & image
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             string strQuery = "INSERT INTO PTA_Contribution(Title, FileTitle, FileContentType, Cont_File, ImageTitle, Cont_Image, Cont_Status, PTA_ID_User, PTA_ID_Competition) "
-				+ "values (@paramTitle, @paramFileName, @paramContentType, @paramFileBytes, @paramImgName, @paramImgBytes, 'Submitted', @paramUserID, @paramCompID)";
+				+ "values (@paramTitle, @paramFileName, @paramContentType, @paramFileBytes, @paramImgName, @paramImgBytes, 'Submitted', @paramUserID, @paramCompID);"
+                + " SELECT CAST(scope_identity() AS int);";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
 			cmd.Parameters.AddWithValue("@paramFileName", filename);
@@ -237,13 +239,13 @@ namespace PeachTreeWebsite
             try
             {
                 myConnection.Open();
-                cmd.ExecuteNonQuery();
-                return true;
+                int id = (int)cmd.ExecuteScalar();
+                return id;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-                return false;
+                return -1;
             }
             finally
             {
@@ -367,7 +369,7 @@ namespace PeachTreeWebsite
                 + "ImageTitle = '', "
                 + "Cont_Image = NULL, "
                 + "Cont_Status = 'Submitted' "
-                + "WHERE PTA_ID_Contribution = @paramContID ";
+                + "WHERE PTA_ID_Contribution = @paramContID; ";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
             cmd.Parameters.AddWithValue("@paramFileName", filename);
@@ -447,6 +449,38 @@ namespace PeachTreeWebsite
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static string getMarketingCoordinatorEmail(int contributionID)
+        {
+            string mmEmail = "";
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "Select mm.Email from PTA_User mm "
+                + "inner join PTA_User s on s.PTA_ID_Faculty = mm.PTA_ID_Faculty "
+                + "inner join PTA_Contribution c on c.PTA_ID_User = s.PTA_ID_User "
+                + "where mm.UserType = 'Marketing Manager' and c.PTA_ID_Contribution = @paramContID";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramContID", contributionID);
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    mmEmail = myReader["Email"].ToString();
+                }
+                return mmEmail;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
             }
             finally
             {

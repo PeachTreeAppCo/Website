@@ -15,6 +15,7 @@ namespace PeachTreeWebsite.UI
         SiteUser s = null;
         bool badImg = false;
         List<Competition> competitions = new List<Competition>();
+        int uploadedContID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -110,11 +111,13 @@ namespace PeachTreeWebsite.UI
                     // Check if docs exist and upload appropriately
                     if (docBytes != null && imgBytes != null)
                     {
-                        if(DBConnection.UploadFileWithImg(title, fileContrib.FileName, filecontenttype, docBytes, fileImage.FileName, imgBytes, s.UserID1, compID))
+                        uploadedContID = DBConnection.UploadFileWithImg(title, fileContrib.FileName, filecontenttype, docBytes, fileImage.FileName, imgBytes, s.UserID1, compID);
+                        if (uploadedContID != -1)
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
                             lblSubmit.Text = "Contribution and image uploaded successfully!";
+                            emailMarketingCoordinator(uploadedContID);
                         }
                         else
                         {
@@ -123,11 +126,13 @@ namespace PeachTreeWebsite.UI
                     }
                     else if (docBytes != null && !badImg)
                     {
-                        if(DBConnection.UploadFile(title, fileContrib.FileName, filecontenttype, docBytes, s.UserID1, compID))
+                        uploadedContID = DBConnection.UploadFile(title, fileContrib.FileName, filecontenttype, docBytes, s.UserID1, compID);
+                        if (uploadedContID != -1)
                         {
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
                             lblSubmit.Text = "Contribution uploaded successfully!";
+                            emailMarketingCoordinator(uploadedContID);
                         }
                         else
                         {
@@ -164,22 +169,37 @@ namespace PeachTreeWebsite.UI
             Response.Redirect("~/UI/ViewContributions.aspx");
         }
 
-        public void emailMarketingCoordinator ()
+        public void emailMarketingCoordinator(int uploadedContID)
         {
-            SmtpClient smtpClient = new SmtpClient("mail.MyWebsiteDomainName.com", 25);
-
-            smtpClient.Credentials = new System.Net.NetworkCredential("info@MyWebsiteDomainName.com", "myIDPassword");
-            smtpClient.UseDefaultCredentials = true;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
-            smtpClient.EnableSsl = true;
-            MailMessage mail = new MailMessage();
-
-            //Setting From , To and CC
-            mail.From = new MailAddress("submissions@PeachTree.com", "PeachTree Submissions");
-            mail.To.Add(new MailAddress("info@MyWebsiteDomainName"));
-            mail.CC.Add(new MailAddress("MyEmailID@gmail.com"));
-
-            smtpClient.Send(mail);
+            string mcEmail = DBConnection.getMarketingCoordinatorEmail(uploadedContID);
+            if (mcEmail != "")
+            {
+                System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+                mail.To.Add(mcEmail);
+                mail.From = new MailAddress("peachtree.greenwich@gmail.com", "PeachTree Submissions", System.Text.Encoding.UTF8);
+                mail.Subject = "[PeachTree] You have a new magazine contribution for your faculty!";
+                mail.SubjectEncoding = System.Text.Encoding.UTF8;
+                mail.Body = "Hello, " 
+                   + "\nYou have a new magazine contribution for your faculty. "
+                   + "\nPlease log into the system and give feedback within 14 days.";
+                mail.BodyEncoding = System.Text.Encoding.UTF8;
+                mail.IsBodyHtml = true;
+                mail.Priority = MailPriority.High;
+                SmtpClient client = new SmtpClient();
+                client.Credentials = new System.Net.NetworkCredential("peachtree.greenwich@gmail.com", "PeachTree123");
+                client.Port = 587;
+                client.Timeout = 10000;
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                try
+                {
+                    client.Send(mail);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.ToString());
+                }
+            }           
         }
     }
 }
