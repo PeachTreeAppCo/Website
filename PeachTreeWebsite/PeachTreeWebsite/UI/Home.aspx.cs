@@ -108,6 +108,11 @@ namespace PeachTreeWebsite
         public void btnViewCompetitions_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/ViewCompetitions.aspx");
+        }
+
+        public void btnViewSubmissions_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UI/ViewSubmissions.aspx");
         }        
 
         public void setupPageForUser(SiteUser s)
@@ -117,6 +122,7 @@ namespace PeachTreeWebsite
                 // Student
                 case "Student":
                     btnViewContributions.Visible = true;
+                    btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
@@ -126,7 +132,8 @@ namespace PeachTreeWebsite
                     break;
                 // Marketing Coordinator
                 case "Marketing Coordinator":
-                    btnViewContributions.Visible = true;
+                    btnViewContributions.Visible = false;
+                    btnViewSubmissions.Visible = true;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
@@ -136,7 +143,8 @@ namespace PeachTreeWebsite
                     break;
                 // Marketing Manager
                 case "Marketing Manager":
-                    btnViewContributions.Visible = true;
+                    btnViewContributions.Visible = false;
+                    btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
@@ -147,6 +155,7 @@ namespace PeachTreeWebsite
                 // Administrator
                 case "Administrator":
                     btnViewContributions.Visible = false;
+                    btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = true;
                     btnAccountSettings.Visible = false;
                     btnViewPublications.Visible = true;
@@ -156,6 +165,7 @@ namespace PeachTreeWebsite
                     break;
                 default:
                     btnViewContributions.Visible = false;
+                    btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = false;
                     btnAccountSettings.Visible = false;
                     btnViewPublications.Visible = false;
@@ -169,11 +179,13 @@ namespace PeachTreeWebsite
         public void setupPageForGuest()
         {
             btnViewContributions.Visible = false;
+            btnViewSubmissions.Visible = false;
             btnViewReports.Visible = true;
             btnAccountSettings.Visible = false;
             btnViewPublications.Visible = true;
             btnViewFailedLogins.Visible = false;
             btnManageUsers.Visible = false;
+            btnViewCompetitions.Visible = false;
         }
     }
 }

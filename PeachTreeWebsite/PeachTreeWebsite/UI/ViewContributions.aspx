@@ -10,7 +10,7 @@
         <asp:Label ID="lblError" runat="server"></asp:Label> 
 		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="gv" cellpadding="10" AllowSorting="True">
 			<Columns>
-				<asp:TemplateField>
+				<asp:TemplateField HeaderText="Action">
 					<ItemTemplate>
 						<asp:Button ID="btnDownload" CssClass="btn btn-link" Text="Download" runat="server" 
 							CommandName="Download" 

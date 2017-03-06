@@ -148,9 +148,10 @@ namespace PeachTreeWebsite
                 while (myReader.Read())
                 {
                     int facultyID = int.Parse(myReader["PTA_ID_Faculty"].ToString());
-                    f = new FacultyUser(facultyID, facultyName);                    
+                    f = new FacultyUser(facultyID, facultyName);
+                    return f;
                 }
-                return f;
+                return null;
             }
             catch (Exception e)
             {
@@ -545,7 +546,7 @@ namespace PeachTreeWebsite
             string queryStr = "Select mm.Email from PTA_User mm "
                 + "inner join PTA_User s on s.PTA_ID_Faculty = mm.PTA_ID_Faculty "
                 + "inner join PTA_Contribution c on c.PTA_ID_User = s.PTA_ID_User "
-                + "where mm.UserType = 'Marketing Manager' and c.PTA_ID_Contribution = @paramContID";
+                + "where mm.UserType = 'Marketing Coordinator' and c.PTA_ID_Contribution = @paramContID";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
             cmd.Parameters.AddWithValue("@paramContID", contributionID);
             try
@@ -568,5 +569,85 @@ namespace PeachTreeWebsite
                 myConnection.Close();
             }
         }
+
+        public static List<Contribution> getContributionsForFaculty(int marketingCoordinatorID)
+        {
+            List<Contribution> contributions = new List<Contribution>();
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "SELECT * FROM PTA_Contribution c "
+                + "inner join PTA_User u on u.PTA_ID_User = c.PTA_ID_User "
+                + "inner join PTA_User mc on u.PTA_ID_Faculty = mc.PTA_ID_Faculty "
+                + "where mc.PTA_ID_User = @paramMCID;";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramMCID", marketingCoordinatorID);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    int contID = int.Parse(myReader["PTA_ID_Contribution"].ToString());
+                    string title = myReader["Title"].ToString();
+                    string imgTitle = null;
+                    byte[] imgBytes = null;
+                    if (myReader["ImageTitle"] != DBNull.Value && myReader["Cont_Image"] != DBNull.Value)
+                    {
+                        imgTitle = myReader["ImageTitle"].ToString();
+                        imgBytes = (byte[])myReader["Cont_Image"];
+                    }
+                    string docTitle = myReader["FileTitle"].ToString();
+                    string docContentType = myReader["FileContentType"].ToString();
+                    byte[] docBytes = (byte[])myReader["Cont_File"];
+                    string status = myReader["Cont_Status"].ToString();
+                    string feedback = myReader["Feedback"].ToString();
+                    int userID = int.Parse(myReader["PTA_ID_User"].ToString());
+                    int compID = int.Parse(myReader["PTA_ID_Competition"].ToString());
+                    Contribution c = new Contribution(contID, title, imgTitle, imgBytes, docTitle, docContentType, docBytes, status, feedback, userID, compID);
+                    contributions.Add(c);
+                }
+                return contributions;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static bool UpdateContributionStatus(Contribution c, string status, string feedback)
+        {
+            // insert the contribution into database with file
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string strQuery = "UPDATE PTA_Contribution SET "
+                + "Cont_Status = @paramStatus, "
+                + "feedback = @paramfeedback "
+                + "WHERE PTA_ID_Contribution = @paramContID; ";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramStatus", status);
+            cmd.Parameters.AddWithValue("@paramfeedback", feedback);
+            cmd.Parameters.AddWithValue("@paramContID", c.ContributionID);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }        
     }
 }

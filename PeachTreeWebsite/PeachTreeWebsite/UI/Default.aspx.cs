@@ -19,13 +19,16 @@ namespace PeachTreeWebsite
                 Response.Redirect("~/UI/Home.aspx");
             }
             List<string> faculties = DBConnection.getFaculties();
-            if (faculties != null)
+            if(!IsPostBack)
             {
-                foreach (string s in faculties)
+                if (faculties != null)
                 {
-                    ddlFaculty.Items.Add(s);
+                    foreach (string s in faculties)
+                    {
+                        ddlFaculty.Items.Add(s);
+                    }
                 }
-            }            
+            }                      
             ddlFaculty.Attributes["style"] = "width=30%; max-width: 280px";
         }
 

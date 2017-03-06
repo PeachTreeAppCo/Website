@@ -204,6 +204,7 @@
     <Content Include="favicon.ico" />
     <Content Include="UI\AddCompetition.aspx" />
     <Content Include="UI\AddContribution.aspx" />
+    <Content Include="UI\AddFeedback.aspx" />
     <Content Include="UI\EditCompetition.aspx" />
     <Content Include="UI\EditContribution.aspx" />
     <Content Include="UI\Home.aspx" />
@@ -246,6 +247,7 @@
     <Content Include="UI\ViewFailedLoginAttempts.aspx" />
     <Content Include="UI\ViewPublications.aspx" />
     <Content Include="UI\ViewReports.aspx" />
+    <Content Include="UI\ViewSubmissions.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -304,6 +306,13 @@
     </Compile>
     <Compile Include="UI\AddContribution.aspx.designer.cs">
       <DependentUpon>AddContribution.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AddFeedback.aspx.cs">
+      <DependentUpon>AddFeedback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\AddFeedback.aspx.designer.cs">
+      <DependentUpon>AddFeedback.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -407,6 +416,13 @@
     </Compile>
     <Compile Include="UI\ViewReports.aspx.designer.cs">
       <DependentUpon>ViewReports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewSubmissions.aspx.cs">
+      <DependentUpon>ViewSubmissions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewSubmissions.aspx.designer.cs">
+      <DependentUpon>ViewSubmissions.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

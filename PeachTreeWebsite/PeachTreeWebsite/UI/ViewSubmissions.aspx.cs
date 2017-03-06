@@ -9,22 +9,29 @@ using PeachTreeWebsite.Classes;
 
 namespace PeachTreeWebsite.UI
 {
-    public partial class ViewContributions : System.Web.UI.Page
+    public partial class ViewSubmissions : System.Web.UI.Page
     {
+        SiteUser s = new SiteUser();
         List<Contribution> contributions = new List<Contribution>();
         List<Competition> competitions = new List<Competition>();
-        SiteUser s = new SiteUser();
-
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {            
             if (Session["UserSession"] != null)
             {
                 s = (SiteUser)Session["UserSession"];
-                contributions = DBConnection.getContributionsForUser(s.UserID1);
-                competitions = DBConnection.getCompetitons();
-                if (!IsPostBack)
+                if(s.UserType1 == "Marketing Coordinator")
                 {
-                    populateGrid();
+                    contributions = DBConnection.getContributionsForFaculty(s.UserID1);
+                    competitions = DBConnection.getCompetitons();
+                    if (!IsPostBack)
+                    {
+                        populateGrid();
+                    }
+                }
+                else
+                {
+                    Session.Clear();
+                    Response.Redirect("~/UI/Default.aspx");
                 }
             }
             else
@@ -36,7 +43,7 @@ namespace PeachTreeWebsite.UI
 
         public void populateGrid()
         {
-            contributions = DBConnection.getContributionsForUser(s.UserID1);
+            contributions = DBConnection.getContributionsForFaculty(s.UserID1);
             // Populate table with contributions
             DataTable dt = new DataTable();
             dt.Columns.Add("Title");
@@ -74,18 +81,9 @@ namespace PeachTreeWebsite.UI
                     }
                     dt.Rows.Add(dr);
                 }
-                gridviewContrib.DataSource = dt;
-                gridviewContrib.DataBind();
+                gridviewSubmissions.DataSource = dt;
+                gridviewSubmissions.DataBind();
             }
-            else
-            {
-                lblError.Text = "No contributions to show! Get writing!";
-            }
-        }
-
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/UI/AddContribution.aspx");
         }
 
         public void downloadFile(Contribution c)
@@ -100,62 +98,22 @@ namespace PeachTreeWebsite.UI
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gridviewContrib.Rows[index];
+            GridViewRow row = gridviewSubmissions.Rows[index];
             string title = row.Cells[1].Text;
             Contribution c = (from cont in contributions
                               where title == cont.Title
                               select cont).First();
-            Competition p = (from comp in competitions
-                             where comp.ID1 == c.CompetitionID
-                             select comp).First();
 
             if (e.CommandName == "Download")
             {
                 downloadFile(c);
             }
-            if (e.CommandName == "EditCont")
+            else if (e.CommandName == "Feedback")
             {
-                if (c.Status != "Published")
-                {
-                    if (DateTime.Now < p.FinalClosure1)
-                    {
-                        Session["contSession"] = c;
-                        Response.Redirect("~/UI/EditContribution.aspx");
-                    }
-                    else
-                    {
-                        lblError.Text = "Competition closed - Cannot edit!";
-                    }
-                }
-                else
-                {
-                    lblError.Text = "Cannot edit published submissions!";
-                }
+                Session["fdbkSession"] = c;
+                Response.Redirect("~/UI/AddFeedback.aspx");
             }
-            if (e.CommandName == "DeleteCont")
-            {
-                if(c.Status != "Published")
-                {
-                    if (DateTime.Now < p.FinalClosure1)
-                    {
-                        DBConnection.deleteContribution(c);
-                        populateGrid();
-                    }
-                    else
-                    {
-                        lblError.Text = "Competition closed - Cannot delete!";
-                    }
-                }
-                else
-                {
-                    lblError.Text = "Cannot delete published submissions!";
-                }
-            }
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("~/UI/TermsAndConditions.aspx");
+            
         }
     }
 }

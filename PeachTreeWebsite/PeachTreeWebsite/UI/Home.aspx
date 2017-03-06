@@ -7,6 +7,7 @@
     </div>
     <div class ="form-centered full-width">
         <p><button class="btn btn-success" id="btnViewContributions" runat="server" style="width: 300px;" onServerClick="btnViewContributions_Click">View your Contributions</button></p>
+        <p><button class="btn btn-success" id="btnViewSubmissions" runat="server" style="width: 300px;" onServerClick="btnViewSubmissions_Click">View Submissions</button></p>
         <p><button class="btn btn-success" id="btnViewReports" runat="server" style="width: 300px;" onServerClick="btnViewReports_Click">View Reports</button></p>
         <p><button class="btn btn-success" id="btnAccountSettings" runat="server" style="width: 300px;" onServerClick="btnAccountSettings_Click">Account Settings</button></p>
         <p><button class="btn btn-success" id="btnViewPublications" runat="server" style="width: 300px;" onServerClick="btnViewPublications_Click">View Publications</button></p>

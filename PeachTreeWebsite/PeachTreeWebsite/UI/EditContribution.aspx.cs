@@ -34,7 +34,7 @@ namespace PeachTreeWebsite.UI
             }
             else
             {                
-                Response.Redirect("~/ViewContributions.aspx");
+                Response.Redirect("~/UI/ViewContributions.aspx");
             }
         }
 
