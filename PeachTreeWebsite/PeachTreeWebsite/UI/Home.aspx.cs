@@ -13,6 +13,7 @@ namespace PeachTreeWebsite
         SiteUser s = new SiteUser();
         FacultyUser f = new FacultyUser();
         Guest g = new Guest();
+        string[] vowels = new string[] { "A", "E", "I", "O", "U"};
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -44,6 +45,14 @@ namespace PeachTreeWebsite
                 }
                 setupPageForUser(s);
                 lblWelcome.Text = "Welcome, " + s.GivenName1 + "!";
+                if (vowels.Contains(s.UserType1[0].ToString()))
+                {
+                    lblUserType.Text = "You are logged in as an " + s.UserType1;
+                }
+                else
+                {
+                    lblUserType.Text = "You are logged in as a " + s.UserType1;
+                }
                 if (s.LastLogin != DateTime.MinValue)
                 {
                     lblLastLogin.Text = "Last logged in: " + s.LastLogin;

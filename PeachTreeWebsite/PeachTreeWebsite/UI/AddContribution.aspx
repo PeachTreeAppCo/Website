@@ -31,8 +31,7 @@
                 <br />
                 <asp:Button ID="btnBack" CssClass="btn btn-success" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
     </div>
-
-    <%-- Google Analytics --%>
+        <%-- Google Analytics --%>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {

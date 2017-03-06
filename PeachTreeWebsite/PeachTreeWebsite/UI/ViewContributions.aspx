@@ -6,7 +6,7 @@
 		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add Contribution" />
     </div>
     <div>    	
-		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="gv" cellpadding="10">
+		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="gv" cellpadding="10" AllowSorting="True">
 			<Columns>
 				<asp:TemplateField>
 					<ItemTemplate>
@@ -25,8 +25,7 @@
 		</asp:GridView>
 		<asp:Label ID="lblError" runat="server"></asp:Label>    	
 	</div>
-
-    <%-- Google Analytics --%>
+        <%-- Google Analytics --%>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {

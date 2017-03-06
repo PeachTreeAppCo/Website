@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
         <asp:Label ID="lblWelcome" runat="server">Welcome</asp:Label>
+        <h6><asp:Label ID="lblUserType" runat="server"></asp:Label></h6>
         <h6><asp:Label ID="lblLastLogin" runat="server"></asp:Label></h6>
     </div>
     <div class ="form-centered full-width">
@@ -12,8 +13,7 @@
         <p><button class="btn btn-success" id="btnViewFailedLogins" runat="server" style="width: 300px;" onServerClick="btnViewFailedLogins_Click">View Failed Login Attempts</button></p>
         <p><button class="btn btn-danger" id="btnManageUsers" runat="server" style="width: 300px;" onServerClick="btnManageUsers_Click">Manage Users</button></p>
     </div>
-
-    <%-- Google Analytics --%>
+        <%-- Google Analytics --%>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {

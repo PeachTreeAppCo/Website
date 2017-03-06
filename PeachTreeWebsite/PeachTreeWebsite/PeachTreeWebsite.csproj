@@ -201,6 +201,7 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="favicon.ico" />
     <Content Include="UI\AddContribution.aspx" />
+    <Content Include="UI\EditCompetition.aspx" />
     <Content Include="UI\EditContribution.aspx" />
     <Content Include="UI\Home.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -237,6 +238,7 @@
     <Content Include="Site.Master" />
     <Content Include="UI\ManageUsers.aspx" />
     <Content Include="UI\TermsAndConditions.aspx" />
+    <Content Include="UI\ViewCompetitions.aspx" />
     <Content Include="UI\ViewContributions.aspx" />
     <Content Include="UI\ViewFailedLoginAttempts.aspx" />
     <Content Include="UI\ViewPublications.aspx" />
@@ -302,6 +304,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="UI\EditCompetition.aspx.cs">
+      <DependentUpon>EditCompetition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\EditCompetition.aspx.designer.cs">
+      <DependentUpon>EditCompetition.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\EditContribution.aspx.cs">
       <DependentUpon>EditContribution.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -352,6 +361,13 @@
     </Compile>
     <Compile Include="UI\TermsAndConditions.aspx.designer.cs">
       <DependentUpon>TermsAndConditions.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ViewCompetitions.aspx.cs">
+      <DependentUpon>ViewCompetitions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\ViewCompetitions.aspx.designer.cs">
+      <DependentUpon>ViewCompetitions.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\ViewContributions.aspx.cs">
       <DependentUpon>ViewContributions.aspx</DependentUpon>

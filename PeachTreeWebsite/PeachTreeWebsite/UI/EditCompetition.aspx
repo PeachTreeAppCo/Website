@@ -1,13 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="TermsAndConditions.aspx.cs" Inherits="PeachTreeWebsite.UI.TermsAndConditions" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="EditCompetition.aspx.cs" Inherits="PeachTreeWebsite.UI.EditCompetition" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="jumbotron">
-        <asp:Label ID="lblTnC" runat="server">Terms and Conditions</asp:Label>
-    </div>
-    <div>
-        <p>
-            You hereby sell your soul to PeachTree.
-        </p>
-    </div>
         <%-- Google Analytics --%>
     <script>
         (function (i, s, o, g, r, a, m) {
