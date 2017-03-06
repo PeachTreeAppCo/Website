@@ -31,15 +31,6 @@ namespace PeachTreeWebsite.UI {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// gridviewContrib control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridviewContrib;
-        
-        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -47,5 +38,14 @@ namespace PeachTreeWebsite.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
+        /// gridviewContrib control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridviewContrib;
     }
 }

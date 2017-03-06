@@ -73,17 +73,19 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static bool UpdateCompetition(Competition c, string title, DateTime initClose, DateTime finalClose)
+        public static bool updateCompetition(Competition c, string title, DateTime initClose, DateTime finalClose)
         {
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             string strQuery = "UPDATE PTA_Competition SET "
                 + "CompetitionName = @paramTitle,"
                 + "InitialClosureDate = @paramInitClose, "
-                + "FinalClosureDate = @paramFinalClose; ";
+                + "FinalClosureDate = @paramFinalClose "
+                + "WHERE PTA_ID_Competition = @paramID; ";
             SqlCommand cmd = new SqlCommand(strQuery, myConnection);
             cmd.Parameters.AddWithValue("@paramTitle", title);
             cmd.Parameters.AddWithValue("@paramInitClose", initClose);
             cmd.Parameters.AddWithValue("@paramFinalClose", finalClose);
+            cmd.Parameters.AddWithValue("@paramID", c.ID1);
 
             try
             {

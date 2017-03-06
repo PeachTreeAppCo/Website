@@ -3,21 +3,25 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
         <asp:Label ID="lblEditCompetition" runat="server">Edit Competition</asp:Label>
+        <br />
+        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-success" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>
 
         Title<br />
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
         <br />
         <br />
         Initial Closure Date<br />
-        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+        <asp:Calendar ID="calInitClose" runat="server"></asp:Calendar>
         <br />
         <br />
         Final Closure Date<br />
-        <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+        <asp:Calendar ID="calFinalClose" runat="server"></asp:Calendar>
         <br />
         <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-success" OnClick="btnUpdate_Click" Text="Update" />
+
+        <asp:Label ID="lblUpdate" runat="server"></asp:Label>
 
     </div>
     <%-- Google Analytics --%>
