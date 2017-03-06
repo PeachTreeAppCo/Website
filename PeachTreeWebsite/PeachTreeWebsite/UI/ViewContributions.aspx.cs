@@ -134,7 +134,6 @@ namespace PeachTreeWebsite.UI
                     lblError.Text = "Competition closed - Cannot delete!";
                 }
             }
-            // add functionality for edit and delete
         }
     }
 }

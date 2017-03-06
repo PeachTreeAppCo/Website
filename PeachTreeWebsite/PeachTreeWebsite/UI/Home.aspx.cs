@@ -104,8 +104,12 @@ namespace PeachTreeWebsite
         public void btnManageUsers_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/ManageUsers.aspx");
-        }    
-        
+        }
+        public void btnViewCompetitions_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/UI/ViewCompetitions.aspx");
+        }        
+
         public void setupPageForUser(SiteUser s)
         {
             switch (s.UserType1)
@@ -118,6 +122,7 @@ namespace PeachTreeWebsite
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
+                    btnViewCompetitions.Visible = false;
                     break;
                 // Marketing Coordinator
                 case "Marketing Coordinator":
@@ -127,6 +132,7 @@ namespace PeachTreeWebsite
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
+                    btnViewCompetitions.Visible = false;
                     break;
                 // Marketing Manager
                 case "Marketing Manager":
@@ -136,6 +142,7 @@ namespace PeachTreeWebsite
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
+                    btnViewCompetitions.Visible = false;
                     break;
                 // Administrator
                 case "Administrator":
@@ -145,6 +152,7 @@ namespace PeachTreeWebsite
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = true;
                     btnManageUsers.Visible = true;
+                    btnViewCompetitions.Visible = true;
                     break;
                 default:
                     btnViewContributions.Visible = false;
@@ -153,6 +161,7 @@ namespace PeachTreeWebsite
                     btnViewPublications.Visible = false;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
+                    btnViewCompetitions.Visible = false;
                     break;
             }
         }    

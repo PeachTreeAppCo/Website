@@ -1,23 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="EditCompetition.aspx.cs" Inherits="PeachTreeWebsite.UI.EditCompetition" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddCompetition.aspx.cs" Inherits="PeachTreeWebsite.UI.AddCompetition" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblEditCompetition" runat="server">Edit Competition</asp:Label>
+        <asp:Label ID="lblAddCompetition" runat="server">Add Competition</asp:Label>
+        <br />
+        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-success" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>
 
         Title<br />
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtTitle" runat="server"></asp:TextBox>
         <br />
         <br />
         Initial Closure Date<br />
-        <asp:Calendar ID="Calendar1" runat="server"></asp:Calendar>
+        <asp:Calendar ID="calInitClose" runat="server"></asp:Calendar>
         <br />
         <br />
         Final Closure Date<br />
-        <asp:Calendar ID="Calendar2" runat="server"></asp:Calendar>
+        <asp:Calendar ID="calFinalClose" runat="server"></asp:Calendar>
         <br />
-        <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-success" OnClick="btnUpdate_Click" Text="Update" />
+        <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnAdd_Click" />
+
+        <asp:Label ID="lblSaveError" runat="server"></asp:Label>
 
     </div>
     <%-- Google Analytics --%>

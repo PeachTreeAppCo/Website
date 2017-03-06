@@ -51,6 +51,85 @@ namespace PeachTreeWebsite
             }
         }
 
+        public static void deleteCompetition(Competition c)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string queryStr = "DELETE FROM PTA_Competition WHERE PTA_ID_Competition = @paramCompID";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramCompID", c.ID1);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static bool UpdateCompetition(Competition c, string title, DateTime initClose, DateTime finalClose)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string strQuery = "UPDATE PTA_Competition SET "
+                + "CompetitionName = @paramTitle,"
+                + "InitialClosureDate = @paramInitClose, "
+                + "FinalClosureDate = @paramFinalClose; ";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramTitle", title);
+            cmd.Parameters.AddWithValue("@paramInitClose", initClose);
+            cmd.Parameters.AddWithValue("@paramFinalClose", finalClose);
+
+            try
+            {
+                myConnection.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return false;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static int addCompetition(string title, DateTime initClose, DateTime finalClose)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            string strQuery = "INSERT INTO PTA_Competition (InitialClosureDate, FinalClosureDate, CompetitionName) VALUES "
+                + "(@paramInitClose, @paramFinalClose, @paramTitle);"
+                + "SELECT CAST(scope_identity() AS int);";
+            SqlCommand cmd = new SqlCommand(strQuery, myConnection);
+            cmd.Parameters.AddWithValue("@paramTitle", title);
+            cmd.Parameters.AddWithValue("@paramInitClose", initClose);
+            cmd.Parameters.AddWithValue("@paramFinalClose", finalClose);
+
+            try
+            {
+                myConnection.Open();
+                int id = (int)cmd.ExecuteScalar();
+                return id;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return -1;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
         public static FacultyUser facultyLogin (string facultyName, string facultyPwd)
         {
             FacultyUser f = new FacultyUser();

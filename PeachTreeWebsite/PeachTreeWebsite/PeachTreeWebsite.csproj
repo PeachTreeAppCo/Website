@@ -200,6 +200,7 @@
     </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="favicon.ico" />
+    <Content Include="UI\AddCompetition.aspx" />
     <Content Include="UI\AddContribution.aspx" />
     <Content Include="UI\EditCompetition.aspx" />
     <Content Include="UI\EditContribution.aspx" />
@@ -287,6 +288,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Classes\DBConnection.cs" />
+    <Compile Include="UI\AddCompetition.aspx.cs">
+      <DependentUpon>AddCompetition.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\AddCompetition.aspx.designer.cs">
+      <DependentUpon>AddCompetition.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UI\AddContribution.aspx.cs">
       <DependentUpon>AddContribution.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

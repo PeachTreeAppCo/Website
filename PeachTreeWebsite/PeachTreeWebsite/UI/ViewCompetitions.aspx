@@ -3,20 +3,27 @@
 <div class="jumbotron">
         <asp:Label ID="lblViewCompetitions" runat="server">View Competitions</asp:Label>
         <br />
-        <asp:Button ID="btnAddComp" runat="server" CssClass="btn btn-success" Text="Add" />
+        <asp:Button ID="btnAddComp" runat="server" OnClick="btnAddComp_Click" CssClass="btn btn-success" Text="Add" />
     </div>
     <div>
-
-        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" CssClass="gv" DataKeyNames="PTA_ID_Competition" DataSourceID="PeachTreeDB" cellpadding="10">
+        <asp:Label ID="lblError" runat="server"></asp:Label>
+        <asp:GridView ID="GridView1" runat="server" onrowcommand="GridView1_RowCommand" AllowSorting="True" AutoGenerateColumns="False" CssClass="gv" DataKeyNames="PTA_ID_Competition" DataSourceID="PeachTreeDB" cellpadding="10">
             <Columns>
-                <asp:BoundField DataField="PTA_ID_Competition" HeaderText="PTA_ID_Competition" InsertVisible="False" ReadOnly="True" SortExpression="PTA_ID_Competition" />
-                <asp:BoundField DataField="InitialClosureDate" HeaderText="InitialClosureDate" SortExpression="InitialClosureDate" />
-                <asp:BoundField DataField="FinalClosureDate" HeaderText="FinalClosureDate" SortExpression="FinalClosureDate" />
-                <asp:BoundField DataField="CompetitionName" HeaderText="CompetitionName" SortExpression="CompetitionName" />
+                <asp:BoundField DataField="PTA_ID_Competition" HeaderText="Competition ID" InsertVisible="False" ReadOnly="True" SortExpression="PTA_ID_Competition" />
+                <asp:BoundField DataField="InitialClosureDate" HeaderText="Initial Closure Date" SortExpression="InitialClosureDate" />
+                <asp:BoundField DataField="FinalClosureDate" HeaderText="Final Closure Date" SortExpression="FinalClosureDate" />
+                <asp:BoundField DataField="CompetitionName" HeaderText="Competition Name" SortExpression="CompetitionName" />
+                <asp:TemplateField>
+					<ItemTemplate>
+                        <asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server" 
+							CommandName="EditComp" 
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />
+                        <asp:Button ID="btnDelete" CssClass="btn btn-link" Text="Delete" runat="server" 
+							CommandName="DeleteComp" 
+							CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+					</ItemTemplate>					
+				</asp:TemplateField>
             </Columns>
-            <EmptyDataTemplate>
-                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
-            </EmptyDataTemplate>
         </asp:GridView>
         <asp:SqlDataSource ID="PeachTreeDB" runat="server" ConnectionString="<%$ ConnectionStrings:PeachTreeWebsite.Properties.Settings.PeachTreeConnectionString %>" SelectCommand="SELECT * FROM [PTA_Competition]"></asp:SqlDataSource>
     </div>

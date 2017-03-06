@@ -10,6 +10,7 @@
         <p><button class="btn btn-success" id="btnViewReports" runat="server" style="width: 300px;" onServerClick="btnViewReports_Click">View Reports</button></p>
         <p><button class="btn btn-success" id="btnAccountSettings" runat="server" style="width: 300px;" onServerClick="btnAccountSettings_Click">Account Settings</button></p>
         <p><button class="btn btn-success" id="btnViewPublications" runat="server" style="width: 300px;" onServerClick="btnViewPublications_Click">View Publications</button></p>
+        <p><button class="btn btn-success" id="btnViewCompetitions" runat="server" style="width: 300px;" onServerClick="btnViewCompetitions_Click">View Competitions</button></p>
         <p><button class="btn btn-success" id="btnViewFailedLogins" runat="server" style="width: 300px;" onServerClick="btnViewFailedLogins_Click">View Failed Login Attempts</button></p>
         <p><button class="btn btn-danger" id="btnManageUsers" runat="server" style="width: 300px;" onServerClick="btnManageUsers_Click">Manage Users</button></p>
     </div>
