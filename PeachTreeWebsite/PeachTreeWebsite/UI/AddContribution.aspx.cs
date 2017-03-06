@@ -29,16 +29,18 @@ namespace PeachTreeWebsite.UI
                 Response.Redirect("~/UI/Default.aspx");
             }
             Session["ContSession"] = null;
-            ddlComps.Items.Clear();
             competitions = DBConnection.getCompetitons();
-            foreach (Competition c in competitions)
-            {
-                if (DateTime.Now < c.InitialClosure1)
+            if (!IsPostBack) {
+                ddlComps.Items.Clear();                
+                foreach (Competition c in competitions)
                 {
-                    ddlComps.Items.Add(c.Name);
+                    if (DateTime.Now < c.InitialClosure1)
+                    {
+                        ddlComps.Items.Add(c.Name);
+                    }
                 }
-            }
-            ddlComps.SelectedIndex = 0;
+                ddlComps.SelectedIndex = 0;
+            }            
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)

@@ -1,7 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddContribution.aspx.cs" Inherits="PeachTreeWebsite.UI.AddContribution" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblAccountSettings" runat="server">Add Contribution</asp:Label>   <br />      
+        <asp:Label ID="lblAccountSettings" runat="server">Add Contribution</asp:Label>   
+        <br />
+                <asp:Button ID="btnBack" CssClass="btn btn-success" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
+        <br />      
     </div>
     <div>
                 <asp:Label ID="lblTitle" runat="server" Text="Title *"></asp:Label>
@@ -29,7 +32,6 @@
                 <asp:Label ID="lblSubmit" runat="server"></asp:Label>
                 <br />
                 <br />
-                <asp:Button ID="btnBack" CssClass="btn btn-success" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
     </div>
         <%-- Google Analytics --%>
     <script>

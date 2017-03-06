@@ -2,8 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
         <asp:Label ID="lblViewContributions" runat="server">Contributions</asp:Label>
-    	<br />
-		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add Contribution" />
+    	&nbsp;<br />
+		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add Contribution" Width="194px" />
+        <asp:Button ID="Button1" runat="server" CssClass="btn btn-link" OnClick="Button1_Click" Text="View terms and conditions" Width="200px" />
     </div>
     <div>    	
         <asp:Label ID="lblError" runat="server"></asp:Label> 
