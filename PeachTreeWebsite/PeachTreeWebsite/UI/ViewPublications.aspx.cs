@@ -11,7 +11,6 @@ namespace PeachTreeWebsite.UI
 {
     public partial class ViewPublications : System.Web.UI.Page
     {
-        SiteUser s = new SiteUser();
         List<PublishedContribution> contributions = new List<PublishedContribution>();
         List<Competition> competitions = new List<Competition>();
 
@@ -112,7 +111,7 @@ namespace PeachTreeWebsite.UI
             }
             else
             {
-                lblErr.Text = "Select a competition";
+                lblErr.Text = "Select a year";
             }
         }
     }

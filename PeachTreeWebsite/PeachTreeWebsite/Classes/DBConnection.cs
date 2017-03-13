@@ -698,6 +698,7 @@ namespace PeachTreeWebsite
                 myConnection.Close();
             }
         }
+
         public static List<PublishedContribution> getPublishedContributionsForComp(string compName)
         {
             List<PublishedContribution> contributions = new List<PublishedContribution>();
@@ -741,6 +742,171 @@ namespace PeachTreeWebsite
             {
                 Console.WriteLine(e.ToString());
                 return null;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static string report_getTotalContributions(int compID)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select count(*) as count from PTA_Contribution where PTA_ID_Competition = @paramCompID";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {                    
+                    return myReader["count"].ToString();
+                }
+                return "0";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return "0";
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static string report_getContributionsForFaculty(int compID, int facultyID)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select count(c.PTA_ID_Contribution) as count from PTA_Contribution c "
+                + "inner join PTA_User u on c.PTA_ID_User = u.PTA_ID_User "
+                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
+                + "where c.PTA_ID_Competition = @paramCompID "
+                + "and f.PTA_ID_Faculty = @paramFacultyID;";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+            cmd.Parameters.AddWithValue("@paramFacultyID", facultyID);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    return myReader["count"].ToString();
+                }
+                return "0";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return "0";
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static string report_getCountContributors(int compID, int facultyID)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select count(DISTINCT u.PTA_ID_User) as count from PTA_Contribution c "
+                + "inner join PTA_User u on c.PTA_ID_User = u.PTA_ID_User "
+                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
+                + "where c.PTA_ID_Competition = @paramCompID "
+                + "and f.PTA_ID_Faculty = @paramFacultyID;";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+            cmd.Parameters.AddWithValue("@paramFacultyID", facultyID);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    return myReader["count"].ToString();
+                }
+                return "0";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return "0";
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static string report_getCountContributors(int compID, int facultyID)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select count(DISTINCT u.PTA_ID_User) as count from PTA_Contribution c "
+                + "inner join PTA_User u on c.PTA_ID_User = u.PTA_ID_User "
+                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
+                + "where c.PTA_ID_Competition = @paramCompID "
+                + "and f.PTA_ID_Faculty = @paramFacultyID;";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+            cmd.Parameters.AddWithValue("@paramFacultyID", facultyID);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    return myReader["count"].ToString();
+                }
+                return "0";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return "0";
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+
+        public static string report_getCountContributors(int compID, int facultyID)
+        {
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select count(DISTINCT u.PTA_ID_User) as count from PTA_Contribution c "
+                + "inner join PTA_User u on c.PTA_ID_User = u.PTA_ID_User "
+                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
+                + "where c.PTA_ID_Competition = @paramCompID "
+                + "and f.PTA_ID_Faculty = @paramFacultyID;";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramCompID", compID);
+            cmd.Parameters.AddWithValue("@paramFacultyID", facultyID);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    return myReader["count"].ToString();
+                }
+                return "0";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return "0";
             }
             finally
             {

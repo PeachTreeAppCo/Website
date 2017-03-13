@@ -62,7 +62,7 @@ namespace PeachTreeWebsite
             {
                 f = (FacultyUser)Session["FacultySession"];
                 lblWelcome.Text = "Welcome, " + f.FacultyName1 + " guest!";
-                setupPageForGuest();
+                setupPageForFacultyGuest();
             }
             else if (Session["GuestSession"] != null)
             {
@@ -177,6 +177,18 @@ namespace PeachTreeWebsite
         }    
 
         public void setupPageForGuest()
+        {
+            btnViewContributions.Visible = false;
+            btnViewSubmissions.Visible = false;
+            btnViewReports.Visible = false;
+            btnAccountSettings.Visible = false;
+            btnViewPublications.Visible = true;
+            btnViewFailedLogins.Visible = false;
+            btnManageUsers.Visible = false;
+            btnViewCompetitions.Visible = false;
+        }
+
+        public void setupPageForFacultyGuest()
         {
             btnViewContributions.Visible = false;
             btnViewSubmissions.Visible = false;
