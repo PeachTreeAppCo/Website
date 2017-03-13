@@ -40,7 +40,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-                    <a class="navbar-brand" runat="server" href="~/UI/Default">Student Magazine Hub</a>
+                    <a class="navbar-brand" runat="server" href="~/UI/Default">University Magazine Hub</a>
                 </div>
                 <div class="navbar-collapse collapse">                    
                     <asp:LoginView runat="server" ViewStateMode="Disabled">

@@ -5,6 +5,10 @@
     </div>
     <div>
 
+        <asp:Label ID="lblContribTotal" runat="server" Text="No. of Contributions (Total):"></asp:Label>
+        <br />
+        <asp:Label ID="lblContribFaculty" runat="server" Text="No. of Contributions from your faculty: "></asp:Label>
+
     </div>
         <%-- Google Analytics --%>
     <script>

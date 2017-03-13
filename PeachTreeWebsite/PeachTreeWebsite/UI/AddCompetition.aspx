@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddCompetition.aspx.cs" Inherits="PeachTreeWebsite.UI.AddCompetition" %>
+﻿<%@ Page Title="Add Competition" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddCompetition.aspx.cs" Inherits="PeachTreeWebsite.UI.AddCompetition" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
         <asp:Label ID="lblAddCompetition" runat="server">Add Competition</asp:Label>

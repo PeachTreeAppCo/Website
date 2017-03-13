@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddFeedback.aspx.cs" Inherits="PeachTreeWebsite.UI.AddFeedback" %>
+﻿<%@ Page Title="Add Feedback" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddFeedback.aspx.cs" Inherits="PeachTreeWebsite.UI.AddFeedback" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">

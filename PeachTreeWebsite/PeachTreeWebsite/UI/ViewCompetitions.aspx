@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewCompetitions.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewCompetitions" %>
+﻿<%@ Page Title="View Competitions" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewCompetitions.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewCompetitions" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
