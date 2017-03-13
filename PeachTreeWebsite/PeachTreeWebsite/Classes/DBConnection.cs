@@ -846,18 +846,12 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static string report_getCountContributors(int compID, int facultyID)
+        public static string report_getContributionsNoResponse()
         {
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             SqlDataReader myReader = null;
-            string queryStr = "select count(DISTINCT u.PTA_ID_User) as count from PTA_Contribution c "
-                + "inner join PTA_User u on c.PTA_ID_User = u.PTA_ID_User "
-                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
-                + "where c.PTA_ID_Competition = @paramCompID "
-                + "and f.PTA_ID_Faculty = @paramFacultyID;";
+            string queryStr = "select count(c.PTA_ID_Contribution) as count from PTA_Contribution c where c.feedback IS NULL;";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
-            cmd.Parameters.AddWithValue("@paramCompID", compID);
-            cmd.Parameters.AddWithValue("@paramFacultyID", facultyID);
 
             try
             {
@@ -880,18 +874,14 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static string report_getCountContributors(int compID, int facultyID)
+        public static string report_getContributionsNoResponse14Days()
         {
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             SqlDataReader myReader = null;
-            string queryStr = "select count(DISTINCT u.PTA_ID_User) as count from PTA_Contribution c "
-                + "inner join PTA_User u on c.PTA_ID_User = u.PTA_ID_User "
-                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
-                + "where c.PTA_ID_Competition = @paramCompID "
-                + "and f.PTA_ID_Faculty = @paramFacultyID;";
+            string queryStr = "select count(c.PTA_ID_Contribution) as count from PTA_Contribution c "
+                + "where c.feedback IS NULL "
+                + "and c.timeofUpload < dateadd(week, -3, getdate());";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
-            cmd.Parameters.AddWithValue("@paramCompID", compID);
-            cmd.Parameters.AddWithValue("@paramFacultyID", facultyID);
 
             try
             {

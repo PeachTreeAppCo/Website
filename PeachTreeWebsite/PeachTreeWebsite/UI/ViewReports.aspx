@@ -6,10 +6,7 @@
     <div>
 
         <strong>Publication Statistics</strong><br />
-        <br />
-
         Select a year:
-
         <asp:DropDownList ID="ddlComps" runat="server" AutoPostBack="true">
         </asp:DropDownList>
         <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnSearch_Click" />
@@ -27,6 +24,8 @@
         <asp:Label ID="lblContributors" runat="server"></asp:Label>
         <br />
         <br />
+        <br />
+        <asp:Label ID="lblMarketingManager" style="font-weight: bold" runat="server" Visible="False">Marketing Manager Reports</asp:Label>
         <br />
         <asp:Label ID="lblNoComment" runat="server" Text="No. of Contributions without comments: " Visible="False"></asp:Label>
         <asp:Label ID="lblNoCommentsResult" runat="server"></asp:Label>

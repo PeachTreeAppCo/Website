@@ -20,6 +20,14 @@ namespace PeachTreeWebsite.UI
             if (Session["UserSession"] != null)
             {
                 s = (SiteUser)Session["UserSession"];
+                if (s.UserType1 == "Marketing Manager")
+                {
+                    lblMarketingManager.Visible = true;
+                    lblNoComment.Visible = true;
+                    lblNoComment14Days.Visible = true;
+                    lblNoCommentsResult.Text = DBConnection.report_getContributionsNoResponse();
+                    lblNoComments14DaysResult.Text = DBConnection.report_getContributionsNoResponse14Days();
+                }                
                 facultyID = s.FacultyID;
             }
             else if (Session["FacultySession"] != null)
@@ -57,12 +65,6 @@ namespace PeachTreeWebsite.UI
                 lblContribTotal.Text = DBConnection.report_getTotalContributions(compID);
                 lblContribFaculty.Text = DBConnection.report_getContributionsForFaculty(compID, facultyID);
                 lblContributors.Text = DBConnection.report_getCountContributors(compID, facultyID);
-
-                if(s != null && s.UserType1 == "Marketing Manager")
-                {
-                    lblNoCommentsResult.Text = DBConnection.report_getContributionsNoResponse();
-                    lblNoComments14DaysResult.Text = DBConnection.report_getContributionsNoResponse14Days();
-                }
             }
             else
             {
