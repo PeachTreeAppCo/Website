@@ -648,6 +648,104 @@ namespace PeachTreeWebsite
             {
                 myConnection.Close();
             }
-        }        
+        }
+
+        public static List<PublishedContribution> getPublishedContributions()
+        {
+            List<PublishedContribution> contributions = new List<PublishedContribution>();
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select c.Title,c.ImageTitle,c.Cont_Image,c.FileTitle,c.FileContentType,c.Cont_File,u.GivenName,u.Surname,f.FacultyName,comp.CompetitionName from PTA_Contribution c "
+                + "inner join PTA_User u on u.PTA_ID_User = c.PTA_ID_User "
+                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
+                + "inner join PTA_Competition comp on comp.PTA_ID_Competition = c.PTA_ID_Competition "
+                + "where Cont_Status = 'Published'";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    string title = myReader["Title"].ToString();
+                    string imgTitle = null;
+                    byte[] imgBytes = null;
+                    if (myReader["ImageTitle"] != DBNull.Value && myReader["Cont_Image"] != DBNull.Value)
+                    {
+                        imgTitle = myReader["ImageTitle"].ToString();
+                        imgBytes = (byte[])myReader["Cont_Image"];
+                    }
+                    string docTitle = myReader["FileTitle"].ToString();
+                    string docContentType = myReader["FileContentType"].ToString();
+                    byte[] docBytes = (byte[])myReader["Cont_File"];
+                    string fName = myReader["GivenName"].ToString();
+                    string sName = myReader["Surname"].ToString();
+                    string facultyName = myReader["FacultyName"].ToString();
+                    string compName = myReader["CompetitionName"].ToString();
+                    PublishedContribution c = new PublishedContribution(title, imgTitle, imgBytes, docTitle, docContentType, docBytes, fName, sName, facultyName, compName);
+                    contributions.Add(c);
+                }
+                return contributions;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
+        public static List<PublishedContribution> getPublishedContributionsForComp(string compName)
+        {
+            List<PublishedContribution> contributions = new List<PublishedContribution>();
+            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
+            SqlDataReader myReader = null;
+            string queryStr = "select c.Title,c.ImageTitle,c.Cont_Image,c.FileTitle,c.FileContentType,c.Cont_File,u.GivenName,u.Surname,f.FacultyName,comp.CompetitionName from PTA_Contribution c "
+                + "inner join PTA_User u on u.PTA_ID_User = c.PTA_ID_User "
+                + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
+                + "inner join PTA_Competition comp on comp.PTA_ID_Competition = c.PTA_ID_Competition "
+                + "where c.Cont_Status = 'Published' "
+                + "and comp.CompetitionName = @paramComp";
+            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
+            cmd.Parameters.AddWithValue("@paramComp", compName);
+
+            try
+            {
+                myConnection.Open();
+                myReader = cmd.ExecuteReader();
+                while (myReader.Read())
+                {
+                    string title = myReader["Title"].ToString();
+                    string imgTitle = null;
+                    byte[] imgBytes = null;
+                    if (myReader["ImageTitle"] != DBNull.Value && myReader["Cont_Image"] != DBNull.Value)
+                    {
+                        imgTitle = myReader["ImageTitle"].ToString();
+                        imgBytes = (byte[])myReader["Cont_Image"];
+                    }
+                    string docTitle = myReader["FileTitle"].ToString();
+                    string docContentType = myReader["FileContentType"].ToString();
+                    byte[] docBytes = (byte[])myReader["Cont_File"];
+                    string fName = myReader["GivenName"].ToString();
+                    string sName = myReader["Surname"].ToString();
+                    string facultyName = myReader["FacultyName"].ToString();
+                    PublishedContribution c = new PublishedContribution(title, imgTitle, imgBytes, docTitle, docContentType, docBytes, fName, sName, facultyName, compName);
+                    contributions.Add(c);
+                }
+                return contributions;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+                return null;
+            }
+            finally
+            {
+                myConnection.Close();
+            }
+        }
     }
 }

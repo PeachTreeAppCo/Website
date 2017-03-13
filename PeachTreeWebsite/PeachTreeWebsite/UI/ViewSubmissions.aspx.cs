@@ -30,8 +30,7 @@ namespace PeachTreeWebsite.UI
                 }
                 else
                 {
-                    Session.Clear();
-                    Response.Redirect("~/UI/Default.aspx");
+                    Response.Redirect("~/UI/Home.aspx");
                 }
             }
             else

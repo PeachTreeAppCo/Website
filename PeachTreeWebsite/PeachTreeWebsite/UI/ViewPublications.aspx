@@ -4,9 +4,28 @@
         <asp:Label ID="lblViewPublications" runat="server">Publications</asp:Label>
     </div>
     <div>
-
+        
         <br />
-
+        Select a year:
+        <asp:DropDownList ID="ddlComps" runat="server" AutoPostBack="true">
+        </asp:DropDownList>
+        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnSearch_Click" />
+        <asp:Label ID="lblErr" runat="server"></asp:Label>
+        <br />
+        <br />
+        
+        <asp:GridView ID="GridView1" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="gv" CellPadding="10" AllowSorting="True">
+            <Columns>
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnDownload" CssClass="btn btn-link" Text="Download" runat="server"
+                            CommandName="Download"
+                            CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </Columns>
+        </asp:GridView>
+        
     </div>
         <%-- Google Analytics --%>
     <script>

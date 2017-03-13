@@ -272,6 +272,7 @@
     <Compile Include="Classes\LoginAttempt.cs" />
     <Compile Include="Classes\MarketingCoordinator.cs" />
     <Compile Include="Classes\MarketingManager.cs" />
+    <Compile Include="Classes\PublishedContribution.cs" />
     <Compile Include="Classes\Student.cs" />
     <Compile Include="Classes\UserType.cs" />
     <Compile Include="LoggedIn.Master.cs">
