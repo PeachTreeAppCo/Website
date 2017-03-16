@@ -184,7 +184,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="UI\AccountSettings.aspx" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
@@ -281,13 +280,6 @@
     </Compile>
     <Compile Include="LoggedIn.Master.designer.cs">
       <DependentUpon>LoggedIn.Master</DependentUpon>
-    </Compile>
-    <Compile Include="UI\AccountSettings.aspx.cs">
-      <DependentUpon>AccountSettings.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UI\AccountSettings.aspx.designer.cs">
-      <DependentUpon>AccountSettings.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />

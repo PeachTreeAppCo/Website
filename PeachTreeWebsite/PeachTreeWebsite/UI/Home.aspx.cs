@@ -124,7 +124,6 @@ namespace PeachTreeWebsite
                     btnViewContributions.Visible = true;
                     btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = true;
-                    btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
@@ -135,7 +134,6 @@ namespace PeachTreeWebsite
                     btnViewContributions.Visible = false;
                     btnViewSubmissions.Visible = true;
                     btnViewReports.Visible = true;
-                    btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
@@ -146,7 +144,6 @@ namespace PeachTreeWebsite
                     btnViewContributions.Visible = false;
                     btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = true;
-                    btnAccountSettings.Visible = true;
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
@@ -157,7 +154,6 @@ namespace PeachTreeWebsite
                     btnViewContributions.Visible = false;
                     btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = true;
-                    btnAccountSettings.Visible = false;
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = true;
                     btnManageUsers.Visible = true;
@@ -167,7 +163,6 @@ namespace PeachTreeWebsite
                     btnViewContributions.Visible = false;
                     btnViewSubmissions.Visible = false;
                     btnViewReports.Visible = false;
-                    btnAccountSettings.Visible = false;
                     btnViewPublications.Visible = false;
                     btnViewFailedLogins.Visible = false;
                     btnManageUsers.Visible = false;
@@ -181,7 +176,6 @@ namespace PeachTreeWebsite
             btnViewContributions.Visible = false;
             btnViewSubmissions.Visible = false;
             btnViewReports.Visible = false;
-            btnAccountSettings.Visible = false;
             btnViewPublications.Visible = true;
             btnViewFailedLogins.Visible = false;
             btnManageUsers.Visible = false;
@@ -193,7 +187,6 @@ namespace PeachTreeWebsite
             btnViewContributions.Visible = false;
             btnViewSubmissions.Visible = false;
             btnViewReports.Visible = true;
-            btnAccountSettings.Visible = false;
             btnViewPublications.Visible = true;
             btnViewFailedLogins.Visible = false;
             btnManageUsers.Visible = false;
