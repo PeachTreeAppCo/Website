@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="View Publications" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewPublications.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewPublications" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewPublications" runat="server"><h2>Publications</h2></asp:Label>
+        <asp:Label ID="lblViewPublications" runat="server">Publications</asp:Label>
     </div>
     
         

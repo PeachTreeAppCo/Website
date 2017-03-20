@@ -47,11 +47,11 @@
                     <div class="control-group">
                       <!-- Faculty Name -->     
                                          
-                        <div class="col-lg-12 col-offset-6 centered">
+                        
 
-                        <asp:DropDownList ID="ddlFaculty" class="form-control" runat="server" Height="26px">
+                        <asp:DropDownList ID="ddlFaculty" class="input-xlarge custom-text" height="26px" runat="server">
                         </asp:DropDownList>
-                      </div>
+                      
                     </div>
                         <br/>
                     <div class="control-group">
