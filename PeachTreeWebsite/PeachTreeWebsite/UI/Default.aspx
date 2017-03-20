@@ -32,10 +32,10 @@
                       </div>     
                       <!-- Member Login Button -->                   
                       <div class="control-group">                          
-                          <asp:Label ID="lblLoginError" runat="server"></asp:Label>
+                          <asp:Label ID="lblLoginError" runat="server" CssClass="text-danger"></asp:Label>
                           <br/>                        
                         <div class="controls">
-                          <button class="btn btn-success" id="btnLogin" runat="server" onServerClick="btnLogin_Click">Login</button>
+                          <button class="btn btn-default" id="btnLogin" runat="server" onServerClick="btnLogin_Click">Login</button>
                         </div>
                       </div>
                     </fieldset>
@@ -45,9 +45,11 @@
                     <br/>
                     <fieldset>
                     <div class="control-group">
-                      <!-- Faculty Name -->                      
-                        <div class="controls">
-                        <asp:DropDownList ID="ddlFaculty" class="input-xlarge custom-text" runat="server" Height="26px">
+                      <!-- Faculty Name -->     
+                                         
+                        <div class="col-lg-12 col-offset-6 centered">
+
+                        <asp:DropDownList ID="ddlFaculty" class="form-control" runat="server" Height="26px">
                         </asp:DropDownList>
                       </div>
                     </div>
@@ -62,7 +64,7 @@
                     <br/>
                     <!-- Faculty Login Button-->
                     <div>
-                      <button class="btn btn-success" id="btnFacultySignIn" runat="server" onServerClick="btnFacultySignIn_Click">Login</button>
+                      <button class="btn btn-default" id="btnFacultySignIn" runat="server" onServerClick="btnFacultySignIn_Click">Login</button>
                     </div>
                     </fieldset>
                     <br/>
@@ -71,7 +73,7 @@
                     <br/>
                     <!-- Guest Login Button-->
                     <div>
-                      <button class="btn btn-success" id="btnGuestSignIn" runat="server" onServerClick="btnGuestSignIn_Click">Continue as a Guest</button>
+                      <button class="btn btn-default" id="btnGuestSignIn" runat="server" onServerClick="btnGuestSignIn_Click">Continue as a Guest</button>
                     </div>
                     <br/>
                 </div>

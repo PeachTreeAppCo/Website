@@ -4,7 +4,7 @@
     <div class="jumbotron">
         <asp:Label ID="lblEditCompetition" runat="server">Edit Competition</asp:Label>
         <br />
-        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-success" OnClick="btnBack_Click" Text="Back" />
+        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-default" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>
 
@@ -19,7 +19,7 @@
         Final Closure Date<br />
         <asp:Calendar ID="calFinalClose" runat="server"></asp:Calendar>
         <br />
-        <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-success" OnClick="btnUpdate_Click" Text="Update" />
+        <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-default" OnClick="btnUpdate_Click" Text="Update" />
 
         <asp:Label ID="lblUpdate" runat="server"></asp:Label>
 

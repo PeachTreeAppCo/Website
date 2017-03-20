@@ -3,12 +3,12 @@
     <div class="jumbotron">
         <asp:Label ID="lblViewContributions" runat="server">Contributions</asp:Label>
     	&nbsp;<br />
-		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-success" OnClick="btnAdd_Click" Text="Add Contribution" Width="194px" />
+		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-default" OnClick="btnAdd_Click" Text="Add Contribution" Width="194px" />
         <asp:Button ID="Button1" runat="server" CssClass="btn btn-link" OnClick="Button1_Click" Text="View terms and conditions" Width="200px" />
     </div>
     <div>    	
-        <asp:Label ID="lblError" runat="server"></asp:Label> 
-		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="gv" cellpadding="10" AllowSorting="True">
+        <asp:Label ID="lblError" CssClass="text-danger" runat="server"></asp:Label> 
+		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" cellpadding="10" AllowSorting="True">
 			<Columns>
 				<asp:TemplateField HeaderText="Action">
 					<ItemTemplate>

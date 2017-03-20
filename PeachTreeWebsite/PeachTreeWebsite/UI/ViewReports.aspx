@@ -7,9 +7,9 @@
 
         <strong>Publication Statistics</strong><br />
         Select a year:
-        <asp:DropDownList ID="ddlComps" runat="server" AutoPostBack="true">
+        <asp:DropDownList ID="ddlComps" runat="server" CssClass="form-control" Width="150px" AutoPostBack="true">
         </asp:DropDownList>
-        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnSearch_Click" />
+        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default" Text="Search" OnClick="btnSearch_Click" />
         <asp:Label ID="lblErr" runat="server"></asp:Label>
         <br />
         <br />

@@ -4,7 +4,7 @@
     <div class="jumbotron">
         <asp:Label ID="lblAddFeedback" runat="server">Add Feedback</asp:Label>
         <br />
-        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-success" OnClick="btnBack_Click" Text="Back" />
+        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-default" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>
         Submission title:
@@ -12,7 +12,7 @@
         <br />
         <br />
         Status:<br />
-        <asp:DropDownList ID="ddlStatus" runat="server">
+        <asp:DropDownList ID="ddlStatus" CssClass="form-control" Width="150px" runat="server">
             <asp:ListItem>Submitted</asp:ListItem>
             <asp:ListItem>Published</asp:ListItem>
             <asp:ListItem>Declined</asp:ListItem>
@@ -23,7 +23,7 @@
         &nbsp;<asp:TextBox ID="txtFeedback" runat="server"></asp:TextBox>
         <br />
         <br />
-        <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-success" OnClick="btnSubmit_Click" Text="Submit" />
+        <asp:Button ID="btnSubmit" runat="server" CssClass="btn btn-default" OnClick="btnSubmit_Click" Text="Submit" />
 
         <asp:Label ID="lblSubmit" runat="server"></asp:Label>
 

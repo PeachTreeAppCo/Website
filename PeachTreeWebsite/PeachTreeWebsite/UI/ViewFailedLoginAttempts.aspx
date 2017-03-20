@@ -5,7 +5,7 @@
     </div>
     <div>
 
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" css="table table-striped table-hover" DataSourceID="SqlDataSource1">
         </asp:GridView>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:PeachTreeWebsite.Properties.Settings.PeachTreeConnectionString %>" SelectCommand="SELECT [EmailEntered] as 'Email entered', [PwordEntered] as 'Password entered', [Date_Time] as 'Timestamp' FROM [PTA_LoginAttempt] ORDER BY [Date_Time] DESC"></asp:SqlDataSource>
     </div>

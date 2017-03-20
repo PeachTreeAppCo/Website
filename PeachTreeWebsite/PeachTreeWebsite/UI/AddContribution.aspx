@@ -3,7 +3,7 @@
     <div class="jumbotron">
         <asp:Label ID="lblAccountSettings" runat="server">Add Contribution</asp:Label>   
         <br />
-                <asp:Button ID="btnBack" CssClass="btn btn-success" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
+                <asp:Button ID="btnBack" CssClass="btn btn-default" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
         <br />      
     </div>
     <div>
@@ -14,7 +14,7 @@
                 <br />
                 <asp:Label ID="lblComp" runat="server" Text="Competition *"></asp:Label>
                 <br />
-                <asp:DropDownList ID="ddlComps" runat="server">
+                <asp:DropDownList ID="ddlComps" CssClass="form-control" Width="150px" runat="server">
                 </asp:DropDownList>
                 <br />
                 <br />
@@ -28,7 +28,7 @@
                 <asp:Button ID="btnTnC" CssClass="btn-link" runat="server" OnClientClick="aspnetForm.target ='_blank';" OnClick="btnTnC_Click" Text="View Terms and Conditions" Width="194px" />
                 <br />
                 <br />
-                <asp:Button ID="btnSubmit" CssClass="btn btn-success" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
+                <asp:Button ID="btnSubmit" CssClass="btn btn-default" runat="server" OnClick="btnSubmit_Click" Text="Submit" />
                 <asp:Label ID="lblSubmit" runat="server"></asp:Label>
                 <br />
                 <br />

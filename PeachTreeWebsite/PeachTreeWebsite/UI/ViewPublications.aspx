@@ -1,20 +1,28 @@
 ﻿<%@ Page Title="View Publications" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewPublications.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewPublications" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewPublications" runat="server">Publications</asp:Label>
+        <asp:Label ID="lblViewPublications" runat="server"><h2>Publications</h2></asp:Label>
     </div>
-    <div>
+    
         
         <br />
-        Select a year:
-        <asp:DropDownList ID="ddlComps" runat="server" AutoPostBack="true">
-        </asp:DropDownList>
-        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-success" Text="Search" OnClick="btnSearch_Click" />
-        <asp:Label ID="lblErr" runat="server"></asp:Label>
-        <br />
+      
+      Select a year:
+          <div style="width: 320px">
+     <div style="float: left; width: 200px">
+        <asp:DropDownList ID="ddlComps" runat="server" CssClass="form-control" Width="150px" AutoPostBack="true"></asp:DropDownList>
+            </div>
+             <div style="float: left; width: 10px">
+         <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default" Text="Search" OnClick="btnSearch_Click" />
+        <asp:Label ID="lblErr" CssClass="text-danger" runat="server"></asp:Label>
+                 </div>
+            </div>
+   
+    
         <br />
         
-        <asp:GridView ID="GridView1" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="gv" CellPadding="10" AllowSorting="True">
+        
+        <asp:GridView ID="GridView1" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" cellpadding="10" AllowSorting="True">
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>

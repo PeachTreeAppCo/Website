@@ -3,7 +3,7 @@
     <div class="jumbotron">
         <asp:Label ID="lblAddCompetition" runat="server">Add Competition</asp:Label>
         <br />
-        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-success" OnClick="btnBack_Click" Text="Back" />
+        <asp:Button ID="btnBack" runat="server" CssClass="btn btn-default" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>
 
@@ -18,9 +18,9 @@
         Final Closure Date<br />
         <asp:Calendar ID="calFinalClose" runat="server"></asp:Calendar>
         <br />
-        <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-success" OnClick="btnAdd_Click" />
+        <asp:Button ID="btnAdd" runat="server" Text="Save" CssClass="btn btn-default" OnClick="btnAdd_Click" />
 
-        <asp:Label ID="lblSaveError" runat="server"></asp:Label>
+        <asp:Label ID="lblSaveError" CssClass="text-danger" runat="server"></asp:Label>
 
     </div>
     <%-- Google Analytics --%>

@@ -10,7 +10,7 @@
         <div class="formone form-centered">
             <asp:Label ID="lblSelectType" runat="server">Select user type: </asp:Label>
             <br />
-            <asp:DropDownList ID="ddlTypeofUser" runat="server" OnSelectedIndexChanged="ddlTypeofUser_SelectedIndexChanged" Width="237px"></asp:DropDownList>
+            <asp:DropDownList ID="ddlTypeofUser" runat="server" OnSelectedIndexChanged="ddlTypeofUser_SelectedIndexChanged" CssClass="form-control" Width="150px"></asp:DropDownList>
             <br />
             <br />
             <asp:Label ID="lblSelectUser" runat="server">Select user: </asp:Label><br />
@@ -45,7 +45,7 @@
             <asp:TextBox ID="txtStudyYr" runat="server" CssClass="inputuserdetail"></asp:TextBox>
             <br />
             <p class="full-width">
-                <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-success" OnClick="btnUpdate_Click" />
+                <asp:Button ID="btnUpdate" runat="server" Text="Update" CssClass="btn btn-default" OnClick="btnUpdate_Click" />
                 <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger" />
             </p>
         </div>

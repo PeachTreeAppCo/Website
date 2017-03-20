@@ -21,11 +21,11 @@
         <asp:Button ID="btnTnC" CssClass="btn-link" runat="server" OnClientClick="aspnetForm.target ='_blank';" OnClick="btnTnC_Click" Text="View Terms and Conditions" Width="194px" />
         <br />
         <br />
-        <asp:Button ID="btnUpdate" CssClass="btn btn-success" runat="server" OnClick="btnSubmit_Click" Text="Update" />
+        <asp:Button ID="btnUpdate" CssClass="btn btn-default" runat="server" OnClick="btnSubmit_Click" Text="Update" />
         <asp:Label ID="lblSubmit" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:Button ID="btnBack" CssClass="btn btn-success" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
+        <asp:Button ID="btnBack" CssClass="btn btn-default" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
     </div>
         <%-- Google Analytics --%>
     <script>

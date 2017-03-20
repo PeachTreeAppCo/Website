@@ -15,6 +15,8 @@ namespace PeachTreeWebsite.UI
         List<Competition> competitions = new List<Competition>();
         SiteUser s = new SiteUser();
 
+        public bool True { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserSession"] != null)
@@ -99,7 +101,7 @@ namespace PeachTreeWebsite.UI
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
+           int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = gridviewContrib.Rows[index];
             string title = row.Cells[1].Text;
             Contribution c = (from cont in contributions
