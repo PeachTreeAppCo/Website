@@ -5,7 +5,14 @@
     </div>
     <div>
         <p>
-            You hereby sell your soul to PeachTree.
+            <strong>Please Read the Terms and Conditions below.</strong>
+        </p>
+        <p>
+            By accessing this service, provided by Peach Tree App Co and your University, you agree to the following Terms and Conditions:<br />
+            • The content of this website is for general use and information only; it will be updated without notice. <br />
+            • All of the Intellectual Property produced from this service is owned by the University and is in accordance with Copyright Standards. <br />
+            • This web service monitors browsing and preferences, using cookies. Cookies will not store personal data or pass data onto third parties – in agreement by the Data Protection Act (1998). <br />
+            • The web service is in in compliance with the UK&amp;I Law’s regulations and standards.
         </p>
     </div>
         <%-- Google Analytics --%>
