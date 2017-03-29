@@ -96,23 +96,34 @@ namespace PeachTreeWebsite.UI
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gridviewSubmissions.Rows[index];
-            string title = row.Cells[1].Text;
-            Contribution c = (from cont in contributions
-                              where title == cont.Title
-                              select cont).First();
-
             if (e.CommandName == "Download")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gridviewSubmissions.Rows[index];
+                string title = row.Cells[1].Text;
+                Contribution c = (from cont in contributions
+                                  where title == cont.Title
+                                  select cont).First();
                 downloadFile(c);
             }
             else if (e.CommandName == "Feedback")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gridviewSubmissions.Rows[index];
+                string title = row.Cells[1].Text;
+                Contribution c = (from cont in contributions
+                                  where title == cont.Title
+                                  select cont).First();
                 Session["fdbkSession"] = c;
                 Response.Redirect("~/UI/AddFeedback.aspx");
             }
             
+        }
+
+        protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridviewSubmissions.PageIndex = e.NewPageIndex;
+            populateGrid();
         }
     }
 }

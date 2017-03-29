@@ -6,7 +6,7 @@
     </div>
     <div>
         <asp:Label ID="lblError" runat="server"></asp:Label>
-        <asp:GridView ID="gridviewSubmissions" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" CellPadding="10" AllowSorting="True">
+        <asp:GridView ID="gridviewSubmissions" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" CellPadding="10" AllowPaging="True" OnPageIndexChanging="grdData_PageIndexChanging" PageSize="5">
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>

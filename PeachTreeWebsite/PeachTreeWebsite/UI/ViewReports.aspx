@@ -14,25 +14,24 @@
         <br />
         <br />
         No. of Contributions (Total):
-        <asp:Label ID="lblContribTotal" runat="server"></asp:Label>
+        <asp:Label ID="lblContribTotal" runat="server">0</asp:Label>
         <br />
         No. of Contributions from your faculty:
-        <asp:Label ID="lblContribFaculty" runat="server"></asp:Label>
+        <asp:Label ID="lblContribFaculty" runat="server">0</asp:Label>
 
         <br />
         No. of Contributors within your faculty:
-        <asp:Label ID="lblContributors" runat="server"></asp:Label>
+        <asp:Label ID="lblContributors" runat="server">0</asp:Label>
         <br />
         <br />
         <br />
         <asp:Label ID="lblMarketingManager" style="font-weight: bold" runat="server" Visible="False">Marketing Manager Reports</asp:Label>
         <br />
         <asp:Label ID="lblNoComment" runat="server" Text="No. of Contributions without comments: " Visible="False"></asp:Label>
-        <asp:Label ID="lblNoCommentsResult" runat="server"></asp:Label>
+        <asp:Label ID="lblNoCommentsResult" runat="server" Visible="False">0</asp:Label>
         <br />
         <asp:Label ID="lblNoComment14Days" runat="server" Text="No. of Contributions without comments after 14 days:  " Visible="False"></asp:Label>
-        <asp:Label ID="lblNoComments14DaysResult" runat="server"></asp:Label>
-
+        <asp:Label ID="lblNoComments14DaysResult" runat="server" Text="0" Visible="False"></asp:Label>
     </div>
         <%-- Google Analytics --%>
     <script>

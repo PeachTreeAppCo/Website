@@ -61,20 +61,25 @@ namespace PeachTreeWebsite.UI
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = GridView1.Rows[index];
-            int id = int.Parse(row.Cells[1].Text);
-            Competition c = (from comp in competitions
-                             where comp.ID1 == id
-                             select comp).First();
-
             if (e.CommandName == "EditComp")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridView1.Rows[index];
+                int id = int.Parse(row.Cells[1].Text);
+                Competition c = (from comp in competitions
+                                 where comp.ID1 == id
+                                 select comp).First();
                 Session["compSession"] = c;
                 Response.Redirect("~/UI/EditCompetition.aspx");
             }
             if (e.CommandName == "DeleteComp")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = GridView1.Rows[index];
+                int id = int.Parse(row.Cells[1].Text);
+                Competition c = (from comp in competitions
+                                 where comp.ID1 == id
+                                 select comp).First();
                 DBConnection.deleteCompetition(c);
                 populateGrid();
             }
@@ -83,6 +88,12 @@ namespace PeachTreeWebsite.UI
         protected void btnAddComp_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/AddCompetition.aspx");
+        }
+
+        protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex = e.NewPageIndex;
+            populateGrid();
         }
     }
 }

@@ -101,22 +101,30 @@ namespace PeachTreeWebsite.UI
 
         protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-           int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = gridviewContrib.Rows[index];
-            string title = row.Cells[1].Text;
-            Contribution c = (from cont in contributions
-                              where title == cont.Title
-                              select cont).First();
-            Competition p = (from comp in competitions
-                             where comp.ID1 == c.CompetitionID
-                             select comp).First();
-
             if (e.CommandName == "Download")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gridviewContrib.Rows[index];
+                string title = row.Cells[1].Text;
+                Contribution c = (from cont in contributions
+                                  where title == cont.Title
+                                  select cont).First();
+                Competition p = (from comp in competitions
+                                 where comp.ID1 == c.CompetitionID
+                                 select comp).First();
                 downloadFile(c);
             }
             if (e.CommandName == "EditCont")
             {
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gridviewContrib.Rows[index];
+                string title = row.Cells[1].Text;
+                Contribution c = (from cont in contributions
+                                  where title == cont.Title
+                                  select cont).First();
+                Competition p = (from comp in competitions
+                                 where comp.ID1 == c.CompetitionID
+                                 select comp).First();
                 if (c.Status != "Published")
                 {
                     if (DateTime.Now < p.FinalClosure1)
@@ -136,7 +144,16 @@ namespace PeachTreeWebsite.UI
             }
             if (e.CommandName == "DeleteCont")
             {
-                if(c.Status != "Published")
+                int index = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = gridviewContrib.Rows[index];
+                string title = row.Cells[1].Text;
+                Contribution c = (from cont in contributions
+                                  where title == cont.Title
+                                  select cont).First();
+                Competition p = (from comp in competitions
+                                 where comp.ID1 == c.CompetitionID
+                                 select comp).First();
+                if (c.Status != "Published")
                 {
                     if (DateTime.Now < p.FinalClosure1)
                     {
@@ -158,6 +175,12 @@ namespace PeachTreeWebsite.UI
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/UI/TermsAndConditions.aspx");
+        }
+
+        protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gridviewContrib.PageIndex = e.NewPageIndex;
+            populateGrid();
         }
     }
 }

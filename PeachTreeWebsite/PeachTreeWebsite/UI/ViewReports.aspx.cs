@@ -25,6 +25,8 @@ namespace PeachTreeWebsite.UI
                     lblMarketingManager.Visible = true;
                     lblNoComment.Visible = true;
                     lblNoComment14Days.Visible = true;
+                    lblNoCommentsResult.Visible = true;
+                    lblNoComments14DaysResult.Visible = true;
                     lblNoCommentsResult.Text = DBConnection.report_getContributionsNoResponse();
                     lblNoComments14DaysResult.Text = DBConnection.report_getContributionsNoResponse14Days();
                 }                

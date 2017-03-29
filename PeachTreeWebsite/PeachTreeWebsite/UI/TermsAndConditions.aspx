@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="Terms and Conditions" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="TermsAndConditions.aspx.cs" Inherits="PeachTreeWebsite.UI.TermsAndConditions" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
+        <br />
         <asp:Label ID="lblTnC" runat="server">Terms and Conditions</asp:Label>
     </div>
     <div>

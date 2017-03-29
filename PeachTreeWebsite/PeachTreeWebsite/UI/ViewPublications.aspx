@@ -21,8 +21,8 @@
     
         <br />
         
-        
-        <asp:GridView ID="GridView1" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" cellpadding="10" AllowSorting="True">
+       <div> 
+        <asp:GridView ID="GridView1" OnRowCommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" cellpadding="10" AllowPaging="True" OnPageIndexChanging="grdData_PageIndexChanging" PageSize="5">
             <Columns>
                 <asp:TemplateField>
                     <ItemTemplate>
@@ -32,8 +32,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
-        </asp:GridView>
-        
+        </asp:GridView>        
     </div>
         <%-- Google Analytics --%>
     <script>

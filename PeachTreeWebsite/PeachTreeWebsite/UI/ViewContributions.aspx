@@ -8,7 +8,7 @@
     </div>
     <div>    	
         <asp:Label ID="lblError" CssClass="text-danger" runat="server"></asp:Label> 
-		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" cellpadding="10" AllowSorting="True">
+		<asp:GridView ID="gridviewContrib" onrowcommand="GridView1_RowCommand" runat="server" CssClass="table table-striped table-hover" cellpadding="10"  AllowPaging="True" OnPageIndexChanging="grdData_PageIndexChanging" PageSize="5">
 			<Columns>
 				<asp:TemplateField HeaderText="Action">
 					<ItemTemplate>
