@@ -18,13 +18,11 @@ namespace PeachTreeWebsite.UI
         {
             if (Session["UserSession"] != null || Session["FacultySession"] != null || Session["GuestSession"] != null)
             {
-                contributions = DBConnection.getPublishedContributions();
                 competitions = DBConnection.getCompetitons();
-
+                
                 if (!IsPostBack)
                 {
-                    populateGrid(contributions);
-
+                    contributions = DBConnection.getPublishedContributions();
                     ddlComps.Items.Clear();
                     foreach (Competition c in competitions)
                     {
@@ -117,6 +115,7 @@ namespace PeachTreeWebsite.UI
         protected void grdData_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             GridView1.PageIndex = e.NewPageIndex;
+            contributions = DBConnection.getPublishedContributionsForComp(ddlComps.SelectedItem.ToString());
             populateGrid(contributions);
         }
     }
