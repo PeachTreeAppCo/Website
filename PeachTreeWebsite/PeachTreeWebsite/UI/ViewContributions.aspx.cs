@@ -15,8 +15,6 @@ namespace PeachTreeWebsite.UI
         List<Competition> competitions = new List<Competition>();
         SiteUser s = new SiteUser();
 
-        public bool True { get; private set; }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserSession"] != null)

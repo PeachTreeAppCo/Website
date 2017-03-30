@@ -2,8 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblEditContribution" runat="server">Contributions</asp:Label>
+        <asp:Label ID="lblEditContribution" runat="server" CssClass="h1">Contributions</asp:Label>
         <br />
+        <br />
+        <asp:Button ID="btnBack" CssClass="btn btn-default" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
     </div>
     <div>
         <asp:Label ID="lblTitle" runat="server" Text="Title *"></asp:Label>
@@ -22,10 +24,7 @@
         <br />
         <br />
         <asp:Button ID="btnUpdate" CssClass="btn btn-default" runat="server" OnClick="btnSubmit_Click" Text="Update" />
-        <asp:Label ID="lblSubmit" runat="server"></asp:Label>
-        <br />
-        <br />
-        <asp:Button ID="btnBack" CssClass="btn btn-default" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
+        <asp:Label ID="lblSubmit" runat="server"></asp:Label>        
     </div>
         <%-- Google Analytics --%>
     <script>

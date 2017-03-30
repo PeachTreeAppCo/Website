@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblAddFeedback" runat="server">Add Feedback</asp:Label>
-        <br />
+        <asp:Label ID="lblAddFeedback" runat="server" CssClass="h1">Add Feedback</asp:Label>
+        <br /><br />
         <asp:Button ID="btnBack" runat="server" CssClass="btn btn-default" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>

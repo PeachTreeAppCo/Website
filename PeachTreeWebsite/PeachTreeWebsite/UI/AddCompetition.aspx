@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Add Competition" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddCompetition.aspx.cs" Inherits="PeachTreeWebsite.UI.AddCompetition" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblAddCompetition" runat="server">Add Competition</asp:Label>
-        <br />
+        <asp:Label ID="lblAddCompetition" runat="server" CssClass="h1">Add Competition</asp:Label>
+        <br /><br />
         <asp:Button ID="btnBack" runat="server" CssClass="btn btn-default" OnClick="btnBack_Click" Text="Back" />
     </div>
     <div>

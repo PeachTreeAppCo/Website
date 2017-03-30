@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="View Publications" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewPublications.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewPublications" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewPublications" runat="server">Publications</asp:Label>
+        <asp:Label ID="lblViewPublications" runat="server" CssClass="h1">Publications</asp:Label>
     </div>
     
         
@@ -14,10 +14,14 @@
             </div>
              <div style="float: left; width: 10px">
          <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default" Text="Search" OnClick="btnSearch_Click" />
-        <asp:Label ID="lblErr" CssClass="text-danger" runat="server"></asp:Label>
+        
                  </div>
             </div>
-   
+    <br />
+    <br />
+   <div>
+       <asp:Label ID="lblErr" CssClass="text-danger" runat="server"></asp:Label>
+   </div>
     
         <br />
         

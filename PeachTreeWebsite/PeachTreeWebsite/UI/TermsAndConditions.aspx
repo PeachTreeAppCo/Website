@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
         <br />
-        <asp:Label ID="lblTnC" runat="server">Terms and Conditions</asp:Label>
+        <asp:Label ID="lblTnC" runat="server" CssClass="h1">Terms and Conditions</asp:Label>
     </div>
     <div>
         <p>

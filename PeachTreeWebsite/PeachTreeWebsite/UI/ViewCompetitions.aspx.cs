@@ -37,8 +37,7 @@ namespace PeachTreeWebsite.UI
             competitions = DBConnection.getCompetitons();
             // Populate table with contributions
             DataTable dt = new DataTable();
-            dt.Columns.Add("Competition ID");
-            dt.Columns.Add("Competition Name");
+            dt.Columns.Add("Competition Year");
             dt.Columns.Add("Initial Closure Date");
             dt.Columns.Add("Final Closure Date");
 
@@ -47,9 +46,8 @@ namespace PeachTreeWebsite.UI
                 foreach (Competition c in competitions)
                 {
                     DataRow dr = dt.NewRow();
-
-                    dr["Competition ID"] = c.ID1;
-                    dr["Competition Name"] = c.Name;
+                    
+                    dr["Competition Year"] = c.Name;
                     dr["Initial Closure Date"] = c.InitialClosure1;
                     dr["Final Closure Date"] = c.FinalClosure1;
                     dt.Rows.Add(dr);
@@ -65,23 +63,19 @@ namespace PeachTreeWebsite.UI
             {
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridView1.Rows[index];
-                int id = int.Parse(row.Cells[1].Text);
+                string name = row.Cells[1].Text;
                 Competition c = (from comp in competitions
-                                 where comp.ID1 == id
+                                 where comp.Name == name
                                  select comp).First();
-                Session["compSession"] = c;
-                Response.Redirect("~/UI/EditCompetition.aspx");
-            }
-            if (e.CommandName == "DeleteComp")
-            {
-                int index = Convert.ToInt32(e.CommandArgument);
-                GridViewRow row = GridView1.Rows[index];
-                int id = int.Parse(row.Cells[1].Text);
-                Competition c = (from comp in competitions
-                                 where comp.ID1 == id
-                                 select comp).First();
-                DBConnection.deleteCompetition(c);
-                populateGrid();
+                if (c.FinalClosure1 > DateTime.Now)
+                {
+                    Session["compSession"] = c;
+                    Response.Redirect("~/UI/EditCompetition.aspx");
+                }
+                else
+                {
+                    lblError.Text = "Cannot edit a competition that has already closed!";
+                }
             }
         }
 

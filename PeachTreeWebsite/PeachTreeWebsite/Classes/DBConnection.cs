@@ -340,7 +340,7 @@ namespace PeachTreeWebsite
             List<Competition> comps = new List<Competition>();
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
             SqlDataReader myReader = null;
-            string queryStr = "SELECT * FROM PTA_Competition";
+            string queryStr = "SELECT * FROM PTA_Competition order by FinalClosureDate DESC";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
             try
             {
@@ -376,7 +376,7 @@ namespace PeachTreeWebsite
 			List<Contribution> contributions = new List<Contribution>();
 			SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
 			SqlDataReader myReader = null;
-			string queryStr = "SELECT * FROM PTA_Contribution WHERE PTA_ID_User = @paramUserID";
+			string queryStr = "SELECT * FROM PTA_Contribution WHERE PTA_ID_User = @paramUserID order by PTA_ID_Contribution DESC";
 			SqlCommand cmd = new SqlCommand(queryStr, myConnection);
 			cmd.Parameters.AddWithValue("@paramUserID", userID);
 
@@ -578,7 +578,8 @@ namespace PeachTreeWebsite
             string queryStr = "SELECT * FROM PTA_Contribution c "
                 + "inner join PTA_User u on u.PTA_ID_User = c.PTA_ID_User "
                 + "inner join PTA_User mc on u.PTA_ID_Faculty = mc.PTA_ID_Faculty "
-                + "where mc.PTA_ID_User = @paramMCID;";
+                + "where mc.PTA_ID_User = @paramMCID "
+                + "order by PTA_ID_Contribution DESC;";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
             cmd.Parameters.AddWithValue("@paramMCID", marketingCoordinatorID);
 
@@ -659,7 +660,8 @@ namespace PeachTreeWebsite
                 + "inner join PTA_User u on u.PTA_ID_User = c.PTA_ID_User "
                 + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
                 + "inner join PTA_Competition comp on comp.PTA_ID_Competition = c.PTA_ID_Competition "
-                + "where Cont_Status = 'Published'";
+                + "where Cont_Status = 'Published' "
+                + "order by c.PTA_ID_Contribution DESC;";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
 
             try
@@ -709,7 +711,8 @@ namespace PeachTreeWebsite
                 + "inner join PTA_Faculty f on u.PTA_ID_Faculty = f.PTA_ID_Faculty "
                 + "inner join PTA_Competition comp on comp.PTA_ID_Competition = c.PTA_ID_Competition "
                 + "where c.Cont_Status = 'Published' "
-                + "and comp.CompetitionName = @paramComp";
+                + "and comp.CompetitionName = @paramComp "
+                + "order by c.PTA_ID_Contribution DESC;";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
             cmd.Parameters.AddWithValue("@paramComp", compName);
 

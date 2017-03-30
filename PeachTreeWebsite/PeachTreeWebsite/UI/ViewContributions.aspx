@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="View Contributions" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewContributions.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewContributions" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewContributions" runat="server">Contributions</asp:Label>
-    	&nbsp;<br />
+        <asp:Label ID="lblViewContributions" runat="server" CssClass="h1">Contributions</asp:Label>
+    	&nbsp;<br /><br />
 		<asp:Button ID="btnAdd" runat="server" CssClass="btn btn-default" OnClick="btnAdd_Click" Text="Add Contribution" Width="194px" />
         <asp:Button ID="Button1" runat="server" CssClass="btn btn-link" OnClick="Button1_Click" Text="View terms and conditions" Width="200px" />
     </div>

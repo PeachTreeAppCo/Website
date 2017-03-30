@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="View Failed Login Attempts" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewFailedLoginAttempts.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewFailedLoginAttempts" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblAccountSettings" runat="server">View Failed Login Attempts</asp:Label>
+        <asp:Label ID="lblAccountSettings" runat="server" CssClass="h1">View Failed Login Attempts</asp:Label>
     </div>
     <div>
 

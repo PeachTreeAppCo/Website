@@ -1,16 +1,24 @@
 ﻿<%@ Page Title="View Reports" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="ViewReports.aspx.cs" Inherits="PeachTreeWebsite.UI.ViewReports" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewReports" runat="server">Reports</asp:Label>
+        <asp:Label ID="lblViewReports" runat="server" CssClass="h1">Reports</asp:Label>
     </div>
     <div>
 
         <strong>Publication Statistics</strong><br />
         Select a year:
-        <asp:DropDownList ID="ddlComps" runat="server" CssClass="form-control" Width="150px" AutoPostBack="true">
-        </asp:DropDownList>
-        <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default" Text="Search" OnClick="btnSearch_Click" />
-        <asp:Label ID="lblErr" runat="server"></asp:Label>
+        <div style="width: 320px">
+            <div style="float: left; width: 200px">
+                <asp:DropDownList ID="ddlComps" runat="server" CssClass="form-control" Width="150px" AutoPostBack="true"></asp:DropDownList>
+            </div>
+            <div style="float: left; width: 10px">
+                <asp:Button ID="btnSearch" runat="server" CssClass="btn btn-default" Text="Search" OnClick="btnSearch_Click" />
+            </div>
+        </div>
+        <br /><br />
+        <div>
+            <asp:Label ID="lblErr" runat="server"></asp:Label>
+        </div>        
         <br />
         <br />
         No. of Contributions (Total):

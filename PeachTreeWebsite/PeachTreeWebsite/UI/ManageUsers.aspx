@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblManageUsers" runat="server">Manage Users</asp:Label>
+        <asp:Label ID="lblManageUsers" runat="server" CssClass="h1">Manage Users</asp:Label>
     </div>
     
     <div class="wrap">        

@@ -153,10 +153,10 @@ namespace PeachTreeWebsite
                 case "Administrator":
                     btnViewContributions.Visible = false;
                     btnViewSubmissions.Visible = false;
-                    btnViewReports.Visible = true;
+                    btnViewReports.Visible = false;
                     btnViewPublications.Visible = true;
                     btnViewFailedLogins.Visible = true;
-                    btnManageUsers.Visible = true;
+                    btnManageUsers.Visible = false;
                     btnViewCompetitions.Visible = true;
                     break;
                 default:

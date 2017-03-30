@@ -54,7 +54,10 @@ namespace PeachTreeWebsite
             else
             {
                 lblLoginError.Text = "User not found. Please check your details and try again.";
-                DBConnection.AddFailedLogin(txtEmail.Text, txtPwd.Text);
+                if (txtEmail.Text != "" && txtPwd.Text != "")
+                {
+                    DBConnection.AddFailedLogin(txtEmail.Text, txtPwd.Text);
+                }                
             }
         }
 

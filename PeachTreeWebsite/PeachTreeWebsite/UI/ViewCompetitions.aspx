@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewCompetitions" runat="server">View Competitions</asp:Label>
-        <br />
+        <asp:Label ID="lblViewCompetitions" runat="server" CssClass="h1">Manage Competitions</asp:Label>
+        <br /><br />
         <asp:Button ID="btnAddComp" runat="server" OnClick="btnAddComp_Click" CssClass="btn btn-default" Text="Add" />
     </div>
     <div>
@@ -14,9 +14,6 @@
                     <ItemTemplate>
                         <asp:Button ID="btnEdit" CssClass="btn btn-link" Text="Edit" runat="server"
                             CommandName="EditComp"
-                            CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" /><br />
-                        <asp:Button ID="btnDelete" CssClass="btn btn-link" Text="Delete" runat="server"
-                            CommandName="DeleteComp"
                             CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" />
                     </ItemTemplate>
                 </asp:TemplateField>

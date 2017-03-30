@@ -12,6 +12,7 @@ namespace PeachTreeWebsite.UI
     public partial class ViewPublications : System.Web.UI.Page
     {
         List<PublishedContribution> contributions = new List<PublishedContribution>();
+        List<PublishedContribution> allContributions = new List<PublishedContribution>();
         List<Competition> competitions = new List<Competition>();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,7 +20,7 @@ namespace PeachTreeWebsite.UI
             if (Session["UserSession"] != null || Session["FacultySession"] != null || Session["GuestSession"] != null)
             {
                 competitions = DBConnection.getCompetitons();
-                
+                allContributions = DBConnection.getPublishedContributions();
                 if (!IsPostBack)
                 {
                     contributions = DBConnection.getPublishedContributions();
@@ -40,39 +41,44 @@ namespace PeachTreeWebsite.UI
 
         public void populateGrid(List<PublishedContribution> contributions)
         {
-            // Populate table with contributions
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Author");
-            dt.Columns.Add("Faculty");
-            dt.Columns.Add("Title");
-            dt.Columns.Add("Competition Name");
-            dt.Columns.Add("File");
-            dt.Columns.Add("Image");
-
-            if (contributions != null)
+            if (contributions.Count > 0)
             {
-                foreach (PublishedContribution c in contributions)
+                // Populate table with contributions
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Author");
+                dt.Columns.Add("Faculty");
+                dt.Columns.Add("Title");
+                dt.Columns.Add("File");
+                dt.Columns.Add("Image");
+
+                if (contributions != null)
                 {
-                    DataRow dr = dt.NewRow();
-
-                    dr["Author"] = c.FName + " " + c.SName;
-                    dr["Faculty"] = c.FacultyName;
-                    dr["Title"] = c.Title;
-                    dr["Competition Name"] = c.CompetitionName;
-                    dr["File"] = c.DocTitle;
-
-                    if (c.ImgTitle != null)
+                    foreach (PublishedContribution c in contributions)
                     {
-                        dr["Image"] = c.ImgTitle;
+                        DataRow dr = dt.NewRow();
+
+                        dr["Author"] = c.FName + " " + c.SName;
+                        dr["Faculty"] = c.FacultyName;
+                        dr["Title"] = c.Title;
+                        dr["File"] = c.DocTitle;
+
+                        if (c.ImgTitle != null)
+                        {
+                            dr["Image"] = c.ImgTitle;
+                        }
+                        else
+                        {
+                            dr["Image"] = "No image";
+                        }
+                        dt.Rows.Add(dr);
                     }
-                    else
-                    {
-                        dr["Image"] = "No image";
-                    }
-                    dt.Rows.Add(dr);
+                    GridView1.DataSource = dt;
+                    GridView1.DataBind();
                 }
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+            }
+            else
+            {
+                lblErr.Text = "No published contributions for this year yet";
             }
         }
 
@@ -92,7 +98,7 @@ namespace PeachTreeWebsite.UI
                 int index = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = GridView1.Rows[index];
                 string title = row.Cells[3].Text;
-                PublishedContribution c = (from cont in contributions
+                PublishedContribution c = (from cont in allContributions
                                            where title == cont.Title
                                            select cont).First();
                 downloadFile(c);
@@ -101,6 +107,9 @@ namespace PeachTreeWebsite.UI
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            lblErr.Text = "";
+            GridView1.DataSource = null;
+            GridView1.DataBind();
             if (ddlComps.SelectedItem != null)
             {
                 contributions = DBConnection.getPublishedContributionsForComp(ddlComps.SelectedItem.ToString());

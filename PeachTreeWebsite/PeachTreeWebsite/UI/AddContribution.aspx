@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Add Contribution" Language="C#" MasterPageFile="~/LoggedIn.Master" AutoEventWireup="true" CodeBehind="AddContribution.aspx.cs" Inherits="PeachTreeWebsite.UI.AddContribution" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblAccountSettings" runat="server">Add Contribution</asp:Label>   
-        <br />
+        <asp:Label ID="lblAccountSettings" runat="server" CssClass="h1">Add Contribution</asp:Label>   
+        <br /><br />
                 <asp:Button ID="btnBack" CssClass="btn btn-default" runat="server" OnClick="btnBack_Click" Text="Back to Contributions" />
         <br />      
     </div>

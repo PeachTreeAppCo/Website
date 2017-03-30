@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="jumbotron">
-        <asp:Label ID="lblViewSubmissions" runat="server">View Submissions</asp:Label>
+        <asp:Label ID="lblViewSubmissions" runat="server" CssClass="h1">View Submissions</asp:Label>
     </div>
     <div>
         <asp:Label ID="lblError" runat="server"></asp:Label>
