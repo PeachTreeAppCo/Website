@@ -51,28 +51,6 @@ namespace PeachTreeWebsite
             }
         }
 
-        public static void deleteCompetition(Competition c)
-        {
-            SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
-            string queryStr = "DELETE FROM PTA_Competition WHERE PTA_ID_Competition = @paramCompID";
-            SqlCommand cmd = new SqlCommand(queryStr, myConnection);
-            cmd.Parameters.AddWithValue("@paramCompID", c.ID1);
-
-            try
-            {
-                myConnection.Open();
-                cmd.ExecuteNonQuery();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            finally
-            {
-                myConnection.Close();
-            }
-        }
-
         public static bool updateCompetition(Competition c, string title, DateTime initClose, DateTime finalClose)
         {
             SqlConnection myConnection = new SqlConnection(Properties.Settings.Default.PeachTreeConnectionString);
@@ -579,7 +557,7 @@ namespace PeachTreeWebsite
                 + "inner join PTA_User u on u.PTA_ID_User = c.PTA_ID_User "
                 + "inner join PTA_User mc on u.PTA_ID_Faculty = mc.PTA_ID_Faculty "
                 + "where mc.PTA_ID_User = @paramMCID "
-                + "order by PTA_ID_Contribution DESC;";
+                + "order by c.PTA_ID_Competition DESC, c.PTA_ID_Contribution DESC;";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
             cmd.Parameters.AddWithValue("@paramMCID", marketingCoordinatorID);
 
@@ -712,7 +690,7 @@ namespace PeachTreeWebsite
                 + "inner join PTA_Competition comp on comp.PTA_ID_Competition = c.PTA_ID_Competition "
                 + "where c.Cont_Status = 'Published' "
                 + "and comp.CompetitionName = @paramComp "
-                + "order by c.PTA_ID_Contribution DESC;";
+                + "order by u.Surname, u.GivenName;";
             SqlCommand cmd = new SqlCommand(queryStr, myConnection);
             cmd.Parameters.AddWithValue("@paramComp", compName);
 
