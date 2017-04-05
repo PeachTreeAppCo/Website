@@ -30,8 +30,9 @@ namespace PeachTreeWebsite.UI
             }
             Session["ContSession"] = null;
             competitions = DBConnection.getCompetitons();
-            if (!IsPostBack) {
-                ddlComps.Items.Clear();                
+            if (!IsPostBack)
+            {
+                ddlComps.Items.Clear();
                 foreach (Competition c in competitions)
                 {
                     if (DateTime.Now < c.InitialClosure1)
@@ -40,7 +41,7 @@ namespace PeachTreeWebsite.UI
                     }
                 }
                 ddlComps.SelectedIndex = 0;
-            }            
+            }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -58,57 +59,57 @@ namespace PeachTreeWebsite.UI
                     int compID = (from c in competitions
                                   where c.Name == ddlComps.SelectedItem.Text
                                   select c.ID1).First();
-					string filecontenttype = "";
+                    string filecontenttype = "";
 
-					// check for files and convert to byte array
-					if (fileContrib.HasFile)
+                    // check for files and convert to byte array
+                    if (fileContrib.HasFile)
                     {
-						// Get file details
-						string filePath = fileContrib.PostedFile.FileName;
-						string filename = Path.GetFileName(filePath);
-						string fileext = Path.GetExtension(filename);						
+                        // Get file details
+                        string filePath = fileContrib.PostedFile.FileName;
+                        string filename = Path.GetFileName(filePath);
+                        string fileext = Path.GetExtension(filename);
 
-						//Set the contenttype based on File Extension
-						switch (fileext)
-						{
-							case ".doc":
-								filecontenttype = "application/vnd.ms-word";
-								break;
-							case ".docx":
-								filecontenttype = "application/vnd.ms-word";
-								break;
-						}
-						if (filecontenttype != "")
-						{
-							Stream fs = fileContrib.PostedFile.InputStream;
-							BinaryReader br = new BinaryReader(fs);
-							docBytes = br.ReadBytes((Int32)fs.Length);
-						}
-
-						if (fileImage.HasFile)
+                        //Set the contenttype based on File Extension
+                        switch (fileext)
                         {
-							// get image details
-							string imgPath = fileImage.PostedFile.FileName;
-							string imgname = Path.GetFileName(imgPath);
-							string imgext = Path.GetExtension(imgname);
-							string imgcontenttype = "";
+                            case ".doc":
+                                filecontenttype = "application/vnd.ms-word";
+                                break;
+                            case ".docx":
+                                filecontenttype = "application/vnd.ms-word";
+                                break;
+                        }
+                        if (filecontenttype != "")
+                        {
+                            Stream fs = fileContrib.PostedFile.InputStream;
+                            BinaryReader br = new BinaryReader(fs);
+                            docBytes = br.ReadBytes((Int32)fs.Length);
+                        }
 
-							//Set the contenttype based on File Extension
-							switch (imgext)
-							{
-								case ".png":
-									imgcontenttype = "image/png";
-									break;
-							}
+                        if (fileImage.HasFile)
+                        {
+                            // get image details
+                            string imgPath = fileImage.PostedFile.FileName;
+                            string imgname = Path.GetFileName(imgPath);
+                            string imgext = Path.GetExtension(imgname);
+                            string imgcontenttype = "";
 
-							if (imgcontenttype != "")
-							{
-								Stream fs = fileImage.PostedFile.InputStream;
-								BinaryReader br = new BinaryReader(fs);
-								imgBytes = br.ReadBytes((Int32)fs.Length);
-							}
-						}
-                    }                    
+                            //Set the contenttype based on File Extension
+                            switch (imgext)
+                            {
+                                case ".png":
+                                    imgcontenttype = "image/png";
+                                    break;
+                            }
+
+                            if (imgcontenttype != "")
+                            {
+                                Stream fs = fileImage.PostedFile.InputStream;
+                                BinaryReader br = new BinaryReader(fs);
+                                imgBytes = br.ReadBytes((Int32)fs.Length);
+                            }
+                        }
+                    }
 
                     // Check if docs exist and upload appropriately
                     if (docBytes != null && imgBytes != null)
@@ -119,7 +120,7 @@ namespace PeachTreeWebsite.UI
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
                             lblSubmit.Text = "Contribution and image uploaded successfully!";
-                            emailMarketingCoordinator(uploadedContID);
+                            emailMarketingCoordinator(uploadedContID, title);
                         }
                         else
                         {
@@ -134,7 +135,7 @@ namespace PeachTreeWebsite.UI
                             cbTerms.Checked = false;
                             txtTitle.Text = "";
                             lblSubmit.Text = "Contribution uploaded successfully!";
-                            emailMarketingCoordinator(uploadedContID);
+                            emailMarketingCoordinator(uploadedContID, title);
                         }
                         else
                         {
@@ -171,7 +172,7 @@ namespace PeachTreeWebsite.UI
             Response.Redirect("~/UI/ViewContributions.aspx");
         }
 
-        public void emailMarketingCoordinator(int uploadedContID)
+        public void emailMarketingCoordinator(int uploadedContID, string title)
         {
             string mcEmail = DBConnection.getMarketingCoordinatorEmail(uploadedContID);
             if (mcEmail != "")
@@ -181,9 +182,13 @@ namespace PeachTreeWebsite.UI
                 mail.From = new MailAddress("peachtree.greenwich@gmail.com", "PeachTree Submissions", System.Text.Encoding.UTF8);
                 mail.Subject = "[PeachTree] You have a new magazine contribution for your faculty!";
                 mail.SubjectEncoding = System.Text.Encoding.UTF8;
-                mail.Body = "Hello, " 
-                   + "\nYou have a new magazine contribution for your faculty. "
-                   + "\nPlease log into the system and give feedback within 14 days.";
+                mail.Body = "<div class='jumbotron'><h1>You have a new magazine contribution for your faculty!</h1></div>"
+                    + "<br/>Please log into the system to give feedback within <strong>14 days</strong>."
+                    + "<br/><br/>Title: <strong>" + title + "</strong>"
+                    + "<br/>Author: <strong>" + s.GivenName1 + " " + s.Surname1 + "</strong>"
+                    + "<br/>Email address: <strong>" + s.Email1 + "</strong>"
+                    + "<br/><br/>Kind regards,"
+                    + "<br/>PeachTree";
                 mail.BodyEncoding = System.Text.Encoding.UTF8;
                 mail.IsBodyHtml = true;
                 mail.Priority = MailPriority.High;
@@ -201,7 +206,7 @@ namespace PeachTreeWebsite.UI
                 {
                     Console.WriteLine("Error: " + ex.ToString());
                 }
-            }           
+            }
         }
     }
 }
